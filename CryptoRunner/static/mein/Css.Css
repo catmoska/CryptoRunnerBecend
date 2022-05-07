@@ -116,14 +116,14 @@ li {
     float: left; 
     width: 40%;
     margin-top: 50px;
-    margin-left: 20%;
+    margin-left: 35%;
 }
 
 .imeig2bloc2{
     border-radius:35px;
     float: right; 
     width: 40%;
-    margin-right: 20%;
+    margin-right: 35%;
     margin-top: 50px;
 }
 
@@ -175,20 +175,20 @@ li {
     margin-top: 20px;
     width: 40%;
     float: left; 
-    margin-left: 20%;
+    margin-left: 35%;
 }
 
 .buton3{
     width: 40%;
     float: left;
-    margin-left: 20%;
+    margin-left: 35%;
 }
 
 .buton2{
     margin-top: 20px;
     width: 40%;
     float: right;
-    margin-right: 20%;
+    margin-right: 35%;
 }
 
 .buton4{
