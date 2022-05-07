@@ -7,6 +7,13 @@ from datetime import datetime, timezone,timedelta
 from .logik import *
 import json
 
+def pageNotFound(request):
+    return render(request, 'Eroor404.html', {'title': 'Eroor'})
+
+
+
+
+
 
 
 def mainStronisa(request):
