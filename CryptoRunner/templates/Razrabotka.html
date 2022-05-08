@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 colorF4D senrovat1Bloc">
+            <h1 class="senrovat1Bloc">Razrabotka</h1>
+            <div class="zag1">
+                Play To Earn <br> Blockchain Gameverse
+            </div>
+        </div>
+        <div class="col-md-6">
+            <video autoplay muted loop preload="auto" class="video">
+                <source src='{% static "mein/video.mov" %}'>
+            </video>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

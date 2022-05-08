@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect , HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from hashlib import sha224
@@ -7,11 +7,15 @@ from datetime import datetime, timezone,timedelta
 from .logik import *
 import json
 
-def pageNotFound(request):
+def pageNotFound(request,exception):
+    g= render(request, 'Eroor404.html', {'title': 'Eroor'})
+    return HttpResponseNotFound(g)
+
+def Eroor404(request):
     return render(request, 'Eroor404.html', {'title': 'Eroor'})
 
-
-
+def Razrabotka(request):
+    return render(request, 'Razrabotka.html', {'title': 'Eroor'})
 
 
 

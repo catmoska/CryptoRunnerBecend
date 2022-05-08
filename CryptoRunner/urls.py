@@ -10,4 +10,5 @@ urlpatterns = [
     path('Gaim', geim,name="geim"),
     # path('geim/DATA/', geimDETA),
     path('DATA/', geimDETA),
+    path('E404', Eroor404),
 ]
