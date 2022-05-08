@@ -27,13 +27,12 @@
     <div class="col-md-6">
         <img class="imeig2bloc" src='{% static "mein/crypto runner.png" %}'/>
         <div class="Text3 buton1 animator"><a href="{% url 'geim'%}"><div class="colorF4D">Play</div></a></div><br>
-        <div class="Text3 buton3 animator"><a href=""><div class="colorF4D">Visit Store</div></a></div>
-
+        <div class="Text3 buton3 animator"><a href="{% url 'Razrabotka'%}"><div class="colorF4D">Visit Store</div></a></div>
     </div>
 
     <div class="col-md-6">
         <img class="imeig2bloc2" src='{% static "mein/anim arena.png" %}'/>
-        <div class="Text3 buton2 animator"><a href=""><div class="colorF4D">In Development</div></a></div>
+        <div class="Text3 buton2 animator"><a href="{% url 'Razrabotka'%}"><div class="colorF4D">In Development</div></a></div>
     </div>
     <div class="col-md-12"><br><br></div>
 </div>
@@ -46,7 +45,7 @@
     <div class="col-md-2"></div>
     <div class="colorF4D senrovat2Bloc2 col-md-8">
         Earn your NFTs item by playing the game and sell it on the marketplace to make money<br><br>
-        <a class="colorFFF buton5 buton6 buton7 animator">⠀MARKETPLACE⠀</a>
+        <a href="{% url 'Razrabotka'%}" class="colorFFF buton5 buton6 buton7 animator">⠀MARKETPLACE⠀</a>
     </div>
 
     <video autoplay muted loop preload="auto" class="width80 col-md-12">
@@ -61,8 +60,8 @@
     <div class="col-md-1"></div>
     <div class="col-md-4 Text5 colorF4D">
         Play, Farm, Earn Bonny Token In Our Games <br><br>
-        <a class="colorFFF buton5 buton6 buton7 animator">⠀⠀Stake⠀⠀</a><br>
-        <a class="colorFFF buton5 buton6 buton7 animator">⠀Get Bonny⠀</a>
+        <a href="{% url 'Razrabotka'%}" class="colorFFF buton5 buton6 buton7 animator">⠀⠀Stake⠀⠀</a><br>
+        <a href="{% url 'Razrabotka'%}" class="colorFFF buton5 buton6 buton7 animator">⠀Get Bonny⠀</a>
     </div>
     <div class="col-md-6">
         <img class="imeig4bloc" src='{% static "mein/Koneika.png" %}'/>
