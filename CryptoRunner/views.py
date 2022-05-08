@@ -8,14 +8,13 @@ from .logik import *
 import json
 
 def pageNotFound(request,exception):
-    g= render(request, 'Eroor404.html', {'title': 'Eroor'})
-    return HttpResponseNotFound(g)
+    return HttpResponseNotFound(Eroor404(request))
 
 def Eroor404(request):
-    return render(request, 'Eroor404.html', {'title': 'Eroor'})
+    return render(request, 'Eroor404.html', {'title': 'Error 404'})
 
 def Razrabotka(request):
-    return render(request, 'Razrabotka.html', {'title': 'Eroor'})
+    return render(request, 'Razrabotka.html', {'title': 'Coming Soon!'})
 
 
 

@@ -3,11 +3,35 @@
 
 {% block title %}{{title}}{% endblock %}
 
+{% block head %}
+<style>
+    .buton{
+        /* text-align: center;
+        padding-left: 40%;
+        padding-right: 40%;
+        margin-left: 10%; */
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}
+
 {% block body %}
+
 <div class="colorF4D container-fluid mycol">
     <h1 class="navbar col-md-12 colorFFF senrovat4Bloc1">Eroor404</h1>
     <div class="col-md-12">
-        <img class="width80" src='{% static "mein/404.png" %}'/>
+        <img class="width80" src='{% static "mein/E404.png" %}'/>
+        
     </div>
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12"></div>
+    <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5"></div>
+    <!-- <a href="{% url 'geim'%}" class="col-md-3 col-xs-3 col-sm-3 col-lg-3 Text3 buton buton6 animator colorF4D">Play</a> -->
+    <!-- <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5"></div> -->
 </div>
+<a href="{% url 'main'%}" 
+class="Text3 butonCentrirovat buton6 animator colorF4D">Home Page </a>
+<br><br><br><br><br>
 {% endblock %}
