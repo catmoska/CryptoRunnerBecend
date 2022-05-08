@@ -35,49 +35,49 @@ def mainStronisa(request):
     return render(request, 'CryptoRunner/mainStronisa.html', {'title':'главная страниса'})
 
 
-# @csrf_exempt
-# def registr(request):
-#     if request.COOKIES:
-#         snis = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-#         if len(snis) !=0:
-#             return nereadres("geim")
-#
-#     if len(request.body) !=0:
-#         PublicKeuSolana= json.loads(request.body.decode('utf-8'))["id"]
-#         snis = Pleir.objects.filter(PublicKeuSolana=PublicKeuSolana)
-#         idHash = sha224(PublicKeuSolana.encode('utf-8')).hexdigest()
-#         print(idHash)
-#         print(PublicKeuSolana)
-#         if len(snis) !=0:
-#             y = snis[0]
-#             y.DataVixada = datetime.now()
-#             if request.COOKIES and request.COOKIES.get('id') != PublicKeuSolana:
-#                 print("ddddd")
-#                 y.isSiter = True
-#             y.save()
-#         else:
-#             y = Pleir(
-#             DataRegistr=datetime.today(),
-#             DataVixada=datetime.today(),
-#             Energia=20,
-#             EnergiaMax=20,
-#             PublicKeuSolana=PublicKeuSolana,
-#             idHash=idHash)
-#             y.save()
-#             nft = NFTs(
-#                 Energia=3,EnergiaMax=3,
-#                 idHash="",URLnft='',
-#                 Obrabotka=True,DataSozdania=datetime.now(),
-#                 DataVixada=datetime.now(),Narameter={'id': "dd"},
-#                 idHashPleir=y.idHash,skin=0, suit=0, trousers=0,
-#                 cap=0, gloves=0)
-#             nft.save()
-#         response = redirect('/registr/')
-#         response.set_cookie('id',PublicKeuSolana)
-#         return response
-#         # return HttpResponse(y.SetIdHash())
-#
-#     return render(request,'CryptoRunner/registr.html', {'title':'регистрасия'})
+@csrf_exempt
+def registr(request):
+    if request.COOKIES:
+        snis = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(snis) !=0:
+            return nereadres("geim")
+
+    if len(request.body) !=0:
+        PublicKeuSolana= json.loads(request.body.decode('utf-8'))["id"]
+        snis = Pleir.objects.filter(PublicKeuSolana=PublicKeuSolana)
+        idHash = sha224(PublicKeuSolana.encode('utf-8')).hexdigest()
+        print(idHash)
+        print(PublicKeuSolana)
+        if len(snis) !=0:
+            y = snis[0]
+            y.DataVixada = datetime.now()
+            if request.COOKIES and request.COOKIES.get('id') != PublicKeuSolana:
+                print("ddddd")
+                y.isSiter = True
+            y.save()
+        else:
+            y = Pleir(
+            DataRegistr=datetime.today(),
+            DataVixada=datetime.today(),
+            Energia=20,
+            EnergiaMax=20,
+            PublicKeuSolana=PublicKeuSolana,
+            idHash=idHash)
+            y.save()
+            nft = NFTs(
+                Energia=3,EnergiaMax=3,
+                idHash="",URLnft='',
+                Obrabotka=True,DataSozdania=datetime.now(),
+                DataVixada=datetime.now(),Narameter={'id': "dd"},
+                idHashPleir=y.idHash,skin=0, suit=0, trousers=0,
+                cap=0, gloves=0)
+            nft.save()
+        response = redirect('/registr/')
+        response.set_cookie('id',PublicKeuSolana)
+        return response
+        # return HttpResponse(y.SetIdHash())
+
+    return render(request,'CryptoRunner/registr.html', {'title':'регистрасия'})
 
 
 
@@ -181,7 +181,6 @@ def geim(request):
         response.set_cookie('id',PublicKeuSolana)
         return response
         # return HttpResponse(y.SetIdHash())
-
     return render(request,'CryptoRunner/geim.html', {'title':'geim'})
 
 

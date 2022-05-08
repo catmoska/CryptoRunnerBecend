@@ -1,8 +1,10 @@
+const url = "{% url 'geim'%}";
+
 function textMesends(moneu, distansion) {
   return "fff" + moneu + " " + distansion;
 }
+
 async function conect() {
-  const url = "{% url 'geim'%}";
   try {
     const resp = await window.solana.connect();
     p = resp.publicKey.toString();
