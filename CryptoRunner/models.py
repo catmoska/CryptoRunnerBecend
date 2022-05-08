@@ -81,4 +81,9 @@ class Сlothes(models.Model):
     Narameter = models.JSONField()
     classСlothes = models.IntegerField()
 
+# class MARKETPLACEmodel(models.Model):
+#     Photo = models.ImageField(upload_to="photo/%Y/%m/%d/", null=True)
+#     nft = models.ForeignKey("NFTs")
+# for i in range(10):
+
 

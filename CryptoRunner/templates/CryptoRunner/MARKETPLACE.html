@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+<script>
+    let isVisual = false;
+    
+    function zatia(){
+        const Elsem = document.getElementById("vsplivaska")
+        console.log(Elsem);
+        if(isVisual){
+            Elsem.style.width = "0px";
+            Elsem.style.height = "0px";
+            Elsem.style.backgroundColor = "#00000000";
+        }else{
+            Elsem.style.width = "50%";
+            Elsem.style.height = "";
+            Elsem.style.backgroundColor = "#3d9bdf";
+        }
+        isVisual =!isVisual; 
+    }
+</script>
+{% endblock %}
+
+{% block body %}
+<h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br>
+<button class="Text3 butonCentrirovat buton6 animator colorF4D" onclick="zatia()">\/</button></h1>
+
+ <br> <br>
+<div class="colorF4D container-fluid animator3" id="vsplivaska" style="width: 0px;">
+    <p class="col-md-6"><a href="{% url 'MARKETPLACE'%}/1">
+        <img class="MarketplaceImeig width60" src='{% static "mein/crypto runner.png" %}'/>
+    </a></p>
+    <p class="col-md-6"><a href="{% url 'MARKETPLACE'%}/2">
+        <img class="MarketplaceImeig width60" src='{% static "mein/anim arena.png" %}'/>
+    </a></p>
+    
+</div>
+
+<div class="colorF4D container-fluid">
+    {% for i in tovar%}
+        <div class="col-md-3 senrovat2Bloc animator MarketplaceVidvigat">
+            <div class="MarketplaceTovar">
+                <p><a href="{% url 'main'%}">
+                    <div>#фото#</div>
+                    <!-- <img src='{% static "mein/logo.png" %}' alt="Logo"> -->
+                </a></p>
+                <div class="senrovatMarketplaceText colorFFF">
+                    moneu:
+                    {% comment %} {{}} {% endcomment %}
+                    <br>
+                    moneu:
+                    {% comment %} {{}} {% endcomment %}
+                    <br>
+                </div>
+                <a href="{% url 'main'%}" 
+                class="Text3 butonCentrirovat buton5 animator colorF4D">Home Page </a>
+                <br>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

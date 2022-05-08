@@ -16,6 +16,18 @@ def Eroor404(request):
 def Razrabotka(request):
     return render(request, 'Razrabotka.html', {'title': 'Coming Soon!'})
 
+def geimV(request):
+    return render(request, 'CryptoRunner/Vgeimes.html', {'title': 'Geimes'})
+
+def MARKETPLACE(request):
+    return render(request, 'CryptoRunner/MARKETPLACE.html', {'title': 'MARKETPLACE',"tovar":[0,1,2,3,4,5,6,7,8,9,10]})
+
+def MARKETPLACEI(request,geim):
+    if(geim == 1):
+        return render(request, 'CryptoRunner/MARKETPLACE.html',
+                      {'title': 'MARKETPLACE', "tovar": [0, 1, 2]})
+    return render(request, 'CryptoRunner/MARKETPLACE.html', {'title': 'MARKETPLACE',"tovar":[0,1,2,3,4,5]})
+
 
 
 

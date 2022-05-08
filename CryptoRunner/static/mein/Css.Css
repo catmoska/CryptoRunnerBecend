@@ -5,19 +5,16 @@ body{
 	-webkit-user-select: none; 
 	user-select: none; 
 }
-.Srift{
-    font-family: Montserrat;
-}
 
-li {
-    list-style-type: none;
-}
+li {list-style-type: none;}
 
+.navbar {background-color: #FF4F7D;}
+.colorFFF{color: #ffffff;}
+.color000{color: #000000;}
+.colorF4D{color: #FF4F7D;}
 
-
-.navbar {
-    background-color: #FF4F7D;
-}
+.myrow {margin-left: 0; margin-right: 0;}
+.mycol {padding-left: 0; padding-right:0;}
 
 .Textnavbar {
     color: #ffffff;
@@ -36,15 +33,14 @@ li {
     font-size: 28px;
     transition: 0.1s all;
 }
-.navImeig{
-    height: 90px;
-}
+.navImeig{height: 90px;}
 
 .Textnavbar:hover{
     font-size: 35px;
     background-color: #ccc;
     color: #000000;
 }
+
 .Textnavbar2:hover{
     font-size: 32px;
     background-color: #ccc;
@@ -57,16 +53,6 @@ li {
     margin-right: 0%;
     margin-top: 25px;
 } 
-
-.colorFFF{
-    color: #ffffff;
-}
-.color000{
-    color: #000000;
-}
-.colorF4D{
-    color: #FF4F7D;
-}
 
 .Text {
     position: absolute;
@@ -82,8 +68,13 @@ li {
     font-size: 50px; 
 } 
 
-.myrow {margin-left: 0; margin-right: 0;}
-.mycol {padding-left: 0; padding-right:0;}
+.senrovat1Bloc{
+    margin-top: 100px;
+    text-align:center;
+    font-size: 90px;
+}
+
+.senrovat1Bloc2{font-size: 50px;}
 
 .senrovat2Bloc{
     text-align:center;
@@ -91,14 +82,6 @@ li {
 }
 .senrovat2Bloc2{
     text-align:center;
-    font-size: 50px;
-}
-.senrovat1Bloc{
-    margin-top: 100px;
-    text-align:center;
-    font-size: 90px;
-}
-.senrovat1Bloc2{
     font-size: 50px;
 }
 
@@ -132,7 +115,6 @@ li {
     margin-top: 50px;
 }
 
-
 .Text5{
     margin-top: 3%;
     text-align:center;
@@ -146,11 +128,9 @@ li {
 	margin-bottom:10px;
 	padding:0px;
 	background-color:#ffffff;
-
     border-radius:80px;
 	width: 300px;
 	text-align:center;
-
 	transition: 0.5s all;
     font-size: 40px;
 }
@@ -173,6 +153,12 @@ li {
 
 .butonCentrirovat{
     position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.butonCentrirovat2{
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -203,6 +189,10 @@ li {
     margin-left:36%;
 }
 
+.buton5{
+    text-align:center;
+    width: 80%;
+}
 
 .buton6{
     color:#FFFFFF;
@@ -213,11 +203,6 @@ li {
     border-radius:80px;
 	width: 300px;
     float: center;
-    /* margin-left: 35%; */
-    /* margin-left: 35%;
-    margin-right: 50%; */
-
-    /* font-size: 50px; */
 }
 
 .buton6:hover{
@@ -226,30 +211,18 @@ li {
 	background-color:#B9D9C4;
 }
 
-.buton7{
-    color:#FFFFFF;
-    font-size: 50px;
-}
+.buton7{color:#FFFFFF;font-size: 50px;}
+.buton7:hover{color:#000000;}
 
-.buton7:hover{
-    color:#000000;
-}
+.animator{transition: 0.5s all;}
+.animator5{transition: 0.5s all;}
+.animator3{transition: 0.3s all;}
+.animator1{transition: 0.1s all;}
 
-.animator{
-	transition: 0.5s all;
-}
+.width110{width: 110%;}
+.width120{width: 120%;float: center;}
 
-.width110{
-    width: 110%;
-}
-.width120{
-    width: 120%;
-    float: center;
-}
-
-.width100{
-    width: 100%;
-}
+.width100{width: 100%;}
 .width80{
     margin-top: 20px;
     margin-left: 10%;
@@ -272,3 +245,55 @@ li {
     margin-right: 40%;
     width: 20%;
 }
+
+.sotseti{
+    background-color: #FF4F7D;
+    position: fixed;
+    right: 0;
+    bottom: 20%;
+    width: 30px;
+    z-index: 100;
+}
+
+.sotsetiIcons{
+    z-index: 150;
+    width: 30px;
+}
+
+.sotsetiFon{
+    width: 50px;
+    height: 250px;
+    bottom: 18%;
+}
+
+.MarketplaceTovar{
+    margin-top: 50px;
+    background-color: #FF4F7D;
+    border-radius:20px;
+}
+
+.senrovatMarketplaceText{
+    text-align:left;
+    margin-left: 10%;
+    font-size: 20px;
+}
+
+#vsplivaska{
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-radius:20px;
+    
+}
+
+.MarketplaceImeig{
+    border-radius:15px;
+    float: left; 
+    width: 40%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 35%;
+}
+

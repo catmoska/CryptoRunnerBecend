@@ -1,10 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block title %}{{title}}{% endblock %}
-
+{% block title %}
+    {{ title }}
+{%endblock %}
+{% block head %}
+<script>
+  mergeInto(LibraryManager.library, {
+    ShareFuncsiaTelegram: function (moneu, distansion) {
+      window.open(
+        "https://telegram.me/share/url?url=" + textMesends(moneu, distansion),
+        "sharer",
+        "status=0,toolbar=0,width=650,height=500"
+      );
+    },
+    ShareFuncsiaFacebook: function (moneu, distansion) {
+      window.open(
+        "https://www.facebook.com/sharer.php?u=" +
+          textMesends(moneu, distansion),
+        "sharer",
+        "status=0,toolbar=0,width=650,height=500"
+      );
+    },
+    ShareFuncsiaTwitter: function (moneu, distansion) {
+      window.open(
+        "https://twitter.com/intent/tweet?text=" +
+          textMesends(moneu, distansion),
+        "sharer",
+        "status=0,toolbar=0,width=650,height=500"
+      );
+    },
+    registor: function (moneu, distansion) {
+      conect();
+    },
+  });
+</script>
+{% endblock %}
 {% block body %}
-    <!-- <div class="container-fluid">
+        <!-- <div class="container-fluid">
         <div class="col-md-2">
             <button>960:600</button>
         </div>
@@ -21,31 +53,32 @@
             <button>960:600</button>
         </div>
         <div class="col-md-2">
-            <button>960:600</button>
-        </div>
-    </div> -->
-
-
-    <canvas class="butonCentrirovat" id="unity-canvas" width=960 height=600 style="width: 960px; height: 600px; background: #231F20"></canvas>
-    <canvas width=960 height=600></canvas>
+<button>960:600</button>
+</div>
+</div> -->
+  <canvas class="butonCentrirovat"
+    id="unity-canvas"
+    width="960" height="600"
+    style="width: 960px; height: 600px; background: #231f20"></canvas>
+    <canvas width="960" height="600"></canvas>
     <script src="{% static 'Build/ttt.loader.js' %}"></script>
     <script>
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            var meta = document.createElement('meta');
-            meta.name = 'viewport';
-            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-            document.getElementsByTagName('head')[0].appendChild(meta);
-        }
+          if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+          var meta = document.createElement("meta");
+          meta.name = "viewport";
+          meta.content =
+            "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
+          document.getElementsByTagName("head")[0].appendChild(meta);
+          }
 
-        createUnityInstance(document.querySelector("#unity-canvas"), {
-            dataUrl: "{% static 'Build/ttt.data.br'%}",
-            frameworkUrl: "{% static 'Build/ttt.framework.js.br'%}",
-            codeUrl: "{% static 'Build/ttt.wasm.br'%}",
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "GJstudio",
-            productName: "CryptoRunner",
-            productVersion: "0,1",
-        });
-    </script>
-    
+          createUnityInstance(document.querySelector("#unity-canvas"), {
+          dataUrl: "{% static 'Build/ttt.data.br'%}",
+          frameworkUrl: "{% static 'Build/ttt.framework.js.br'%}",
+          codeUrl: "{% static 'Build/ttt.wasm.br'%}",
+          streamingAssetsUrl: "StreamingAssets",
+          companyName: "GJstudio",
+          productName: "CryptoRunner",
+          productVersion: "0,1",
+          });
+        </script>
 {% endblock %}
