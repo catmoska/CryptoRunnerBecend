@@ -36,33 +36,20 @@
 </script>
 {% endblock %}
 {% block body %}
-        <!-- <div class="container-fluid">
-        <div class="col-md-2">
-            <button>960:600</button>
-        </div>
-        <div class="col-md-2">
-            <button>960:600</button>
-        </div>
-        <div class="col-md-2">
-            <button>960:600</button>
-        </div>
-        <div class="col-md-2">
-            <button>960:600</button>
-        </div>
-        <div class="col-md-2">
-            <button>960:600</button>
-        </div>
-        <div class="col-md-2">
-<button>960:600</button>
-</div>
-</div> -->
-  <canvas class="butonCentrirovat"
+  <body width="100%" bgcolor="#000" background='{% static "mein/fonGeim.png" %}'>
+  {% comment %} <img width="100%" height="" class="butonCentrirovatGeims" src='{% static "mein/fonGeim.png" %}'/> {% endcomment %}
+  <img width="1020px" height="660px" class="geimObvodka butonCentrirovat" src='{% static "mein/obvotkaa.png" %}'/>
+  <canvas class="butonCentrirovat geimTop"
     id="unity-canvas"
     width="960" height="600"
-    style="width: 960px; height: 600px; background: #231f20"></canvas>
-    <canvas width="960" height="600"></canvas>
-    <script src="{% static 'Build/ttt.loader.js' %}"></script>
-    <script>
+    style="width: 960px; height: 600px; background: #231f20">
+    </canvas>
+    
+  
+
+  <canvas width="1020px" height="660px" style="margin-bottom: 50px;" class="geimTop"></canvas>
+  <script src="{% static 'Build/ttt.loader.js' %}"></script>
+  <script>
           if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
           var meta = document.createElement("meta");
           meta.name = "viewport";
@@ -80,5 +67,5 @@
           productName: "CryptoRunner",
           productVersion: "0,1",
           });
-        </script>
+  </script>
 {% endblock %}

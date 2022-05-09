@@ -308,22 +308,25 @@ li {
 
 .sotseti {
     background-color: #FF4F7D;
+    border-radius: 15px;
     position: fixed;
-    right: 0;
+    left: -20px;
     bottom: 20%;
-    width: 30px;
+    width: 68px;
     z-index: 100;
 }
 
 .sotsetiIcons {
     z-index: 150;
     width: 30px;
+    margin-left: 28px;
+    margin-top: 10px;
 }
 
 .sotsetiFon {
-    width: 50px;
+    width: 300px;
     height: 250px;
-    bottom: 18%;
+    bottom: 16%;
 }
 
 .MarketplaceTovar {
@@ -354,4 +357,21 @@ li {
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: 35%;
+}
+
+.geimObvodka {
+    margin-top: 30px;
+}
+
+.geimTop{
+    margin-top: 60px;
+}
+
+.butonCentrirovatGeims{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -20px;
+    margin: 0 auto;
+    z-index: -10;
 }
