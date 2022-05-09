@@ -1,20 +1,40 @@
-body{
+body {
     font-family: Bangers-Regular;
-    -ms-user-select: none; 
-	-moz-user-select: none; 
-	-webkit-user-select: none; 
-	user-select: none; 
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-li {list-style-type: none;}
+li {
+    list-style-type: none;
+}
 
-.navbar {background-color: #FF4F7D;}
-.colorFFF{color: #ffffff;}
-.color000{color: #000000;}
-.colorF4D{color: #FF4F7D;}
+.navbar {
+    background-color: #FF4F7D;
+}
 
-.myrow {margin-left: 0; margin-right: 0;}
-.mycol {padding-left: 0; padding-right:0;}
+.colorFFF {
+    color: #ffffff;
+}
+
+.color000 {
+    color: #000000;
+}
+
+.colorF4D {
+    color: #FF4F7D;
+}
+
+.myrow {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.mycol {
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .Textnavbar {
     color: #ffffff;
@@ -33,15 +53,18 @@ li {list-style-type: none;}
     font-size: 28px;
     transition: 0.1s all;
 }
-.navImeig{height: 90px;}
 
-.Textnavbar:hover{
+.navImeig {
+    height: 90px;
+}
+
+.Textnavbar:hover {
     font-size: 35px;
     background-color: #ccc;
     color: #000000;
 }
 
-.Textnavbar2:hover{
+.Textnavbar2:hover {
     font-size: 32px;
     background-color: #ccc;
     color: #000000;
@@ -52,201 +75,238 @@ li {list-style-type: none;}
     margin-left: 0%;
     margin-right: 0%;
     margin-top: 25px;
-} 
+}
 
 .Text {
     position: absolute;
     margin-left: 25px;
     margin-top: 10%;
-    font-size: 500%;  
+    font-size: 500%;
     margin-right: 70%;
     font-size: 50px;
 }
 
-.zag1{
+.zag1 {
     margin-top: 50px;
-    font-size: 50px; 
-} 
+    font-size: 50px;
+}
 
-.senrovat1Bloc{
+.senrovat1Bloc {
     margin-top: 100px;
-    text-align:center;
+    text-align: center;
     font-size: 90px;
 }
 
-.senrovat1Bloc2{font-size: 50px;}
+.senrovat1Bloc2 {
+    font-size: 50px;
+}
 
-.senrovat2Bloc{
-    text-align:center;
+.senrovat2Bloc {
+    text-align: center;
     font-size: 70px;
 }
-.senrovat2Bloc2{
-    text-align:center;
+
+.senrovat2Bloc2 {
+    text-align: center;
     font-size: 50px;
 }
 
-.senrovat4Bloc1{
-    text-align:center;
+.senrovat4Bloc1 {
+    text-align: center;
     font-size: 100px;
 }
-.senrovat4Bloc2{
-    text-align:center;
+
+.senrovat4Bloc2 {
+    text-align: center;
     font-size: 50px;
 }
 
-.imeig2bloc{
-    border-radius:35px;
-    float: left; 
+.Eroor404senrovat {
+    text-align: center;
+    font-size: 90px;
+}
+
+.imeig2bloc {
+    border-radius: 35px;
+    float: left;
     width: 40%;
     margin-top: 50px;
     margin-left: 35%;
 }
 
-.imeig2bloc2{
-    border-radius:35px;
-    float: right; 
+.imeig2bloc2 {
+    border-radius: 35px;
+    float: right;
     width: 40%;
     margin-right: 35%;
     margin-top: 50px;
 }
 
-.imeig4bloc{
+.imeig4bloc {
     width: 110%;
     margin-top: 50px;
 }
 
-.Text5{
+.Text5 {
     margin-top: 3%;
-    text-align:center;
+    text-align: center;
     font-size: 60px;
 }
 
-.Text3{
-    
-    color:#FF4F7D;
-	border: 2px solid #5293C3;
-	margin-bottom:10px;
-	padding:0px;
-	background-color:#ffffff;
-    border-radius:80px;
-	width: 300px;
-	text-align:center;
-	transition: 0.5s all;
+.Text3 {
+    color: #FF4F7D;
+    border: 2px solid #5293C3;
+    margin-bottom: 10px;
+    padding: 0px;
+    background-color: #ffffff;
+    border-radius: 80px;
+    width: 300px;
+    text-align: center;
+    transition: 0.5s all;
     font-size: 40px;
 }
 
-.Text3:hover{
-	border: 2px dashed #3d9bdf;
-	background-color:#B9D9C4;
+.Text3:hover {
+    border: 2px dashed #3d9bdf;
+    background-color: #B9D9C4;
 }
 
-.tex{
+.tex {
     margin-top: 365px;
 }
 
-.tex2{
+.tex2 {
     margin-top: 350px;
 }
-.tex4{
+
+.tex4 {
     font-size: 90px;
 }
 
-.butonCentrirovat{
+.butonCentrirovat {
     position: absolute;
     left: 0;
     right: 0;
     margin: 0 auto;
 }
 
-.butonCentrirovat2{
+.butonCentrirovat2 {
     left: 0;
     right: 0;
     margin: 0 auto;
 }
 
-.buton1{
+.buton1 {
     margin-top: 20px;
-    width: 40%;
-    float: left; 
-    margin-left: 35%;
-}
-
-.buton3{
     width: 40%;
     float: left;
     margin-left: 35%;
 }
 
-.buton2{
+.buton3 {
+    width: 40%;
+    float: left;
+    margin-left: 35%;
+}
+
+.buton2 {
     margin-top: 20px;
     width: 40%;
     float: right;
     margin-right: 35%;
 }
 
-.buton4{
-    text-align:center;
-    margin-left:36%;
+.buton4 {
+    text-align: center;
+    margin-left: 36%;
 }
 
-.buton5{
-    text-align:center;
+.buton5 {
+    text-align: center;
     width: 80%;
 }
 
-.buton6{
-    color:#FFFFFF;
-	border: 2px solid #FF4F7D;
-	margin-bottom:10px;
-	padding:10px;
-	background-color:#FF4F7D;
-    border-radius:80px;
-	width: 300px;
+.buton6 {
+    color: #FFFFFF;
+    border: 2px solid #FF4F7D;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #FF4F7D;
+    border-radius: 80px;
+    width: 300px;
     float: center;
 }
 
-.buton6:hover{
-    color:#000000;
-	border: 2px dashed #3d9bdf;
-	background-color:#B9D9C4;
+.buton6:hover {
+    color: #000000;
+    border: 2px dashed #3d9bdf;
+    background-color: #B9D9C4;
 }
 
-.buton7{color:#FFFFFF;font-size: 50px;}
-.buton7:hover{color:#000000;}
+.buton7 {
+    color: #FFFFFF;
+    font-size: 50px;
+}
 
-.animator{transition: 0.5s all;}
-.animator5{transition: 0.5s all;}
-.animator3{transition: 0.3s all;}
-.animator1{transition: 0.1s all;}
+.buton7:hover {
+    color: #000000;
+}
 
-.width110{width: 110%;}
-.width120{width: 120%;float: center;}
+.animator {
+    transition: 0.5s all;
+}
 
-.width100{width: 100%;}
-.width80{
+.animator5 {
+    transition: 0.5s all;
+}
+
+.animator3 {
+    transition: 0.3s all;
+}
+
+.animator1 {
+    transition: 0.1s all;
+}
+
+.width110 {
+    width: 110%;
+}
+
+.width120 {
+    width: 120%;
+    float: center;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.width80 {
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
     width: 80%;
 }
-.width60{
+
+.width60 {
     margin-left: 20%;
     margin-right: 20%;
     width: 60%;
 }
-.width40{
+
+.width40 {
     margin-left: 30%;
     margin-right: 30%;
     width: 40%;
 }
 
-.width20{
+.width20 {
     margin-left: 40%;
     margin-right: 40%;
     width: 20%;
 }
 
-.sotseti{
+.sotseti {
     background-color: #FF4F7D;
     position: fixed;
     right: 0;
@@ -255,45 +315,43 @@ li {list-style-type: none;}
     z-index: 100;
 }
 
-.sotsetiIcons{
+.sotsetiIcons {
     z-index: 150;
     width: 30px;
 }
 
-.sotsetiFon{
+.sotsetiFon {
     width: 50px;
     height: 250px;
     bottom: 18%;
 }
 
-.MarketplaceTovar{
+.MarketplaceTovar {
     margin-top: 50px;
     background-color: #FF4F7D;
-    border-radius:20px;
+    border-radius: 20px;
 }
 
-.senrovatMarketplaceText{
-    text-align:left;
+.senrovatMarketplaceText {
+    text-align: left;
     margin-left: 10%;
     font-size: 20px;
 }
 
-#vsplivaska{
+#vsplivaska {
     position: absolute;
     z-index: 1;
     left: 0;
     right: 0;
     margin: 0 auto;
-    border-radius:20px;
-    
+    border-radius: 20px;
 }
 
-.MarketplaceImeig{
-    border-radius:15px;
-    float: left; 
+.MarketplaceImeig {
+    border-radius: 15px;
+    float: left;
     width: 40%;
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: 35%;
 }
-
