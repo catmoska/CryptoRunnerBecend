@@ -22,42 +22,52 @@
         isVisual =!isVisual; 
     }
 </script>
+
+ {% comment %} <style>
+body {background-color: #000000}
+</style>  {% endcomment %}
 {% endblock %}
 
 {% block body %}
 <h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br>
-<button class="Text3 butonCentrirovat buton6 animator colorF4D" onclick="zatia()">\/</button></h1>
+{% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" onclick="zatia()">\/</button></h1> {% endcomment %}
 
- <br> <br>
-<div class="colorF4D container-fluid animator3" id="vsplivaska" style="width: 0px;">
+ {% comment %} <br> <br> {% endcomment %}
+{% comment %} <div class="colorF4D container-fluid animator3" id="vsplivaska" style="width: 0px;">
     <p class="col-md-6"><a href="{% url 'MARKETPLACE'%}/1">
         <img class="MarketplaceImeig width60" src='{% static "mein/crypto runner.png" %}'/>
     </a></p>
     <p class="col-md-6"><a href="{% url 'MARKETPLACE'%}/2">
         <img class="MarketplaceImeig width60" src='{% static "mein/anim arena.png" %}'/>
     </a></p>
-    
-</div>
+</div> {% endcomment %}
 
 <div class="colorF4D container-fluid">
     {% for i in tovar%}
-        <div class="col-md-3 senrovat2Bloc animator MarketplaceVidvigat">
+        <div class="col-md-4 senrovat2Bloc animator">
             <div class="MarketplaceTovar">
-                <p><a href="{% url 'main'%}">
-                    <div>#фото#</div>
-                    <!-- <img src='{% static "mein/logo.png" %}' alt="Logo"> -->
-                </a></p>
+                <p><a href="{% url 'main'%}" class="colorFFF">
+                    {% comment %} <div>#фото#</div> {% endcomment %}
+                    <img src='{% static "mein/nft tranp.png" %}' class="MarketplaceVidvigat animator" alt=""/>
+                    <img src='{% static "mein/cat.png" %}' class="MarketplaceCat " alt=""/>
+                </a>
                 <div class="senrovatMarketplaceText colorFFF">
-                    moneu:
-                    {% comment %} {{}} {% endcomment %}
+                    runner: <br>
+                    price:
+                    <div class="senrovatMarketplaceText2A">
+                        #
+                        {{i}}
+                    </div>
                     <br>
-                    moneu:
-                    {% comment %} {{}} {% endcomment %}
-                    <br>
+                    <div class="senrovatMarketplaceText2B">
+                        0.05
+                        {% comment %} {{}} {% endcomment %}
+                        <img src='{% static "mein/sol tran.png" %}' class="MarketplaceImeig2" alt=""/>
+                    </div>
                 </div>
-                {% comment %} <a href="{% url 'main'%}" 
-                class="Text3 butonCentrirovat buton5 animator colorF4D">ttttt </a> {% endcomment %}
-                {% comment %} <br> {% endcomment %}
+                    {% comment %} {{}} {% endcomment %}
+                    <br>
+                </p>
             </div>
         </div>
     {% endfor %}

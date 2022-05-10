@@ -20,7 +20,7 @@ def geimV(request):
     return render(request, 'CryptoRunner/Vgeimes.html', {'title': 'Geimes'})
 
 def MARKETPLACE(request):
-    return render(request, 'CryptoRunner/MARKETPLACE.html', {'title': 'MARKETPLACE',"tovar":[0,1,2,3,4,5,6,7,8,9,10]})
+    return render(request, 'CryptoRunner/MARKETPLACE.html', {'title': 'MARKETPLACE',"tovar":[1,2,3,4,5,6,7,8,9,10,11]})
 
 def MARKETPLACEI(request,geim):
     if(geim == 1):
@@ -123,7 +123,6 @@ def geimDETA(request):
     nft = NFTs.objects.filter(idHashPleir=userv.idHash)
     if len(nft) == 0:
         return HttpResponse("EroorNFT")
-
 
     otvet =str(userv.Money)+"&"+str(userv.Record)+"&"+\
            str(userv.Energia)+"&"+str(userv.EnergiaMax)+"&"+str(userv.nonitka)+"$"

@@ -331,14 +331,30 @@ li {
 
 .MarketplaceTovar {
     margin-top: 50px;
-    background-color: #FF4F7D;
-    border-radius: 20px;
+    /* background-color: #FF4F7D; */
+    /* border-radius: 20px; */
 }
 
 .senrovatMarketplaceText {
     text-align: left;
-    margin-left: 10%;
-    font-size: 20px;
+    margin-left: 28%;
+    font-size: 50%;
+    margin-top: -18%;
+    width: 65%;
+}
+
+.senrovatMarketplaceText2B{
+    text-align: right;
+    margin-right: 46%;
+    font-size: 90%;
+    margin-top: -33px;
+}
+
+.senrovatMarketplaceText2A{
+    text-align: right;
+    margin-right: 46%;
+    font-size: 90%;
+    margin-top: -75px;
 }
 
 #vsplivaska {
@@ -350,6 +366,16 @@ li {
     border-radius: 20px;
 }
 
+.MarketplaceCat {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 18px;
+    top:75px;
+    margin: 0 auto;
+    width: 50%;
+}
+
 .MarketplaceImeig {
     border-radius: 15px;
     float: left;
@@ -359,8 +385,28 @@ li {
     margin-left: 35%;
 }
 
+.MarketplaceImeig2 {
+    position: absolute;
+    float: right;
+    width: 7%;
+    /* margin-top: 50px; */
+    margin-top:0%;
+    margin-left: 2%;
+}
+
+.MarketplaceVidvigat{
+    width:60%;
+}
+
+/* .MarketplaceVidvigat:hover{
+    width:70%;
+} */
+
 .geimObvodka {
     margin-top: 30px;
+    /* max-width: 1020px;
+    max-height: 660px; */
+    /* z-index: 2; */
 }
 
 .geimTop{
