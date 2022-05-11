@@ -69,8 +69,7 @@ def registr(request):
                 idHash="",URLnft='',
                 Obrabotka=True,DataSozdania=datetime.now(),
                 DataVixada=datetime.now(),Narameter={'id': "dd"},
-                idHashPleir=y.idHash,skin=0, suit=0, trousers=0,
-                cap=0, gloves=0)
+                idHashPleir=y.idHash)
             nft.save()
         response = redirect('/registr/')
         response.set_cookie('id',PublicKeuSolana)

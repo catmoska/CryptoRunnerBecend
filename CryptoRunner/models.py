@@ -52,11 +52,11 @@ class NFTs(models.Model):
     DataVixada = models.DateTimeField()
     # Narameter = models.JSONField()
 
-    skin = models.IntegerField()
-    suit = models.IntegerField()
-    trousers = models.IntegerField()
-    cap = models.IntegerField()
-    gloves = models.IntegerField()
+    # skin = models.IntegerField()
+    # suit = models.IntegerField()
+    # trousers = models.IntegerField()
+    # cap = models.IntegerField()
+    # gloves = models.IntegerField()
 
     def initi(self):
         self.Narameter ={}
@@ -83,8 +83,8 @@ class Сlothes(models.Model):
 
 
 
-# class MARKETPLACEmodel(models.Model):
-#     Photo = models.ImageField(upload_to="photo/%Y/%m/%d/", null=True)
-#     nft = models.ForeignKey("NFTs")
+class MARKETPLACEmodel(models.Model):
+    Photo = models.ImageField(upload_to="photo/%Y/%m/%d/", null=True)
+    nft = models.ForeignKey("NFTs",on_delete=models.CASCADE)
 
 
