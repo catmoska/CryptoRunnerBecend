@@ -80,6 +80,7 @@ def registr(request):
         idHash = sha224(PublicKeuSolana.encode('utf-8')).hexdigest()
         print(idHash)
         print(PublicKeuSolana)
+        print(snis)
         if len(snis) !=0:
             y = snis[0]
             y.DataVixada = datetime.now()
@@ -97,7 +98,7 @@ def registr(request):
                 Energia=3,EnergiaMax=3,
                 idHash="",DataSozdania=datetime.now(),
                 DataVixada=datetime.now(),
-                Pleir=y,СlothesTip = random.randint(1,2))
+                Pleir=y,СlothesTip = Сlothes.objects.all()[random.randint(0,1)])
             y.save()
             nft.save()
         response = redirect('/registr/')
