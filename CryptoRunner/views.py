@@ -98,7 +98,7 @@ def registr(request):
                 Energia=3,EnergiaMax=3,
                 idHash="",DataSozdania=datetime.now(),
                 DataVixada=datetime.now(),
-                Pleir=y,СlothesTip = Сlothes.objects.all()[random.randint(0,1)])
+                Pleir=y,СlothesTip=Сlothes.objects.all()[0])
             y.save()
             nft.save()
         response = redirect('/registr/')
