@@ -1,5 +1,7 @@
 const url = "{% url 'geim'%}";
 
+
+
 function textMesends(moneu, distansion) {
   return "fff" + moneu + " " + distansion;
 }
@@ -17,6 +19,9 @@ async function conect() {
     window.open("https://phantom.app/", "_blank");
   }
 }
+
+
+const urlNFTbui = "{% url 'MARKETPLACE'%}";
 
 async function getData(method, url, body = null) {
   return new Promise((resolve, reject) => {
@@ -37,4 +42,12 @@ async function getData(method, url, body = null) {
 
     xhr.send(JSON.stringify(body));
   });
+}
+
+
+async function NFTnokunka(i){
+  await getData("POST", urlNFTbui, {
+    NFT: i,
+  });
+  window.location.href = "{% url 'geim'%}";
 }

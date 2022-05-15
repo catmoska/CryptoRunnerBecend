@@ -21,6 +21,40 @@
         }
         isVisual =!isVisual; 
     }
+
+const urlNFTbui = "{% url 'MARKETPLACE'%}";
+
+async function getData(method, url, body = null) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open(method, url);
+
+    xhr.responseType = "json";
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onload = () => {
+      if (xhr.status >= 400) reject(xhr.response);
+      else resolve(xhr.response);
+    };
+    xhr.onerror = () => {
+      reject(xhr.response);
+    };
+
+    xhr.send(JSON.stringify(body));
+  });
+}
+
+
+async function NFTnokunka(i){
+    console.log(i);
+  await getData("POST", urlNFTbui, {
+    NFT: i,
+  });
+  window.location.href = "";
+}
+
+
 </script>
 
  {% comment %} <style>
@@ -29,7 +63,7 @@ body {background-color: #000000}
 {% endblock %}
 
 {% block body %}
-<h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br>
+<h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br></h1>
 {% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" onclick="zatia()">\/</button></h1> {% endcomment %}
 
  {% comment %} <br> <br> {% endcomment %}
@@ -44,24 +78,28 @@ body {background-color: #000000}
 
 <div class="colorF4D container-fluid">
     {% for i in tovar%}
-        <div class="col-md-4 senrovat2Bloc animator">
+        <div class="col-md-4 senrovat2Bloc animator color000">
+        {{i.nft.idHash}}
             <div class="MarketplaceTovar">
-                <p><a href="{% url 'main'%}" class="colorFFF">
+            <p>
+            <button onclick="NFTnokunka('{{i.nft.idHash}}')" class="colorFFF">
+            {% comment %} <a href="{% url 'main'%}" class="colorFFF"> {% endcomment %}
                     {% comment %} <div>#фото#</div> {% endcomment %}
                     <img src='{% static "mein/nft tranp.png" %}' class="MarketplaceVidvigat animator" alt=""/>
-                    <img src='{% static "mein/cat.png" %}' class="MarketplaceCat " alt=""/>
-                </a>
+                    {% comment %} <img src='{% static "mein/cat.png" %}' class="MarketplaceCat " alt=""/> {% endcomment %}
+            {% comment %} </a> {% endcomment %}
+                </button>
                 <div class="senrovatMarketplaceText colorFFF">
                     runner: <br>
                     price:
                     <div class="senrovatMarketplaceText2A">
                         #
-                        {{i}}
+                        {{i.pk}}
                     </div>
                     <br>
                     <div class="senrovatMarketplaceText2B">
-                        0.05
-                        {% comment %} {{}} {% endcomment %}
+                        {% comment %} 0.05 {% endcomment %}
+                        {{i.stoimost}}
                         <img src='{% static "mein/sol tran.png" %}' class="MarketplaceImeig2" alt=""/>
                     </div>
                 </div>
@@ -71,6 +109,7 @@ body {background-color: #000000}
             </div>
         </div>
     {% endfor %}
+    
 </div>
 
 

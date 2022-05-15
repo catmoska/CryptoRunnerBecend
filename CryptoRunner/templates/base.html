@@ -17,11 +17,12 @@
             <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script> -->
         <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               rel="stylesheet"/>
-        <link rel="stylesheet" href='{% static "mein/Csss.css" %}'>
+        <link rel="stylesheet" href='{% static "mein/Css.css" %}'>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href='{% static "mein/favicon-32x32.png" %}'>
         <link rel="icon" type="image/png" sizes="16x16" href='{% static "mein/favicon-16x16.png" %}'>
         <link rel="manifest" href='{% static "mein/site.webmanifest" %}'>
+
         <script type="{% static 'mein/script.js' %}"></script>
         <style>
         @font-face {
@@ -38,12 +39,9 @@
                 <div class="col-md-1"></div>
                 <p>
                     <a href="{% url 'main' %}">
-                        <img src='{% static "mein/logo small white.png" %}' alt="Logo">
+                        <img class="navImeig" src='{% static "mein/logo small white.png" %}' alt="Logo">
                     </a>
                 </p>
-                <!-- <a src=><img class="navbar-brand navImeig"
-     src='{% static "mein/logo.png" %}'
-     href="#"/></a> -->
             </div>
             <div>
                 <ul>

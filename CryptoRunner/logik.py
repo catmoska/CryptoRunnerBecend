@@ -105,15 +105,15 @@ def randomIsklusenia(min,max,naram):
 
 
 def deita(user:Pleir):
-    if user.Energia != user.EnergiaMax:
-        timesVremina = datetime.now(timezone.utc) - user.DataVixada
-        user.Energia += timesVremina // times
-        user.DataVixada += timesVremina
-        if user.Energia > user.EnergiaMax:
-            user.Energia = user.EnergiaMax
-        user.save()
+    # if user.Energia != user.EnergiaMax:
+    #     timesVremina = datetime.now(timezone.utc) - user.DataVixada
+    #     user.Energia += timesVremina // times
+    #     user.DataVixada += timesVremina
+    #     if user.Energia > user.EnergiaMax:
+    #         user.Energia = user.EnergiaMax
+    #     user.save()
 
-    NFTSS = NFTs.objects.filter(idHashPleir=user.idHash)
+    NFTSS = NFTs.objects.filter(Pleir=user)
     for nft in NFTSS:
         if nft.Energia != nft.EnergiaMax:
             timesVremina = datetime.now(timezone.utc) - nft.DataVixada
