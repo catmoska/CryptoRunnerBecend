@@ -21,13 +21,13 @@ def geimV(request):
 
 @csrf_exempt
 def MARKETPLACE(request):
-    users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    # if request.COOKIES:
-    #     users= Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(users) ==0:
-    #         return nereadres("registr")
-    # else:
-    #     return nereadres("registr")
+    # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
+    if request.COOKIES:
+        users= Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(users) ==0:
+            return nereadres("registr")
+    else:
+        return nereadres("registr")
     user = users[0]
 
 
@@ -40,36 +40,25 @@ def MARKETPLACE(request):
         marc = MARKETPLACEmodel.objects.filter(idHash=nft[0].idHash)
         print(marc)
         marc.delete()
-        # marc.save()
         nfts.save()
 
-
-        # user.Money+= float(data['Money'])
-        # user.Distansion += float(data['Distansion'])
-        # user.Record = float(data['Distansion'])
-        # user.Energia -= 1
-        # nft = NFTs.objects.filter(idHashPleir=user.idHash)[int(data['NFTVID'])]
-        # if user.Energia <= 0:
-        #     return HttpResponse("EroorPleirEnergia")
-        # if nft.Energia <= 0:
-        #     return HttpResponse("EroorNFTEnergia")
-        # if nft.Energia == nft.EnergiaMax:
-        #     nft.DataVixada == datetime.now(timezone.utc)
-        # nft.Energia -= 1
-        # user.save()
-        # nft.save()
-        # return HttpResponse("")
-
-
-
     t = MARKETPLACEmodel.objects.all()
-    return render(request, 'CryptoRunner/MARKETPLACE.html', {'title': 'MARKETPLACE',"tovar":t})
+    print(t[0].nft.СlothesTip.Photo.url)
+
+    return render(request, 'CryptoRunner/MARKETPLACE.html',
+                  {'title': 'MARKETPLACE',"tovar":t})
 
 def MARKETPLACEI(request,geim):
+    t = MARKETPLACEmodel.objects.all()
+    mas = []
+    for u in t:
+        mas.append(Сlothes.objects.filter(pk=u.nft.СlothesTip)[0])
+
     if(geim == 1):
         return render(request, 'CryptoRunner/MARKETPLACE.html',
-                      {'title': 'MARKETPLACE', "tovar": [0, 1, 2]})
-    return render(request, 'CryptoRunner/MARKETPLACE.html', {'title': 'MARKETPLACE',"tovar":[0,1,2,3,4,5]})
+                      {'title': 'MARKETPLACE', "tovar": [0, 1, 2],"imgСlothes":mas})
+    return render(request, 'CryptoRunner/MARKETPLACE.html',
+                  {'title': 'MARKETPLACE',"tovar":[0,1,2,3,4,5],"imgСlothes":mas})
 
 
 
@@ -102,17 +91,14 @@ def registr(request):
             y = Pleir(
             DataRegistr=datetime.today(),
             DataVixada=datetime.today(),
-            Energia=20,
-            EnergiaMax=20,
             PublicKeuSolana=PublicKeuSolana,
             idHash=idHash)
-            y.save()
             nft = NFTs(
                 Energia=3,EnergiaMax=3,
-                idHash="",URLnft='',
-                Obrabotka=True,DataSozdania=datetime.now(),
-                DataVixada=datetime.now(),Narameter={'id': "dd"},
-                idHashPleir=y.idHash)
+                idHash="",DataSozdania=datetime.now(),
+                DataVixada=datetime.now(),
+                Pleir=y,СlothesTip = random.randint(1,2))
+            y.save()
             nft.save()
         response = redirect('/registr/')
         response.set_cookie('id',PublicKeuSolana)
@@ -125,14 +111,14 @@ def registr(request):
 
 @csrf_exempt
 def geimDETA(request):
-    userv = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    # if request.COOKIES:
-    #     userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(userv) ==0:
-    #         return HttpResponse("registr")
-    # else:
-    #     # return nereadres("registr")
-    #     return HttpResponse("registr")
+    # userv = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
+    if request.COOKIES:
+        userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(userv) ==0:
+            return HttpResponse("registr")
+    else:
+        # return nereadres("registr")
+        return HttpResponse("registr")
     userv = userv[0]
 
     if len(request.body) != 0:
@@ -174,7 +160,7 @@ def geimDETA(request):
     for i in nft:
         otvet+=str(i.Energia)+"&"+str(i.EnergiaMax)+"&"+str(i.Nick)+"&"+\
 str(0 if (i.Energia == i.EnergiaMax)else int((times-(datetime.now(timezone.utc) - i.DataVixada)).seconds/60))+"&"+\
-               str(i.СlothesTip)+"$"
+               str(i.СlothesTip.pk)+"$"
 
     if userv.nonitka:
         userv.nonitka = False
@@ -183,15 +169,15 @@ str(0 if (i.Energia == i.EnergiaMax)else int((times-(datetime.now(timezone.utc) 
 
 @csrf_exempt
 def geim(request):
-    # if request.COOKIES:
-    #     user = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(user) ==0:
-    #         return nereadres("registr")
-    #     nft = NFTs.objects.filter(Pleir=user)
-    #     if len(nft) == 0:
-    #         return nereadres("MARKETPLACE")
-    # else:
-    #     return nereadres("registr")
+    if request.COOKIES:
+        user = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(user) ==0:
+            return nereadres("registr")
+        nft = NFTs.objects.filter(Pleir=user[0])
+        if len(nft) == 0:
+            return nereadres("MARKETPLACE")
+    else:
+        return nereadres("registr")
 
 
     if len(request.body) !=0:
@@ -217,8 +203,7 @@ def geim(request):
             y.save()
             nft = NFTs(
                 Energia=3,EnergiaMax=3,
-                idHash="",URLnft='',
-                Obrabotka=True,DataSozdania=datetime.now(),
+                idHash="",DataSozdania=datetime.now(),
                 DataVixada=datetime.now(),Narameter={'id': "dd"},
                 idHashPleir=y.idHash,skin=0, suit=0, trousers=0,
                 cap=0, gloves=0)

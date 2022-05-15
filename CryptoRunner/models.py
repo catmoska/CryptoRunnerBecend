@@ -48,7 +48,9 @@ class NFTs(models.Model):
     EnergiaMax = models.IntegerField()
     DataSozdania = models.DateField()
     DataVixada = models.DateTimeField()
-    СlothesTip = models.IntegerField()
+    СlothesTip = models.ForeignKey("Сlothes",on_delete=models.CASCADE)
+    # СlothesTipM = models.ForeignKey("Сlothes",on_delete=models.CASCADE)
+
 
     # def initi(self):
     #     self.Narameter ={}
