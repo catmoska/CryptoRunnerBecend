@@ -41,9 +41,9 @@ def MARKETPLACE(request):
         print(marc)
         marc.delete()
         nfts.save()
+        return HttpResponse("")
 
     t = MARKETPLACEmodel.objects.all()
-    print(t[0].nft.СlothesTip.Photo.url)
 
     return render(request, 'CryptoRunner/MARKETPLACE.html',
                   {'title': 'MARKETPLACE',"tovar":t})
