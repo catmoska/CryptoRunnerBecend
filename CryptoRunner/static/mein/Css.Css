@@ -334,23 +334,24 @@ li {
 .senrovatMarketplaceText {
     text-align: left;
     margin-left: 28%;
-    font-size: 50%;
-    margin-top: -18%;
-    width: 65%;
+    font-size: 20px;
+    margin-top: -19%;
+    max-width: 65%;
 }
 
 .senrovatMarketplaceText2B{
     text-align: right;
     margin-right: 46%;
     font-size: 90%;
-    margin-top: -33px;
+    margin-top: -20px;
 }
 
 .senrovatMarketplaceText2A{
     text-align: right;
     margin-right: 46%;
-    font-size: 90%;
-    margin-top: -75px;
+    font-size:90%;
+    margin-top: -60px;
+    margin-bottom: -1%;
 }
 
 #vsplivaska {
@@ -417,3 +418,13 @@ li {
     margin: 0 auto;
     z-index: -10;
 }
+
+.nftText {
+    font-size: 25px;
+}
+
+
+
+
+
+

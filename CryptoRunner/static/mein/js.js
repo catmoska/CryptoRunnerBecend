@@ -1,7 +1,3 @@
-const url = "{% url 'geim'%}";
-
-
-
 function textMesends(moneu, distansion) {
   return "fff" + moneu + " " + distansion;
 }
@@ -14,14 +10,11 @@ async function conect() {
     await getData("POST", url, {
       id: p,
     });
-    window.location.href = "{% url 'geim'%}";
+    window.location.href = urlGeim;
   } catch (err) {
-    window.open("https://phantom.app/", "_blank");
+    // window.open("https://phantom.app/", "_blank");
   }
 }
-
-
-const urlNFTbui = "{% url 'MARKETPLACE'%}";
 
 async function getData(method, url, body = null) {
   return new Promise((resolve, reject) => {
@@ -36,6 +29,7 @@ async function getData(method, url, body = null) {
       if (xhr.status >= 400) reject(xhr.response);
       else resolve(xhr.response);
     };
+
     xhr.onerror = () => {
       reject(xhr.response);
     };
@@ -45,9 +39,22 @@ async function getData(method, url, body = null) {
 }
 
 
-async function NFTnokunka(i){
+// async function dd() {
+//   const network = "<NETWORK_URL>";
+//   const connection = new Connection(network);
+//   const transaction = new Transaction();
+//   const {
+//       signature
+//   } = await window.solana.signAndSendTransaction(transaction);
+//   await connection.confirmTransaction(signature);
+// }
+
+
+async function NFTnokunka(i, y) {
+  console.log(i);
   await getData("POST", urlNFTbui, {
     NFT: i,
+    onerasia: y,
   });
-  window.location.href = "{% url 'geim'%}";
+  window.location.href = "";
 }

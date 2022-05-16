@@ -15,5 +15,8 @@ urlpatterns = [
     path('E404/', Eroor404,name="Eroor404"),
     path('soonpage/', Razrabotka,name="Razrabotka"),
     path('marketplace/', MARKETPLACE,name="MARKETPLACE"),
-    path('marketplace/<int:geim>', MARKETPLACEI,name="MARKETPLACEiii"),
+
+    path('nft/', nftCilka,name="nft"),
+    path('nft/<str:nftHeh>', nftCilka,name="nft"),
+    path('marketplace/<int:geim>', MARKETPLACEI),
 ]

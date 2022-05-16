@@ -1,64 +1,38 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block title %}{{title}}{% endblock %}
-
+{% block title %}{{ title }}{% endblock %}
 {% block head %}
-<script>
-    let isVisual = false;
-    
-    function zatia(){
-        const Elsem = document.getElementById("vsplivaska")
-        console.log(Elsem);
-        if(isVisual){
-            Elsem.style.width = "0px";
-            Elsem.style.height = "0px";
-            Elsem.style.backgroundColor = "#00000000";
-        }else{
-            Elsem.style.width = "50%";
-            Elsem.style.height = "";
-            Elsem.style.backgroundColor = "#3d9bdf";
-        }
-        isVisual =!isVisual; 
-    }
-</script>
-
 {% endblock %}
-
 {% block body %}
-<h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br>
-
-
-<div class="colorF4D container-fluid">
-    
-    <div class="col-md-4 senrovat2Bloc animator">
-        <div class="MarketplaceTovar">
-            <p><a href="{% url 'main'%}" class="colorFFF">
-                {% comment %} <div>#фото#</div> {% endcomment %}
-                <img src='{% static "mein/nft tranp.png" %}' class="MarketplaceVidvigat animator" alt=""/>
-                <img src='{% static "mein/cat.png" %}' class="MarketplaceCat " alt=""/>
-            </a>
-            <div class="senrovatMarketplaceText colorFFF">
-                runner: <br>
-                price:
-                <div class="senrovatMarketplaceText2A">
-                    #
-                    {{i.pk}}
-                </div>
-                <br>
-                <div class="senrovatMarketplaceText2B">
-                    {% comment %} 0.05 {% endcomment %}
-                    {{i.stoimost}}
-                    <img src='{% static "mein/sol tran.png" %}' class="MarketplaceImeig2" alt=""/>
-                </div>
-                </div>
-                    {% comment %} {{}} {% endcomment %}
-                    <br>
-                </p>
-            </div>
+    {% comment %} <h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br> {% endcomment %}
+    <div class="colorF4D container-fluid ">
+        <div class="col-md-6 senrovat2Bloc">
+            <img class = "width100" src='{{NFT.ClothesTip.Photo.url}}' alt=""/>
         </div>
-    
-</div>
+        <div class="col-md-6 nftText">
+            <div>Nick: {{NFT.Nick}}</div>
+            <div>idHash: {{NFT.idHash}}</div>
+            <div>Energia: {{NFT.Energia}}/{{NFT.EnergiaMax}}</div>
+            <div>Pleir: {{NFT.Pleir.idHash}}</div>
 
+            {% if market and not pleir%}
+            <div>stoimost: {{stoimost}}</div>
+            <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
+            onclick="NFTnokunka({{NFT.idHash}},'bui')">bui</button>
 
+            {% elif not market and pleir%}
+            <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
+            onclick="NFTnokunka({{NFT.idHash}},'sell')">sell</button>
+
+            {% elif market and pleir%}
+            <div>Pleir: {{stoimost}}</div>
+            <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
+            onclick="NFTnokunka({{NFT.idHash}},'take off')">take off</button>
+
+            {% elif not market and not pleir%}
+            {% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
+            onclick="NFTnokunka()">*-*</button> {% endcomment %}
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

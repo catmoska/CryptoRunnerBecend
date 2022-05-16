@@ -48,7 +48,7 @@ class NFTs(models.Model):
     EnergiaMax = models.IntegerField()
     DataSozdania = models.DateField()
     DataVixada = models.DateTimeField()
-    СlothesTip = models.ForeignKey("Сlothes",on_delete=models.CASCADE)
+    ClothesTip = models.ForeignKey("Сlothes",on_delete=models.CASCADE)
     # СlothesTipM = models.ForeignKey("Сlothes",on_delete=models.CASCADE)
 
 
@@ -71,7 +71,6 @@ class Сlothes(models.Model):
 class MARKETPLACEmodel(models.Model):
     nft = models.ForeignKey("NFTs",on_delete=models.CASCADE)
     stoimost = models.FloatField(default=0.05)
-    idHash = models.CharField(max_length=256)
 
 
 
