@@ -37,7 +37,7 @@ def MARKETPLACE(request):
         nft = NFTs.objects.filter(idHash=data["NFT"])
         nfts = nft[0]
         nfts.Pleir = user
-        marc = MARKETPLACEmodel.objects.filter(idHash=nft[0].idHash)
+        marc = MARKETPLACEmodel.objects.filter(nft=nfts)
         print(marc)
         marc.delete()
         nfts.save()

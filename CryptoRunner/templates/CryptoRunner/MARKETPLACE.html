@@ -77,6 +77,9 @@ body {background-color: #000000}
 </div> {% endcomment %}
 
 <div class="colorF4D container-fluid">
+    {% if not tovar %}
+    Sold Out
+    {% endif %}
     {% for i in tovar%}
         <div class="col-md-4 senrovat2Bloc animator color000">
             <div class="MarketplaceTovar">
