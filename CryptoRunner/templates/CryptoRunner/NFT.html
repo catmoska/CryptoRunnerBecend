@@ -2,6 +2,8 @@
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block head %}
+
+{% comment %} <script src='{%static "web3.js"%}'></script> {% endcomment %}
 {% endblock %}
 {% block body %}
     {% comment %} <h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br> {% endcomment %}
@@ -11,8 +13,8 @@
         </div>
         <div class="col-md-6 nftText">
             <div>Nick: {{NFT.Nick}}</div>
-            <div>idHash: {{NFT.idHash}}</div>
-            <div>Energia: {{NFT.Energia}}/{{NFT.EnergiaMax}}</div>
+            {% comment %} <div>idHash: {{NFT.idHash}}</div> {% endcomment %}
+            {% comment %} <div>Energia: {{NFT.Energia}}/{{NFT.EnergiaMax}}</div> {% endcomment %}
             <div>Pleir: {{NFT.Pleir.idHash}}</div>
 
             {% if market and not pleir%}
@@ -25,7 +27,7 @@
             onclick="NFTnokunka({{NFT.idHash}},'sell')">sell</button>
 
             {% elif market and pleir%}
-            <div>Pleir: {{stoimost}}</div>
+            <div>stoimost: {{stoimost}}</div>
             <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
             onclick="NFTnokunka({{NFT.idHash}},'take off')">take off</button>
 
@@ -33,6 +35,7 @@
             {% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
             onclick="NFTnokunka()">*-*</button> {% endcomment %}
             {% endif %}
-        </div>
+            
+        </div><br><br><br><br><br><br><br>
     </div>
 {% endblock %}

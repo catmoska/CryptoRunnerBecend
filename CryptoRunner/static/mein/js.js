@@ -1,3 +1,32 @@
+// import {
+//   Connection,
+//   PublicKey,
+//   Transaction,
+//   clusterApiUrl,
+//   SystemProgram,
+// } from "https://unpkg.com/@solana/web3.js";
+
+
+const network = clusterApiUrl("mainnet-beta");
+// const connection = new Connection("mainnet-beta","confirmed");
+
+while (true){
+  let o = await sec(1000);
+  sayHi()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 function textMesends(moneu, distansion) {
   return "fff" + moneu + " " + distansion;
 }
@@ -6,7 +35,6 @@ async function conect() {
   try {
     const resp = await window.solana.connect();
     p = resp.publicKey.toString();
-    // console.log(p);
     await getData("POST", url, {
       id: p,
     });
@@ -38,23 +66,35 @@ async function getData(method, url, body = null) {
   });
 }
 
+async function dd() {
+  const network = clusterApiUrl("mainnet-beta");
+  
+  const connection = new Connection(network);
+  const transaction = new Transaction();
+  const {signature} = await window.solana.signAndSendTransaction(transaction);
+  await connection.confirmTransaction(signature);
+}
 
-// async function dd() {
-//   const network = "<NETWORK_URL>";
-//   const connection = new Connection(network);
-//   const transaction = new Transaction();
-//   const {
-//       signature
-//   } = await window.solana.signAndSendTransaction(transaction);
-//   await connection.confirmTransaction(signature);
-// }
-
+const getWalletBalance = async() => {
+  try{
+      const connection = new Connection(clusterApiUrl('devnet'),'confirmed')
+      const walletBalance = await connection.getBalance(publicKey)
+      console.log(`Wallet Balance is ${walletBalance}`)
+  }
+  catch(er){
+      console.log(er)
+  }
+}
 
 async function NFTnokunka(i, y) {
-  console.log(i);
+  // getWalletBalance()
+  dd();
+  // console.log(i);
   await getData("POST", urlNFTbui, {
     NFT: i,
     onerasia: y,
   });
-  window.location.href = "";
+  // window.location.href = "";
 }
+
+
