@@ -31,12 +31,12 @@ def geimV(request):
 @csrf_exempt
 def MARKETPLACE(request):
     # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    # if request.COOKIES:
-    #     users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(users) == 0:
-    #         return nereadres("registr")
-    # else:
-    #     return nereadres("registr")
+    if request.COOKIES:
+        users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(users) == 0:
+            return nereadres("registr")
+    else:
+        return nereadres("registr")
 
     MARKETPLACE = MARKETPLACEmodel.objects.all()
     return render(request, 'CryptoRunner/MARKETPLACE.html',
@@ -66,7 +66,6 @@ def nftCilka(request, nftHeh):
 
     if len(request.body) != 0:
         data = json.loads(request.body.decode('utf-8'))
-        print(data["onerasia"])
         if data["onerasia"] == "bui":
             nft.Pleir = user
             nft.save()
@@ -158,7 +157,6 @@ def geimDETA(request):
             userv.save()
             return HttpResponse("")
 
-        print(data)
         userv.Money += float(data['Money'])
         userv.Distansion += float(data['Distansion'])
         userv.Record = float(data['Distansion'])
@@ -167,14 +165,11 @@ def geimDETA(request):
             print("EroorNFTEnergia")
             return HttpResponse("EroorNFTEnergia")
         if nft.Energia == nft.EnergiaMax:
-            print("ddddddddddddddd")
-            print(nft.DataVixada)
             nft.DataVixada = datetime.now(timezone.utc)
         nft.Energia -= 1
         userv.save()
         nft.save()
         deita(userv)
-        print("es")
         return HttpResponse("")
 
     deita(userv)

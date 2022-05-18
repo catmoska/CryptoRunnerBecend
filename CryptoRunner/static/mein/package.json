@@ -1,0 +1,26 @@
+{
+  "name": "mein",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js.js",
+  "scripts": {
+    "build": "C:/Users/catmoska/PycharmProjects/CryptoRunnerBecend/CryptoRunner/static/mein/node_modules/.bin/webpack.cmd",
+    "buildR": "C:/Users/catmoska/PycharmProjects/CryptoRunnerBecend/CryptoRunner/static/mein/node_modules/.bin/webpack.cmd --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.42.0",
+    "browser": "^0.2.6",
+    "buffer": "^6.0.3",
+    "buffer-loader": "^0.1.0",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0"
+  }
+}

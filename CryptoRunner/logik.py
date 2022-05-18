@@ -5,7 +5,7 @@ from datetime import datetime, timezone,timedelta
 # import datetime
 import json
 import random
-times = timedelta(minutes=80)
+times = timedelta(minutes=81)
 
 def nereadres(urls):
     url = reverse(urls)

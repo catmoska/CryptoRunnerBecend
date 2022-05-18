@@ -8,7 +8,7 @@
         </title>
         <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               rel="stylesheet"/>
-        <link rel="stylesheet" href='{% static "mein/Css.css" %}'/>
+        <link rel="stylesheet" href='{% static "mein/resurs/Css.css" %}'/>
 
         {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/> {% endcomment %}
         <link rel="icon"
@@ -19,7 +19,7 @@
               type="image/png"
               sizes="16x16"
               href='{% static "mein/multimedia/favicon-16x16.png" %}'/>
-        <link rel="manifest" href='{% static "mein/site.webmanifest" %}'/>
+        {% comment %} <link rel="manifest" href='{% static "mein/resurs/site.webmanifest" %}'/> {% endcomment %}
         <script>
             const url = "{% url 'registr'%}";
             const urlGeim = "{% url 'geim'%}";
@@ -29,14 +29,19 @@
 
         {% comment %} <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
         <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>{% endcomment %}
-        <script src="https://unpkg.com/@solana/web3.js"></script> 
+        {% comment %} <script src="https://unpkg.com/@solana/web3.js"></script>  {% endcomment %}
 
+        <script src="{% static 'mein/resursJS/bundle.js' %}"></script>
 
-        <script src="{% static 'mein/js.js' %}"></script>
+        <script>
+
+            {% comment %} u(); {% endcomment %}
+        </script>
+
         <style>
             @font-face {
                font-family: 'Bangers-Regular';
-               src: url('{% static "mein/srift.ttf" %}');
+               src: url('{% static "mein/resurs/srift.ttf" %}');
             }
         </style>
     {% block head %}{% endblock %}

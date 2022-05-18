@@ -20,7 +20,8 @@
             {% if market and not pleir%}
             <div>stoimost: {{stoimost}}</div>
             <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
-            onclick="NFTnokunka({{NFT.idHash}},'bui')">bui</button>
+            onclick="NFTnokunka({{NFT.idHash}},'bui')"
+            id="rrr">bui</button>
 
             {% elif not market and pleir%}
             <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
@@ -29,7 +30,8 @@
             {% elif market and pleir%}
             <div>stoimost: {{stoimost}}</div>
             <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
-            onclick="NFTnokunka({{NFT.idHash}},'take off')">take off</button>
+            onclick="NFTnokunka({{NFT.idHash}},'take off')"
+            id="rrr">take off</button>
 
             {% elif not market and not pleir%}
             {% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" 
