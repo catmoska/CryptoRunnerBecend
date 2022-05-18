@@ -105,7 +105,7 @@ async function dd() {
   );
   
   console.log("2");
-  await connection.confirmTransaction(airdropSignature);
+  // await connection.confirmTransaction(airdropSignature);
 
   // Generate a new random public key
   const to = Keypair.generate();
@@ -129,18 +129,18 @@ async function dd() {
     SPner,
   );
 
-  const transaction2= new Transaction()
-  .add(
-    SystemProgram.transfer({
-      fromPubkey: resp.publicKey,
-      toPubkey: resp.publicKey,
-      lamports: 100,
-    })
-  );
+  // const transaction2= new Transaction()
+  // .add(
+  //   SystemProgram.transfer({
+  //     fromPubkey: resp.publicKey,
+  //     toPubkey: resp.publicKey,
+  //     lamports: 100,
+  //   })
+  // );
 
 
-  // console.log(transaction);
-  // const signedTransaction = await window.solana.signAndSendTransaction(transaction);
+  console.log(transaction);
+  const signedTransaction = await window.solana.signAndSendTransaction(transaction);
 
 
   // const {signature} = await window.solana.signAndSendTransaction(transaction);
@@ -199,17 +199,14 @@ async function conect() {
 
 
 async function NFTnokunka(i, y) {
-  // dd();
+  dd();
 
-
-
-  getWalletBalance()
-  console.log(i);
-  await getData("POST", urlNFTbui, {
-    NFT: i,
-    onerasia: y,
-  });
-  window.location.href = "";
+  // console.log(i);
+  // await getData("POST", urlNFTbui, {
+  //   NFT: i,
+  //   onerasia: y,
+  // });
+  // window.location.href = "";
 }
 
 
