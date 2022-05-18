@@ -30,13 +30,13 @@ def geimV(request):
 
 @csrf_exempt
 def MARKETPLACE(request):
-    users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    # if request.COOKIES:
-    #     users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(users) == 0:
-    #         return nereadres("registr")
-    # else:
-    #     return nereadres("registr")
+    # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
+    if request.COOKIES:
+        users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(users) == 0:
+            return nereadres("registr")
+    else:
+        return nereadres("registr")
 
     MARKETPLACE = MARKETPLACEmodel.objects.all()
     return render(request, 'CryptoRunner/MARKETPLACE.html',
@@ -88,8 +88,8 @@ def nftCilka(request, nftHeh):
         stoimost = marc[0].stoimost
     if user == nft.Pleir:
         pleir = True
-    print(marxet)
-    print(pleir)
+    # print(marxet)
+    # print(pleir)
 
     return render(request, 'CryptoRunner/NFT.html',
                   {'title': 'nft', "NFT": nft, "market": marxet, "pleir": pleir, "stoimost": stoimost})
@@ -136,14 +136,14 @@ def registr(request):
 
 @csrf_exempt
 def geimDETA(request):
-    userv = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    # if request.COOKIES:
-    #     userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(userv) == 0:
-    #         return HttpResponse("registr")
-    # else:
-    #     # return nereadres("registr")
-    #     return HttpResponse("registr")
+    # userv = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
+    if request.COOKIES:
+        userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(userv) == 0:
+            return HttpResponse("registr")
+    else:
+        # return nereadres("registr")
+        return HttpResponse("registr")
     userv = userv[0]
 
     if len(request.body) != 0:
@@ -193,15 +193,15 @@ def geimDETA(request):
 
 @csrf_exempt
 def geim(request):
-    # if request.COOKIES:
-    #     user = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(user) == 0:
-    #         return nereadres("registr")
-    #     nft = NFTs.objects.filter(Pleir=user[0])
-    #     if len(nft) == 0:
-    #         return nereadres("MARKETPLACE")
-    # else:
-    #     return nereadres("registr")
+    if request.COOKIES:
+        user = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(user) == 0:
+            return nereadres("registr")
+        nft = NFTs.objects.filter(Pleir=user[0])
+        if len(nft) == 0:
+            return nereadres("MARKETPLACE")
+    else:
+        return nereadres("registr")
 
     if len(request.body) != 0:
         print("dasssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
