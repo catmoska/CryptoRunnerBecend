@@ -16,7 +16,7 @@ urlpatterns = [
     path('soonpage/', Razrabotka,name="Razrabotka"),
     path('marketplace/', MARKETPLACE,name="MARKETPLACE"),
 
-    path('nft/', nftCilka,name="nft"),
-    path('nft/<str:nftHeh>', nftCilka,name="nft"),
+    path('nft/', nftCilka, name="nft"),
+    path('nft/<str:nftHeh>', nftCilka),
     path('marketplace/<int:geim>', MARKETPLACEI),
 ]

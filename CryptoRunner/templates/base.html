@@ -8,35 +8,47 @@
         </title>
         <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               rel="stylesheet"/>
-        <link rel="stylesheet" href='{% static "mein/Css.css" %}'/>
+        <link rel="stylesheet" href='{% static "main/resurs/Css.css" %}'/>
 
         {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/> {% endcomment %}
         <link rel="icon"
               type="image/png"
               sizes="32x32"
-              href='{% static "mein/multimedia/favicon-32x32.png" %}'/>
+              href='{% static "main/multimedia/favicon-32x32.png" %}'/>
         <link rel="icon"
               type="image/png"
               sizes="16x16"
-              href='{% static "mein/multimedia/favicon-16x16.png" %}'/>
-        <link rel="manifest" href='{% static "mein/site.webmanifest" %}'/>
+              href='{% static "main/multimedia/favicon-16x16.png" %}'/>
+        {% comment %} <link rel="manifest" href='{% static "main/resurs/site.webmanifest" %}'/> {% endcomment %}
+        {% comment %} <script>
+            
+        </script> {% endcomment %}
+
+        <!-- Development (un-minified) -->
+        {% comment %} <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script> {% endcomment %}
+        <!-- Production (minified) -->
+        {% comment %} <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script> {% endcomment %}
+
+        
+        {% comment %} <script>
+            window.process = BrowserFS.BFSRequire('process');
+            window.Buffer = BrowserFS.BFSRequire('buffer').Buffer;
+          </script> {% endcomment %}
+        {% comment %} <script src="https://unpkg.com/@solana/web3.js"></script>  {% endcomment %}
+
+        <script src="{% static 'main/resursJS/bundle.js' %}"></script>
+
         <script>
             const url = "{% url 'registr'%}";
             const urlGeim = "{% url 'geim'%}";
             const urlNFTbui = "";
+            start(url,urlGeim,urlNFTbui)
         </script>
 
-
-        {% comment %} <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
-        <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>{% endcomment %}
-        <script src="https://unpkg.com/@solana/web3.js"></script> 
-
-
-        <script src="{% static 'mein/js.js' %}"></script>
         <style>
             @font-face {
                font-family: 'Bangers-Regular';
-               src: url('{% static "mein/srift.ttf" %}');
+               src: url('{% static "main/resurs/srift.ttf" %}');
             }
         </style>
     {% block head %}{% endblock %}
@@ -49,7 +61,7 @@
                 <p>
                     <a href="{% url 'main' %}">
                         <img class="navImeig"
-                             src='{% static "mein/multimedia/logo small white.png" %}'
+                             src='{% static "main/multimedia/logo small white.png" %}'
                              alt="Logo">
                     </a>
                 </p>
@@ -84,21 +96,21 @@
         <div class="sotseti mycol">
             <p>
                 <a href="{% url 'Razrabotka' %}">
-                    <img class="sotsetiIcons" src='{% static "mein/multimedia/diskord.png" %}' alt="">
+                    <img class="sotsetiIcons" src='{% static "main/multimedia/diskord.png" %}' alt="">
                 </a>
             </p>
             <p>
                 <a href="{% url 'Razrabotka' %}">
-                    <img class="sotsetiIcons" src='{% static "mein/multimedia/telegram.png" %}' alt="">
+                    <img class="sotsetiIcons" src='{% static "main/multimedia/telegram.png" %}' alt="">
                 </a>
             </p>
             <p>
                 <a href="{% url 'Razrabotka' %}">
-                    <img class="sotsetiIcons" src='{% static "mein/multimedia/twiter.png" %}' alt="">
+                    <img class="sotsetiIcons" src='{% static "main/multimedia/twiter.png" %}' alt="">
                 </a>
             </p>
             <!-- <img class="sotsetiFon"
-            src='{% static "mein/multimedia/crypto runner.png" %}'
+            src='{% static "main/multimedia/crypto runner.png" %}'
             alt="Logo"> -->
         </div>
         {% block body %}{% endblock %}

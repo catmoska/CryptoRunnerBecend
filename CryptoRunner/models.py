@@ -52,17 +52,6 @@ class NFTs(models.Model):
     # СlothesTipM = models.ForeignKey("Сlothes",on_delete=models.CASCADE)
 
 
-    # def initi(self):
-    #     self.Narameter ={}
-    #     self.DataSozdania = datetime.datetime.now()
-    #     self.DataVixada = datetime.datetime.now()
-    #     self.Energia = 3
-    #     self.EnergiaMax = 3
-    #     self.idHash = sha256(self.pk.encode('utf-8')).hexdigest()
-    #     self.save()
-
-
-
 class Сlothes(models.Model):
     Photo = models.ImageField(upload_to="photo/%Y/%m/%d/", null=True)
 

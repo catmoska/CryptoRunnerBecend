@@ -30,10 +30,10 @@
         <br> <br> 
         <div class="colorF4D container-fluid animator3" id="vsplivaska" style="width: 0px;">
         <p class="col-md-6"><a href="{% url 'MARKETPLACE'%}/1">
-        <img class="MarketplaceImeig width60" src='{% static "mein/crypto runner.png" %}'/>
+        <img class="MarketplaceImeig width60" src='{% static "main/crypto runner.png" %}'/>
         </a></p>
         <p class="col-md-6"><a href="{% url 'MARKETPLACE'%}/2">
-        <img class="MarketplaceImeig width60" src='{% static "mein/anim arena.png" %}'/>
+        <img class="MarketplaceImeig width60" src='{% static "main/anim arena.png" %}'/>
         </a></p>
         </div>  {% endcomment %}
     {% if not tovar %}
@@ -47,7 +47,7 @@
                 <div class="MarketplaceTovar">
                     <p>
                         <a href="{% url 'nft'%}{{ i.nft.idHash}}" class="colorFFF">
-                            <img src='{% static "mein/multimedia/nft tranp.png" %}'
+                            <img src='{% static "main/multimedia/nft tranp.png" %}'
                                  class="MarketplaceVidvigat animator"
                                  alt=""/>
                             <img src='{{ i.nft.ClothesTip.Photo.url }}' class="MarketplaceCat " alt=""/>
@@ -62,7 +62,7 @@
                             <br>
                             <div class="senrovatMarketplaceText2B">
                                 {{ i.stoimost }}
-                                <img src='{% static "mein/multimedia/sol tran.png" %}'
+                                <img src='{% static "main/multimedia/sol tran.png" %}'
                                      class="MarketplaceImeig2"
                                      alt=""/>
                             </div>

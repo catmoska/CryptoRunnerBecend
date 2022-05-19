@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404,JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from hashlib import sha224
@@ -31,12 +31,12 @@ def geimV(request):
 @csrf_exempt
 def MARKETPLACE(request):
     # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    # if request.COOKIES:
-    #     users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(users) == 0:
-    #         return nereadres("registr")
-    # else:
-    #     return nereadres("registr")
+    if request.COOKIES:
+        users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(users) == 0:
+            return nereadres("registr")
+    else:
+        return nereadres("registr")
 
     MARKETPLACE = MARKETPLACEmodel.objects.all()
     return render(request, 'CryptoRunner/MARKETPLACE.html',
@@ -48,15 +48,18 @@ def MARKETPLACEI(request, geim):
     return nereadres("main")
 
 
+def nftCilka(request):
+    return nereadres("MARKETPLACE")
+
 @csrf_exempt
 def nftCilka(request, nftHeh):
-    users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    # if request.COOKIES:
-    #     users= Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
-    #     if len(users) ==0:
-    #         return nereadres("registr")
-    # else:
-    #     return nereadres("registr")
+    # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
+    if request.COOKIES:
+        users= Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
+        if len(users) ==0:
+            return nereadres("registr")
+    else:
+        return nereadres("registr")
     user = users[0]
 
     nft = NFTs.objects.filter(idHash=nftHeh)
@@ -64,17 +67,30 @@ def nftCilka(request, nftHeh):
         return nereadres("Eroor404")
     nft = nft[0]
 
-    if len(request.body) != 0:
+    if request.method == 'GETPARAMS':
+        MARKETPLACE = MARKETPLACEmodel.objects.filter(nft = nft)
+        if len(MARKETPLACE)==0:
+            return HttpResponse("ErorEczemplar")
+        MARKETPLACE = MARKETPLACE[0]
+        jso = {"stoimost":MARKETPLACE.stoimost,
+               "publickeusol":MARKETPLACE.nft.Pleir.PublicKeuSolana}
+        return JsonResponse(jso)
+    if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         print(data["onerasia"])
         if data["onerasia"] == "bui":
+
+
+
             nft.Pleir = user
             nft.save()
             marc = MARKETPLACEmodel.objects.filter(nft=nft)
             marc.delete()
         elif data["onerasia"] == "sell":
-            R = MARKETPLACEmodel(nft=nft, stoimost=0.05)
-            R.save()
+            marc = MARKETPLACEmodel.objects.filter(nft=nft)
+            if len(marc)==0:
+                R = MARKETPLACEmodel(nft=nft, stoimost=0.05)
+                R.save()
         elif data["onerasia"] == "take off":
             marc = MARKETPLACEmodel.objects.filter(nft=nft)
             marc.delete()
@@ -89,11 +105,15 @@ def nftCilka(request, nftHeh):
         stoimost = marc[0].stoimost
     if user == nft.Pleir:
         pleir = True
-    print(marxet)
-    print(pleir)
+    # print(marxet)
+    # print(pleir)
 
     return render(request, 'CryptoRunner/NFT.html',
                   {'title': 'nft', "NFT": nft, "market": marxet, "pleir": pleir, "stoimost": stoimost})
+
+
+
+
 
 
 @csrf_exempt
@@ -103,7 +123,7 @@ def registr(request):
         if len(snis) != 0:
             return nereadres("geim")
 
-    if len(request.body) != 0:
+    if request.method == 'POST':
         PublicKeuSolana = json.loads(request.body.decode('utf-8'))["id"]
         snis = Pleir.objects.filter(PublicKeuSolana=PublicKeuSolana)
         idHash = sha224(PublicKeuSolana.encode('utf-8')).hexdigest()
@@ -147,7 +167,7 @@ def geimDETA(request):
         return HttpResponse("registr")
     userv = userv[0]
 
-    if len(request.body) != 0:
+    if request.method == 'POST':
         data = convert(request.body.decode('utf-8'))
         if data['Nonztia'] == "1":
             nft = NFTs.objects.filter(idHashPleir=userv.idHash)[int(data['NFTVID'])]
@@ -158,7 +178,6 @@ def geimDETA(request):
             userv.save()
             return HttpResponse("")
 
-        print(data)
         userv.Money += float(data['Money'])
         userv.Distansion += float(data['Distansion'])
         userv.Record = float(data['Distansion'])
@@ -167,14 +186,11 @@ def geimDETA(request):
             print("EroorNFTEnergia")
             return HttpResponse("EroorNFTEnergia")
         if nft.Energia == nft.EnergiaMax:
-            print("ddddddddddddddd")
-            print(nft.DataVixada)
             nft.DataVixada = datetime.now(timezone.utc)
         nft.Energia -= 1
         userv.save()
         nft.save()
         deita(userv)
-        print("es")
         return HttpResponse("")
 
     deita(userv)
@@ -196,7 +212,7 @@ def geimDETA(request):
     return HttpResponse(otvet)
 
 
-@csrf_exempt
+# @csrf_exempt
 def geim(request):
     if request.COOKIES:
         user = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('id'))
@@ -208,7 +224,7 @@ def geim(request):
     else:
         return nereadres("registr")
 
-    if len(request.body) != 0:
+    if request.method == 'POST':
         print("dasssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
 
     return render(request, 'CryptoRunner/geim.html', {'title': 'geim'})
