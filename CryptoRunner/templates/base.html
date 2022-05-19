@@ -25,9 +25,9 @@
         </script> {% endcomment %}
 
         <!-- Development (un-minified) -->
-        <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+        {% comment %} <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script> {% endcomment %}
         <!-- Production (minified) -->
-        <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+        {% comment %} <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script> {% endcomment %}
 
         
         {% comment %} <script>
@@ -42,7 +42,7 @@
             const url = "{% url 'registr'%}";
             const urlGeim = "{% url 'geim'%}";
             const urlNFTbui = "";
-            start(url,urlGeim)
+            start(url,urlGeim,urlNFTbui)
         </script>
 
         <style>

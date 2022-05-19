@@ -1,65 +1,32 @@
+import {tranzacsion,getProvider,getProviderConect} from "./tranzact"
+import {getData} from "./funcsionLogic"
+
 Object.assign(window, {
   textMesends:textMesends,
   conect:conect,
   NFTnokunka:NFTnokunka,
   start:start,
+  // url:url
 })
 
-// window.global = window;
-// window.Buffer = window.Buffer || require('buffer').Buffer;
-// window.process = BrowserFS.BFSRequire('process');
-// window.Buffer = BrowserFS.BFSRequire('buffer').Buffer;
+let url:string = "";
+let urlGeim:string = "";
+let urlNFTbui:string = "";
 
-const url:string = "";
-const urlGeim:string = "";
-const urlNFTbui:string = "";
+function start(url1,url2,url3){
+  url = url1;
+  urlGeim = url2;
+  urlNFTbui = url3;
+}
 
 function textMesends(moneu, distansion) {
   return "fff" + moneu + " " + distansion;
 }
-
-function start(url1,url2,url3){
-  global.url = url1;
-  global.urlGeim = url2;
-  global.urlNFTbui = url3;
-}
-
-
-
-/////////////////////
-// import {
-//   Connection,
-//   PublicKey,
-//   Transaction,
-//   clusterApiUrl,
-//   SystemProgram,
-//   Keypair,
-//   LAMPORTS_PER_SOL,
-// } from "@solana/web3.js";
-import {tranzacsion,getProvider} from "./tranzact"
-import {getData} from "./conect"
-
-
-
-// const network = clusterApiUrl("mainnet-beta");
-// const network = clusterApiUrl("testnet");
-
-
-
-async function dd() {
-  
-}
-
-
-
-
-
-
+////////
 
 async function conect() {
   try {
-    const provaider = await getProvider();
-    await provaider.connect();
+    const provaider = await getProviderConect();
     const p = provaider.publicKey.toString();
     await getData("POST", url, {
       id: p,
@@ -70,27 +37,22 @@ async function conect() {
   }
 }
 
-// const getWalletBalance = async() => {
-//   try{
-//       const connection = new Connection(clusterApiUrl('devnet'),'confirmed')
-//       const walletBalance = await connection.getBalance(publicKey)
-//       console.log(`Wallet Balance is ${walletBalance}`)
-//   }
-//   catch(er){
-//       console.log(er)
-//   }
-// }
+
 
 
 
 async function NFTnokunka(i, y) {
-  tranzacsion();
-
-  // console.log(i);
-  // await getData("POST", urlNFTbui, {
-  //   NFT: i,
-  //   onerasia: y,
-  // });
+  console.log(y);
+  let signature = null;
+  if(y == "bui"){
+  signature = await tranzacsion();
+  if(!signature)return;
+  }
+  await getData("POST", urlNFTbui, {
+    NFT: i,
+    onerasia: y,
+    signature: signature,
+  });
   // window.location.href = "";
 }
 

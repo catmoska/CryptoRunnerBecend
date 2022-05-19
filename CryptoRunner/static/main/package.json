@@ -19,6 +19,7 @@
   "dependencies": {
     "@solana/spl-token": "0.1.8",
     "@solana/web3.js": "^1.28.0",
+    "axios": "^0.27.2",
     "browser": "^0.2.6",
     "buffer": "^6.0.3",
     "buffer-loader": "^0.1.0",
