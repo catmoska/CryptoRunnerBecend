@@ -47,7 +47,7 @@
                 <div class="MarketplaceTovar">
                     <p>
                         <a href="{% url 'nft'%}{{ i.nft.idHash}}" class="colorFFF">
-                            <img src='{% static "main/multimedia/nft tranp.png" %}'
+                            <img src='{% static "main/multimedia/nft content/nft tranp.png" %}'
                                  class="MarketplaceVidvigat animator"
                                  alt=""/>
                             <img src='{{ i.nft.ClothesTip.Photo.url }}' class="MarketplaceCat " alt=""/>
@@ -57,12 +57,12 @@
                             <br>
                             price:
                             <div class="senrovatMarketplaceText2A">
-                                # {{ i.id }}
+                                # {{ i.nft.id }}
                             </div>
                             <br>
                             <div class="senrovatMarketplaceText2B">
                                 {{ i.stoimost }}
-                                <img src='{% static "main/multimedia/sol tran.png" %}'
+                                <img src='{% static "main/multimedia/logo/sol tran.png" %}'
                                      class="MarketplaceImeig2"
                                      alt=""/>
                             </div>

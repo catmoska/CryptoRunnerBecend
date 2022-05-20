@@ -9,7 +9,7 @@ urlpatterns = [
     # path('profilN/', profiln,name="profilN"),
     # path('geim/DATA/', geimDETA),
 
-    path('games/cryptorunner', geim,name="geim"),
+    path('games/cryptorunner', geim,name="geimCryptoRunner"),
     path('games/', geimV,name="Vgeim"),
     path('DATA/', geimDETA),
     path('E404/', Eroor404,name="Eroor404"),
@@ -18,5 +18,6 @@ urlpatterns = [
 
     path('nft/', nftCilka, name="nft"),
     path('nft/<str:nftHeh>', nftCilka),
+    path('vistavka/', nftVistavka),
     path('marketplace/<int:geim>', MARKETPLACEI),
 ]

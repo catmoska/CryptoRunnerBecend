@@ -1,19 +1,19 @@
-import {tranzacsion,getProvider,getProviderConect} from "./tranzact"
-import {getData} from "./funcsionLogic"
+import { tranzacsion, getProvider, getProviderConect } from "./tranzact";
+import { getData,log } from "./funcsionLogic";
 
 Object.assign(window, {
-  textMesends:textMesends,
-  conect:conect,
-  NFTnokunka:NFTnokunka,
-  start:start,
+  textMesends: textMesends,
+  conect: conect,
+  NFTnokunka: NFTnokunka,
+  start: start,
   // url:url
-})
+});
 
-let url:string = "";
-let urlGeim:string = "";
-let urlNFTbui:string = "";
+let url: string = "";
+let urlGeim: string = "";
+let urlNFTbui: string = "";
 
-function start(url1,url2,url3){
+function start(url1, url2, url3) {
   url = url1;
   urlGeim = url2;
   urlNFTbui = url3;
@@ -27,9 +27,9 @@ function textMesends(moneu, distansion) {
 async function conect() {
   try {
     const provaider = await getProviderConect();
-    const p = provaider.publicKey.toString();
+    const publicKey = provaider.publicKey.toString();
     await getData("POST", url, {
-      id: p,
+      publicKey: publicKey,
     });
     window.location.href = urlGeim;
   } catch (err) {
@@ -37,23 +37,24 @@ async function conect() {
   }
 }
 
-
-
-
-
 async function NFTnokunka(i, y) {
-  console.log(y);
+  log(y);
   let signature = null;
-  if(y == "bui"){
-  signature = await tranzacsion();
-  if(!signature)return;
+  if (y == "bui") {
+    const buttonBui = document.getElementById("buttonBui");
+    buttonBui.textContent = '';
+    log(buttonBui);
+
+    signature = await tranzacsion();
+    if (!signature) {
+      window.location.href = "";
+      return;
+    }
   }
-  await getData("POST", urlNFTbui, {
-    NFT: i,
-    onerasia: y,
-    signature: signature,
-  });
+  // await getData("POST", urlNFTbui, {
+  //   NFT: i,
+  //   onerasia: y,
+  //   signature: signature,
+  // });
   // window.location.href = "";
 }
-
-

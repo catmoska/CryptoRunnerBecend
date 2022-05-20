@@ -20,24 +20,6 @@ class Pleir(models.Model):
     # plei = models.CharField(max_length=256,null=True)
     nonitka =models.BooleanField(default=True)
 
-    # def initi(self,PublicKeuSolana):
-    #     self.DataRegistr = datetime.datetime.now()
-    #     self.DataVixada = datetime.datetime.now()
-    #     self.Energia = 20
-    #     self.EnergiaMax = 20
-    #     self.PublicKeuSolana = PublicKeuSolana
-    #     # self.NFT = NFTs.objects.get(pk=1)
-    #     # self.save()
-    #     # return self.idHash
-
-
-    # def __str__(self):
-    #     return "Nick: "+self.Nick + \
-    #            "n\ PublicKeuSolana: "+self.PublicKeuSolana+\
-    #            "n\ Money: " + self.Money+\
-    #            "n\ NFT N: " + len(self.NFT.objects.all())
-
-
 class NFTs(models.Model):
     Nick = models.CharField(max_length=20,default="defolt")
     # Photo = models.ImageField(upload_to="photo/%Y/%m/%d/", null=True)

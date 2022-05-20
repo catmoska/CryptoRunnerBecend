@@ -14,11 +14,11 @@
         <link rel="icon"
               type="image/png"
               sizes="32x32"
-              href='{% static "main/multimedia/favicon-32x32.png" %}'/>
+              href='{% static "main/multimedia/logo/favicon-32x32.png" %}'/>
         <link rel="icon"
               type="image/png"
               sizes="16x16"
-              href='{% static "main/multimedia/favicon-16x16.png" %}'/>
+              href='{% static "main/multimedia/logo/favicon-16x16.png" %}'/>
         {% comment %} <link rel="manifest" href='{% static "main/resurs/site.webmanifest" %}'/> {% endcomment %}
         {% comment %} <script>
             
@@ -40,7 +40,7 @@
 
         <script>
             const url = "{% url 'registr'%}";
-            const urlGeim = "{% url 'geim'%}";
+            const urlGeim = "{% url 'geimCryptoRunner'%}";
             const urlNFTbui = "";
             start(url,urlGeim,urlNFTbui)
         </script>
@@ -61,7 +61,7 @@
                 <p>
                     <a href="{% url 'main' %}">
                         <img class="navImeig"
-                             src='{% static "main/multimedia/logo small white.png" %}'
+                             src='{% static "main/multimedia/logo/logo small white.png" %}'
                              alt="Logo">
                     </a>
                 </p>
@@ -96,22 +96,19 @@
         <div class="sotseti mycol">
             <p>
                 <a href="{% url 'Razrabotka' %}">
-                    <img class="sotsetiIcons" src='{% static "main/multimedia/diskord.png" %}' alt="">
+                    <img class="sotsetiIcons" src='{% static "main/multimedia/logo/diskord.png" %}' alt="">
                 </a>
             </p>
             <p>
                 <a href="{% url 'Razrabotka' %}">
-                    <img class="sotsetiIcons" src='{% static "main/multimedia/telegram.png" %}' alt="">
+                    <img class="sotsetiIcons" src='{% static "main/multimedia/logo/telegram.png" %}' alt="">
                 </a>
             </p>
             <p>
                 <a href="{% url 'Razrabotka' %}">
-                    <img class="sotsetiIcons" src='{% static "main/multimedia/twiter.png" %}' alt="">
+                    <img class="sotsetiIcons" src='{% static "main/multimedia/logo/twiter.png" %}' alt="">
                 </a>
             </p>
-            <!-- <img class="sotsetiFon"
-            src='{% static "main/multimedia/crypto runner.png" %}'
-            alt="Logo"> -->
         </div>
         {% block body %}{% endblock %}
         <br>
