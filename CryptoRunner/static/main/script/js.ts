@@ -45,11 +45,13 @@ async function NFTnokunka(i, y) {
     buttonBui.textContent = '';
     log(buttonBui);
 
-    signature = await tranzacsion();
-    if (!signature) {
-      window.location.href = "";
-      return;
-    }
+    // signature = await tranzacsion();
+    // if (!signature) {
+    //   window.location.href = "";
+    //   return;
+    // }
+    document.getElementById("bloc1").style.display ='none';
+    document.getElementById("bloc2").style.display ='';
   }
   // await getData("POST", urlNFTbui, {
   //   NFT: i,

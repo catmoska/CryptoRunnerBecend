@@ -6,13 +6,9 @@
 {% endblock %}
 {% block body %}
     {% comment %} <h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br> {% endcomment %}
-    <div class="colorF4D container-fluid ">
+    <div class="colorF4D container-fluid" id="bloc1">
         <div class="col-md-4 senrovat2Bloc">
-            <img class
-                 width100
-                 nftImeig
-                 src='{{ NFT.ClothesTip.Photo.url }}'
-                 alt=""/>
+            <img class=" width100 nftImeig" src='{{ NFT.ClothesTip.Photo.url }}' alt=""/>
         </div>
         <div class="col-md-7 nftText">
             <br>
@@ -57,11 +53,26 @@
                 <br>
             </div>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </div>
-    {% endblock %}
+    </div>
+
+    <div class="container-fluid" id="bloc2" style="display:none;">
+        <div class="row">
+            <div class="col-md-6">
+                <img class="width120" src='{% static "main/multimedia/imagies for blocks/complete payments.png" %}'/>
+            </div>
+            <div class="col-md-6 colorF4D senrovat1Bloc">
+                <h1 class="senrovat4Bloc6">
+                    Success!<br>
+                    Your NFT in Your Items!<br>
+                    Let's play right now!</h1>
+                
+                <a href="{% url 'geimCryptoRunner'%}" 
+    class="Text3 butonCentrirovat buton6 animator colorF4D">Start game</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+{% endblock %}

@@ -81,7 +81,7 @@ def nftCilka(request, nftHeh):
         data = json.loads(request.body.decode('utf-8'))
         print(data["onerasia"])
         if data["onerasia"] == "bui":
-
+            #######################################
             nft.Pleir = user
             nft.save()
             marc = MARKETPLACEmodel.objects.filter(nft=nft)
