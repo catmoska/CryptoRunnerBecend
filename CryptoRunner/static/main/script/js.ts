@@ -49,18 +49,24 @@ async function NFTnokunka(i, y) {
     </video>`;
 
     signature = await tranzacsion();
-    if (!signature) {
+    log(signature)
+    if (!signature["signature"]) {
       window.location.href = "";
       return;
     }
     document.getElementById("bloc1").style.display ='none';
     document.getElementById("bloc2").style.display ='';
+  
+    await getData("POST", urlNFTbui, {
+      NFT: i,
+      onerasia: y,
+      signatura: signature["signature"],
+      conect:signature["NETWORK"],
+    });
   }
+
   await getData("POST", urlNFTbui, {
     NFT: i,
     onerasia: y,
-    signatura: signature,
   });
-  
-  // window.location.href = "";
 }

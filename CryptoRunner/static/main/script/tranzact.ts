@@ -81,9 +81,9 @@ export async function tranzacsion(tin: number = 0) {
   };
 
   log("start");
-  const res = await sendTransaction();
+  const signature = await sendTransaction();
   log("fines");
-  return res
+  return {signature:signature,NETWORK:NETWORK}
 }
 /////////////////
 export async function getWalletBalance() {

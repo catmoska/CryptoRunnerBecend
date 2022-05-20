@@ -78,10 +78,10 @@ def nftCilka(request, nftHeh):
             nroverka(data["signatura"])
             print("das")
             #######################################
-            # nft.Pleir = user
-            # nft.save()
-            # marc = MARKETPLACEmodel.objects.filter(nft=nft)
-            # marc.delete()
+            nft.Pleir = user
+            nft.save()
+            marc = MARKETPLACEmodel.objects.filter(nft=nft)
+            marc.delete()
         elif data["onerasia"] == "sell":
             marc = MARKETPLACEmodel.objects.filter(nft=nft)
             if len(marc)==0:
