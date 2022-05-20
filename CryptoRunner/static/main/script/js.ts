@@ -39,24 +39,28 @@ async function conect() {
 
 async function NFTnokunka(i, y) {
   log(y);
+  log(i);
   let signature = null;
   if (y == "bui") {
     const buttonBui = document.getElementById("buttonBui");
-    buttonBui.textContent = '';
-    log(buttonBui);
+    buttonBui.innerHTML = `<div class="text-center">не закриваите странису<div>
+    <video autoplay muted loop preload="auto" class="width40">
+    <source src='https://i.gifer.com/XOsX.mp4'>
+    </video>`;
 
-    // signature = await tranzacsion();
-    // if (!signature) {
-    //   window.location.href = "";
-    //   return;
-    // }
+    signature = await tranzacsion();
+    if (!signature) {
+      window.location.href = "";
+      return;
+    }
     document.getElementById("bloc1").style.display ='none';
     document.getElementById("bloc2").style.display ='';
   }
-  // await getData("POST", urlNFTbui, {
-  //   NFT: i,
-  //   onerasia: y,
-  //   signature: signature,
-  // });
+  await getData("POST", urlNFTbui, {
+    NFT: i,
+    onerasia: y,
+    signatura: signature,
+  });
+  
   // window.location.href = "";
 }

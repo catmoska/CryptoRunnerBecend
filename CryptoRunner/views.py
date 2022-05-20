@@ -4,11 +4,12 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from hashlib import sha224
 from datetime import datetime, timezone, timedelta
+# from django.views.decorators.cache import cache_page
 from .forms import *
 from .logik import *
 import json
 
-
+# @cache_page(60 * 60*10)
 def mainStronisa(request):
     return render(request, 'CryptoRunner/mainStronisa.html', {'title': 'главная страниса'})
 
@@ -20,16 +21,14 @@ def pageNotFound(request, exception):
 def Eroor404(request):
     return render(request, 'Eroor404.html', {'title': 'Error 404'})
 
-
+# @cache_page(60 * 60*10)
 def Razrabotka(request):
     return render(request, 'Razrabotka.html', {'title': 'Coming Soon!'})
 
-
+# @cache_page(60 * 60*10)
 def geimV(request):
     return render(request, 'CryptoRunner/Vgeimes.html', {'title': 'Geimes'})
 
-def nftCilka(request):
-    return nereadres("MARKETPLACE")
 
 @csrf_exempt
 def MARKETPLACE(request):
@@ -44,13 +43,6 @@ def MARKETPLACE(request):
     MARKETPLACE = MARKETPLACEmodel.objects.all()
     return render(request, 'CryptoRunner/MARKETPLACE.html',
                   {'title': 'MARKETPLACE', "tovar": MARKETPLACE})
-
-
-def MARKETPLACEI(request, geim):
-    # return HttpResponse("hes  "+str(geim))
-    return nereadres("main")
-
-
 
 
 @csrf_exempt
@@ -82,10 +74,14 @@ def nftCilka(request, nftHeh):
         print(data["onerasia"])
         if data["onerasia"] == "bui":
             #######################################
-            nft.Pleir = user
-            nft.save()
-            marc = MARKETPLACEmodel.objects.filter(nft=nft)
-            marc.delete()
+            print(data)
+            nroverka(data["signatura"])
+            print("das")
+            #######################################
+            # nft.Pleir = user
+            # nft.save()
+            # marc = MARKETPLACEmodel.objects.filter(nft=nft)
+            # marc.delete()
         elif data["onerasia"] == "sell":
             marc = MARKETPLACEmodel.objects.filter(nft=nft)
             if len(marc)==0:
@@ -269,7 +265,5 @@ def geim(request):
     else:
         return nereadres("registr")
 
-    if request.method == 'POST':
-        print("dasssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
 
     return render(request, 'CryptoRunner/geim.html', {'title': 'geim'})

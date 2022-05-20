@@ -5,6 +5,9 @@ from datetime import datetime, timezone,timedelta
 # import datetime
 import json
 import random
+from bs4 import BeautifulSoup
+import requests as req
+
 times = timedelta(minutes=81)
 
 def nereadres(urls):
@@ -120,3 +123,19 @@ def deita(user:Pleir):
 
 
 
+def nroverka(signatura):
+    print("start")
+    res = req.post(
+        'https://explorer-api.devnet.solana.com/',
+        params={
+            "id": "54d9139d-575c-4823-b32b-6849ae0e658e",
+            "jsonrpc": "2.0",
+            "method": "getConfirmedTransaction",
+            "params":[
+                signatura,
+                {"encoding": "jsonParsed", "commitment": "confirmed"}
+            ]
+        }
+    )
+    print(res.status_code)
+    print(res.json)

@@ -131,7 +131,14 @@ MEDIA_URL = 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR,'coolsite_cache'),
+    }
+}
 
 # if DEBUG:
 #     import mimetypes
 #     mimetypes.add_type("application/javascript", ".js", True)
+
