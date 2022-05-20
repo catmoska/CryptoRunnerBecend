@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 colorF4D senrovat1Bloc">
+            <h1 class="senrovat4Bloc1">Eroor404</h1>
+            <div class="zag1">
+                WE can’t findth is page
+            </div>
+            <a href="{% url 'main'%}" 
+class="Text3 butonCentrirovat buton6 animator colorF4D">Home Page </a>
+        </div>
+        <div class="col-md-7">
+            <img class="width100" src='{% static "main/multimedia/imagies for blocks/E404.png" %}'/>
+        </div>
+    </div>
+</div>
+
+<br><br><br><br><br>
+{% endblock %}
