@@ -3,6 +3,7 @@
 {% block title %}{{ title }}{% endblock %}
 {% block head %}{% endblock %}
 {% block body %}
+
     <div class="colorF4D container-fluid" id="bloc1">
         <div class="col-md-4 senrovat2Bloc">
             <img class=" width100 nftImeig"
@@ -26,7 +27,7 @@
                     <a class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
                        href="{% url 'registr' %}">Login</a>
                 {% elif market and not pleir %}
-                    <div class="text-center">Price: {{ stoimost }} sol</div>
+                    <div class="text-center">Price: {{ stoimost }} sol +4%</div>
                     <br>
                     <div >
                         <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
@@ -40,7 +41,7 @@
                         Sell
                     </button>
                 {% elif market and pleir %}
-                    <div class="text-center">Price: {{ stoimost }} sol</div>
+                    <div class="text-center">Price: {{ stoimost }} sol +4%</div>
                     <br>
                     <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
                             onclick="NFTnokunka('{{ NFT.idHash }}','take off')">

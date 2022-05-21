@@ -3,6 +3,10 @@
 <html>
     <head>
         <meta charset="utf-8">
+        {% comment %} <FilesMatch 
+            "\.(mov|ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|rss|atom|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$">
+        </FilesMatch> {% endcomment %}
+        
         <title>
             {% block title %}{{ title }}{% endblock %}
         </title>
@@ -20,21 +24,10 @@
               sizes="16x16"
               href='{% static "main/multimedia/logo/favicon-16x16.png" %}'/>
         {% comment %} <link rel="manifest" href='{% static "main/resurs/site.webmanifest" %}'/> {% endcomment %}
-        {% comment %} <script>
-            
-        </script> {% endcomment %}
-
-        <!-- Development (un-minified) -->
-        {% comment %} <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script> {% endcomment %}
-        <!-- Production (minified) -->
-        {% comment %} <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script> {% endcomment %}
-
         
-        {% comment %} <script>
-            window.process = BrowserFS.BFSRequire('process');
-            window.Buffer = BrowserFS.BFSRequire('buffer').Buffer;
-          </script> {% endcomment %}
-        {% comment %} <script src="https://unpkg.com/@solana/web3.js"></script>  {% endcomment %}
+
+        <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+        <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
 
         <script src="{% static 'main/resursJS/bundle.js' %}"></script>
 

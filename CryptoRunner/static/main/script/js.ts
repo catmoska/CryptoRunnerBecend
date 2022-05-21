@@ -64,6 +64,29 @@ async function NFTnokunka(i, y) {
     return;
   }
 
+  if (y == "sell") {
+    let prises = await prompt("prais: snimaim 4%");
+    prises = prises.replace( /,/g, "." )
+    let prise2 = parseFloat(prises);
+    log(prise2);
+    log(isNaN(prise2))
+    if(isNaN(prise2)){
+      alert("nou number");
+      return;
+    }
+    else if(prise2<0.00001){
+      alert("malenkoe");
+      return;
+    }
+    await getData("POST", urlNFTbui, {
+      NFT: i,
+      onerasia: y,
+      prise:prise2
+    });
+    window.location.href = '';
+    return;
+  }
+
   await getData("POST", urlNFTbui, {
     NFT: i,
     onerasia: y,

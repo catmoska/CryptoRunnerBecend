@@ -74,7 +74,9 @@ export async function tranzacsion(tin: number = 0) {
       log("Transaction " + signature + " confirmed");
       return signature;
     } catch (err) {
-      console.warn(EroorFhantom(err["code"]));
+      try{console.warn(EroorFhantom(err["code"]));}
+      catch (err){console.warn(err);}
+      
       log("[error] sendTransaction: " + JSON.stringify(err));
       return false;
     }

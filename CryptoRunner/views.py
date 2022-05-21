@@ -32,7 +32,7 @@ def geimV(request):
     return render(request, 'CryptoRunner/Vgeimes.html', {'title': 'Geimes'})
 
 
-def profil(request):
+def profile(request):
     if request.COOKIES:
         userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(userv) == 0:
@@ -91,9 +91,9 @@ def nftCilka(request, nftHeh):
         print(data["onerasia"])
         if data["onerasia"] == "bui":
             #######################################
-            print(data)
-            nroverka(data["signatura"])
-            print("das")
+            # print(data)
+            # nroverka(data["signatura"])
+            # print("das")
             #######################################
             nft.Pleir = user
             nft.save()
@@ -102,7 +102,7 @@ def nftCilka(request, nftHeh):
         elif data["onerasia"] == "sell":
             marc = MARKETPLACEmodel.objects.filter(nft=nft)
             if len(marc)==0:
-                R = MARKETPLACEmodel(nft=nft, stoimost=0.05)
+                R = MARKETPLACEmodel(nft=nft, stoimost=round(float(data["prise"]),5))
                 R.save()
         elif data["onerasia"] == "take off":
             marc = MARKETPLACEmodel.objects.filter(nft=nft)

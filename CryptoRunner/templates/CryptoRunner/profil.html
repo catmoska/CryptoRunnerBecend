@@ -3,25 +3,40 @@
 {% block title %}{{ title }}{% endblock %}
 {% block head %}{% endblock %}
 {% block body %}
-    <div class="colorF4D navbar container-fluid">
-        <div class="col-md-3 colorF4D senrovat1Bloc">
-            <img class="width100"
-                 src='{% static "main/multimedia/imagies for blocks/phantom connect 1.png" %}'/>
+    <div class="colorF4D navbar container-fluid" style="margin-top: -25px;">
+        <br>
+        <h1 class="colorFFF senrovat2Bloc">Profile Page</h1>
+        <div class="col-md-3 colorF4D senrovat1Bloc" style="margin-left: 50px;">
+            {% if user.Photo %}
+                <img class="width100" src='user.Photo.url'/>
+            {% else %}
+                <img class="width80"
+                     src='https://cdn-icons-png.flaticon.com/512/64/64572.png'/>
+            {% endif %}
         </div>
-        <div class="col-md-8 senrovatprofilBloc color000">
-            moneu:{{user.Money}}<br>
-            idHash:{{user.idHash}}<br>
-            Nick:{{user.Nick}}<br>
-            Distansion:{{user.Distansion}}<br>
-            DataRegistr:{{user.DataRegistr}}<br>
-            Energia:{{user.Energia}}/{{user.EnergiaMax}}<br>
-            NFT colisectvio:{{NFTCOl}}
-
-
+        <div class="col-md-7 senrovatprofilBloc colorFFF" style="margin-left: 50px;">
+            Nick:    {{ user.Nick }}
+            <br>
+            idHash:    {{ user.idHash }}
+            <br>
+            moneu:    {{ user.Money }}
+            <br>
+            Distansion:    {{ user.Distansion }}
+            <br>
+            Energia:    {{ user.Energia }}/{{ user.EnergiaMax }}
+            <br>
+            DataRegistr:    {{ user.DataRegistr }}
+            <br>
+            NFT colisectvio:    {{ NFTCOl }}
+            <br>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
+        
     </div>
+<div class="navbar" style="margin-top: -21px;"><br><br><br></div><br><br><br>
     <div class="colorF4D container-fluid">
+        <h1 class="colorF4D senrovat2Bloc">Your Bonny NFT</h1>
+
         {% if not tovar %}
             <br>
             <br>
@@ -36,6 +51,7 @@
         <div class="colorF4D container-fluid">
             {% for i in tovar %}
                 <div class="col-md-4 senrovat2Bloc animator color000">
+                    
                     <div class="MarketplaceTovar">
                         <p>
                             <a href="{% url 'nft' %}{{ i.idHash }}" class="colorFFF">
@@ -45,14 +61,12 @@
                                 <img src='{{ i.ClothesTip.Photo.url }}' class="MarketplaceCat " alt=""/>
                             </a>
                             <div class="senrovatMarketplaceText colorFFF">
-                                runner:
+                                Runner:
                                 <br>
-                                energia:
-                                <div class="senrovatMarketplaceText2A"># {{ i.nft.id }}</div>
+                                Energy:
+                                <div class="senrovatMarketplaceText2A"># {{ i.id }}</div>
                                 <br>
-                                <div class="senrovatMarketplaceText2B">
-                                    {{ i.Energia }}/{{ i.EnergiaMax }}
-                                </div>
+                                <div class="senrovatMarketplaceText2B">{{ i.Energia }}/{{ i.EnergiaMax }}</div>
                             </div>
                             <br>
                         </p>

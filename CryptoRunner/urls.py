@@ -14,7 +14,7 @@ urlpatterns = [
     path('nft/', nftCilka, name="nft"),
     path('nft/<str:nftHeh>', nftCilka),
 
-    path('profil/', profil),
+    path('profile/', profile, name="profile"),
 ]
 
 urlpatterns+=[
