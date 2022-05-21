@@ -33,12 +33,12 @@ def geimV(request):
 @csrf_exempt
 def MARKETPLACE(request):
     # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    if request.COOKIES:
-        users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
-        if len(users) == 0:
-            return nereadres("registr")
-    else:
-        return nereadres("registr")
+    # if request.COOKIES:
+    #     users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
+    #     if len(users) == 0:
+    #         return nereadres("registr")
+    # else:
+    #     return nereadres("registr")
 
     MARKETPLACE = MARKETPLACEmodel.objects.all()
     return render(request, 'CryptoRunner/MARKETPLACE.html',
@@ -48,13 +48,21 @@ def MARKETPLACE(request):
 @csrf_exempt
 def nftCilka(request, nftHeh):
     # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
+    registor =True
     if request.COOKIES:
         users= Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(users) ==0:
-            return nereadres("registr")
+            if request.method == 'GET':
+                registor = False
+            else:
+                return nereadres("registr")
     else:
-        return nereadres("registr")
-    user = users[0]
+        if request.method == 'GET':
+            registor = False
+        else:
+            return nereadres("registr")
+    if registor:
+        user = users[0]
 
     nft = NFTs.objects.filter(idHash=nftHeh)
     if len(nft) == 0:
@@ -99,13 +107,12 @@ def nftCilka(request, nftHeh):
     if len(marc) != 0:
         marxet = True
         stoimost = marc[0].stoimost
-    if user == nft.Pleir:
-        pleir = True
-    # print(marxet)
-    # print(pleir)
+    if registor:
+        if user == nft.Pleir:
+            pleir = True
 
     return render(request, 'CryptoRunner/NFT.html',
-                  {'title': 'nft', "NFT": nft, "market": marxet, "pleir": pleir, "stoimost": stoimost})
+                  {'title': 'nft', "NFT": nft, "market": marxet, "pleir": pleir, "stoimost": stoimost,"registor":registor})
 
 
 @csrf_exempt
