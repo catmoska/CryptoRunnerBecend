@@ -4,12 +4,12 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from hashlib import sha224
 from datetime import datetime, timezone, timedelta
-# from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page
 from .forms import *
 from .logik import *
 import json
 
-# @cache_page(60 * 60*10)
+# @cache_page(60 * 60 * 10)
 def mainStronisa(request):
     return render(request, 'CryptoRunner/mainStronisa.html', {'title': 'главная страниса'})
 
@@ -21,25 +21,35 @@ def pageNotFound(request, exception):
 def Eroor404(request):
     return render(request, 'Eroor404.html', {'title': 'Error 404'})
 
+
 # @cache_page(60 * 60*10)
 def Razrabotka(request):
     return render(request, 'Razrabotka.html', {'title': 'Coming Soon!'})
 
-# @cache_page(60 * 60*10)
+
+# @cache_page(60 * 60)
 def geimV(request):
     return render(request, 'CryptoRunner/Vgeimes.html', {'title': 'Geimes'})
 
 
+def profil(request):
+    if request.COOKIES:
+        userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
+        if len(userv) == 0:
+            return nereadres("registr")
+    else:
+        return nereadres("registr")
+    user = userv[0]
+
+    NFT = NFTs.objects.filter(Pleir = user)
+    NFTCOl = len(NFT)
+
+    return render(request, 'CryptoRunner/profil.html',
+                  {'title': 'profil', "tovar": NFT,"user":user,"NFTCOl":NFTCOl})
+
+
 @csrf_exempt
 def MARKETPLACE(request):
-    # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
-    # if request.COOKIES:
-    #     users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
-    #     if len(users) == 0:
-    #         return nereadres("registr")
-    # else:
-    #     return nereadres("registr")
-
     MARKETPLACE = MARKETPLACEmodel.objects.all()
     return render(request, 'CryptoRunner/MARKETPLACE.html',
                   {'title': 'MARKETPLACE', "tovar": MARKETPLACE})
@@ -47,10 +57,9 @@ def MARKETPLACE(request):
 
 @csrf_exempt
 def nftCilka(request, nftHeh):
-    # users = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
     registor =True
     if request.COOKIES:
-        users= Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
+        users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(users) ==0:
             if request.method == 'GET':
                 registor = False
@@ -70,8 +79,8 @@ def nftCilka(request, nftHeh):
     nft = nft[0]
 
     if request.method == 'GETPARAMS':
-        MARKETPLACE = MARKETPLACEmodel.objects.filter(nft = nft)
-        if len(MARKETPLACE)==0:
+        MARKETPLACE = MARKETPLACEmodel.objects.filter(nft=nft)
+        if len(MARKETPLACE) == 0:
             return HttpResponse("ErorEczemplar")
         MARKETPLACE = MARKETPLACE[0]
         jso = {"stoimost":MARKETPLACE.stoimost,
@@ -129,23 +138,20 @@ def registr(request):
         if len(snis) != 0:
             y = snis[0]
             y.DataVixada = datetime.now(timezone.utc)
-            # if request.COOKIES and request.COOKIES.get('publicKey') != PublicKeuSolana:
-            #     print("ddddd")
-            #     y.isSiter = True
             y.save()
         else:
             y = Pleir(
                 DataRegistr=datetime.today(),
                 DataVixada=datetime.today(),
                 PublicKeuSolana=PublicKeuSolana,
-                idHash=idHash)
+                idHash=idHash,Energia=20,EnergiaMax=20)
             y.save()
-            nft = NFTs(
-                Energia=3, EnergiaMax=3,
-                idHash=str(random.randint(-100, 100)), DataSozdania=datetime.now(timezone.utc),
-                DataVixada=datetime.now(timezone.utc),
-                Pleir=y, СlothesTip=Сlothes.objects.all()[0])
-            nft.save()
+            # nft = NFTs(
+            #     Energia=3, EnergiaMax=3,
+            #     idHash=str(random.randint(-100, 100)), DataSozdania=datetime.now(timezone.utc),
+            #     DataVixada=datetime.now(timezone.utc),
+            #     Pleir=y, СlothesTip=Сlothes.objects.all()[0])
+            # nft.save()
         response = redirect('/registr/')
         response.set_cookie('publicKey', PublicKeuSolana)
         print("das")
@@ -156,22 +162,21 @@ def registr(request):
 
 def nftVistavka(request):
     ppublic = ["HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav",
-               "871FK4JkgGDsQB7nDwgcTPJ8KR1ErE9nHd6L8cXQFopY"]
+               "871FK4JkgGDsQB7nDwgcTPJ8KR1ErE9nHd6L8cXQFopY",
+               "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw"]
     if request.COOKIES:
         users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(users) == 0:
             return nereadres("registr")
         y =False
-        users = users[0]
         for i in ppublic:
-            if request.COOKIES.get('publicKey') == ppublic:
+            if request.COOKIES.get('publicKey') == i:
                 y = True
                 pass
         if not y:
             return nereadres("main")
     else:
         return nereadres("main")
-
 
     if request.method == 'POST':
         form = NewForms(request.POST)
@@ -205,13 +210,11 @@ def nftVistavka(request):
 
 @csrf_exempt
 def geimDETA(request):
-    # userv = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
     if request.COOKIES:
         userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(userv) == 0:
             return HttpResponse("registr")
     else:
-        # return nereadres("registr")
         return HttpResponse("registr")
     userv = userv[0]
 

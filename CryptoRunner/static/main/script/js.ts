@@ -42,12 +42,9 @@ async function NFTnokunka(i, y) {
   log(i);
   let signature = null;
   if (y == "bui") {
-    const buttonBui = document.getElementById("buttonBui");
-    buttonBui.innerHTML = `<div class="text-center">не закриваите странису<div>
-    <video autoplay muted loop preload="auto" class="width40">
-    <source src='https://i.gifer.com/XOsX.mp4'>
-    </video>`;
-
+    document.getElementById("bloc1").style.display ='none';
+    document.getElementById("bloc2").style.display ='';
+    
     signature = await tranzacsion();
     log(signature)
     if (!signature["signature"]) {
@@ -55,7 +52,8 @@ async function NFTnokunka(i, y) {
       return;
     }
     document.getElementById("bloc1").style.display ='none';
-    document.getElementById("bloc2").style.display ='';
+    document.getElementById("bloc2").style.display ='none';
+    document.getElementById("bloc3").style.display ='';
   
     await getData("POST", urlNFTbui, {
       NFT: i,
@@ -63,10 +61,12 @@ async function NFTnokunka(i, y) {
       signatura: signature["signature"],
       conect:signature["NETWORK"],
     });
+    return;
   }
 
   await getData("POST", urlNFTbui, {
     NFT: i,
     onerasia: y,
   });
+  window.location.href = '';
 }

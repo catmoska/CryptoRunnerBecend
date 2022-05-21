@@ -1,65 +1,64 @@
-<!DOCTYPE html> {% load static %}
-<html>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}{% endblock %}
+{% block body %}
+    <div class="colorF4D navbar container-fluid">
+        <div class="col-md-3 colorF4D senrovat1Bloc">
+            <img class="width100"
+                 src='{% static "main/multimedia/imagies for blocks/phantom connect 1.png" %}'/>
+        </div>
+        <div class="col-md-8 senrovatprofilBloc color000">
+            moneu:{{user.Money}}<br>
+            idHash:{{user.idHash}}<br>
+            Nick:{{user.Nick}}<br>
+            Distansion:{{user.Distansion}}<br>
+            DataRegistr:{{user.DataRegistr}}<br>
+            Energia:{{user.Energia}}/{{user.EnergiaMax}}<br>
+            NFT colisectvio:{{NFTCOl}}
 
-<head>
-    <meta charset="utf-8">
-    <title>{{title}}</title>
-    <script>
-        const url = "{% url 'profil'%}"
-        async function getData(method, url, body = null) {
-            return new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest()
 
-                xhr.open(method, url)
-
-                xhr.responseType = 'json'
-                xhr.setRequestHeader('Content-Type', 'application/json')
-
-                xhr.onload = () => {
-                    if (xhr.status >= 400)
-                        reject(xhr.response)
-                    else
-                        resolve(xhr.response)
-                }
-
-                xhr.onerror = () => {
-                    reject(xhr.response)
-                }
-
-                xhr.send(JSON.stringify(body))
-            })
-        }
-        
-        async function plei(u) {
-            await getData('POST', url, {
-                'plei': u
-            });
-            window.location.href = "{% url 'geimCryptoRunner'%}";
-        }
-    </script>
-</head>
-
-<body>
-    <div>
-        <div>
-            #фото#<br> имя:{{naim}}
-        </div><br>
-
-        <div>
-            Money:{{Money}}<br> Energia:{{Energia}}/{{EnergiaMax}}<br>
-        </div><br>
-    </div><br> NFT
-    <div>
-        {% for NFT in NFTs%}
-        <div>
-            #фото#<br> Nick:{{NFT.Nick}}
-            <br> idHash:{{NFT.idHash}}
-            <br> Energia:{{NFT.Energia}}/{{NFT.EnergiaMax}}
-            <br> DataSozdania:{{NFT.DataSozdania}}
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="colorF4D container-fluid">
+        {% if not tovar %}
             <br>
-            <button onclick="plei('{{NFT.idHash}}')">играть</button>
-        </div><br> {% endfor %}
-    </div><br>
-</body>
-
-</html>
+            <br>
+            <br>
+            <br>
+            <div class="senrovat2Bloc colorF4D">Sold Out</div>
+            <br>
+            <br>
+            <br>
+            <br>
+        {% endif %}
+        <div class="colorF4D container-fluid">
+            {% for i in tovar %}
+                <div class="col-md-4 senrovat2Bloc animator color000">
+                    <div class="MarketplaceTovar">
+                        <p>
+                            <a href="{% url 'nft' %}{{ i.idHash }}" class="colorFFF">
+                                <img src='{% static "main/multimedia/nft content/nft tranp.png" %}'
+                                     class="MarketplaceVidvigat animator"
+                                     alt=""/>
+                                <img src='{{ i.ClothesTip.Photo.url }}' class="MarketplaceCat " alt=""/>
+                            </a>
+                            <div class="senrovatMarketplaceText colorFFF">
+                                runner:
+                                <br>
+                                energia:
+                                <div class="senrovatMarketplaceText2A"># {{ i.nft.id }}</div>
+                                <br>
+                                <div class="senrovatMarketplaceText2B">
+                                    {{ i.Energia }}/{{ i.EnergiaMax }}
+                                </div>
+                            </div>
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

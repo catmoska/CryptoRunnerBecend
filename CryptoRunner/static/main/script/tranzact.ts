@@ -131,7 +131,7 @@ async function nftTaranzact(): Promise<taranzact|null> {
   
   return {
     stoimost: parameters["stoimost"],
-    publickeusol: "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw",
-    // publickeusol:parameters["publickeusol"]
+    // publickeusol: "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw",
+    publickeusol:parameters["publickeusol"]
   };
 }

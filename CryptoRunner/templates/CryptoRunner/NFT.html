@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
-{% block head %}
-{% endblock %}
+{% block head %}{% endblock %}
 {% block body %}
     <div class="colorF4D container-fluid" id="bloc1">
         <div class="col-md-4 senrovat2Bloc">
@@ -25,11 +24,11 @@
             <div>
                 {% if not registor %}
                     <a class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
-                       href="{% url 'main' %}">Login</a>
+                       href="{% url 'registr' %}">Login</a>
                 {% elif market and not pleir %}
                     <div class="text-center">Price: {{ stoimost }} sol</div>
                     <br>
-                    <div id="buttonBui">
+                    <div >
                         <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
                                 onclick="NFTnokunka('{{ NFT.idHash }}','bui')">
                             Buy
@@ -59,6 +58,23 @@
         </div>
     </div>
     <div class="container-fluid" id="bloc2" style="display:none;">
+        <div class="col-md-4 senrovat2Bloc">
+            <video autoplay muted loop preload="auto" class="width100">
+                <source src='https://i.gifer.com/XOsX.mp4'>
+            </video>
+        </div>
+        <div class="col-md-7">
+            <br>
+            <br>
+            <div class="text-center">
+                <div class="fond-center colorF4D">
+                    <div class="colorF4D" style="font-size:100px;">Please wait</div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="container-fluid" id="bloc3" style="display:none;">
         <div class="row">
             <div class="col-md-6">
                 <img class="width120"
