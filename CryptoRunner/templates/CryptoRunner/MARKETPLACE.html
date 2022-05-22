@@ -21,13 +21,28 @@
 </script>
 {% endblock %}
 {% block body %}
+<br>
+
     <h1 class="colorF4D senrovat2Bloc">
         MARKETPLACE
         <br>
         
-        <br>
     </h1>
-
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5 colorF4D senrovat1Bloc">
+                <h1 class="senrovat4Bloc5"style="font-size: 55px;">Welcome To Bonny Market!<br>
+                    Here You Will Find NFT characters<br>for Bonny Games</h1>
+                <div class="senrovat4Bloc5"style="font-size: 45px;">You Can Buy And Sell Bonny NFT at Any Time!</div>
+                
+            </div>
+            <div class="col-md-7">
+                <img class="width80" src='{% static "main/multimedia/imagies for blocks/on  market image.png" %}'/>
+            </div>
+        </div>
+    </div>
+    
     {% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" onclick="zatia()">\/</button></h1>
         <br> <br> 
         <div class="colorF4D container-fluid animator3" id="vsplivaska" style="width: 0px;">
@@ -38,7 +53,16 @@
         <img class="MarketplaceImeig width60" src='{% static "main/anim arena.png" %}'/>
         </a></p>
         </div>  {% endcomment %}
+<br>
+<br>
+<div class="colorF4D senrovat2Bloc">
+    bonny nft
+    <br>
     
+</div>
+<br>
+        
+        
     {% if not tovar %}
         <br><br><br><br>
         <div class="senrovat2Bloc colorF4D">Sold Out</div>

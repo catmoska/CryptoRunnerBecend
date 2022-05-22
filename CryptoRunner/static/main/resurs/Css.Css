@@ -1,5 +1,5 @@
 body {
-    font-family: Bangers-Regular;
+    font-family: Bangers-Regular;body
     -ms-user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -451,5 +451,5 @@ li {
     margin-left: 5%;
     /* text-align: left; */
 
-    font-size: 20px;
+    font-size: 40px;
 }

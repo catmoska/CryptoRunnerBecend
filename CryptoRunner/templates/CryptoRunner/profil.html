@@ -6,28 +6,28 @@
     <div class="colorF4D backgroundColorF4D container-fluid" style="margin-top: -25px;">
         <br>
         <h1 class="colorFFF senrovat2Bloc">Profile Page</h1>
-        <div class="col-md-3 colorF4D senrovat1Bloc" style="margin-left: 50px;">
+        <div class="col-md-3 colorF4D senrovat1Bloc" style="margin-left: 250px;">
             {% if user.Photo %}
                 <img class="width100" src='user.Photo.url'/>
             {% else %}
-                <img class="width80"
-                     src='https://cdn-icons-png.flaticon.com/512/64/64572.png'/>
+                <img class="width100"
+                     src='{% static "main/multimedia/imagies for blocks/support alex.png" %}'/>
             {% endif %}
         </div>
         <div class="col-md-7 senrovatprofilBloc colorFFF" style="margin-left: 50px;">
-            Nick:    {{ user.Nick }}
+            Nick Name:    {{ user.Nick }}
             <br>
             idHash:    {{ user.idHash }}
             <br>
-            moneu:    {{ user.Money }}
+            money:    {{ user.Money }}
             <br>
-            Distansion:    {{ user.Distansion }}
+            Total Distance:    {{ user.Distansion }}
             <br>
-            Energia:    {{ user.Energia }}/{{ user.EnergiaMax }}
+            Energy:    {{ user.Energia }}/{{ user.EnergiaMax }}
             <br>
-            DataRegistr:    {{ user.DataRegistr }}
+            Register Date:    {{ user.DataRegistr }}
             <br>
-            NFT colisectvio:    {{ NFTCOl }}
+            NFT that you have:    {{ NFTCOl }}
             <br>
         </div>
         <div class="col-md-2"></div>
@@ -42,7 +42,7 @@
             <br>
             <br>
             <br>
-            <div class="senrovat2Bloc colorF4D">Sold Out</div>
+            <div class="senrovat2Bloc colorF4D">You have 0 NFT right now<br>Visit <a href="{% url 'MARKETPLACE' %}">Marketplace</a></div>  
             <br>
             <br>
             <br>
