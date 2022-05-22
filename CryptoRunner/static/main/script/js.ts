@@ -12,15 +12,20 @@ Object.assign(window, {
 let url: string = "";
 let urlGeim: string = "";
 let urlNFTbui: string = "";
+let domen: string = "";
 
-function start(url1, url2, url3) {
+function start(url1, url2, url3,url4) {
   url = url1;
   urlGeim = url2;
   urlNFTbui = url3;
+  domen = url4;
 }
 
 function textMesends(moneu, distansion) {
-  return "fff" + moneu + " " + distansion;
+  return 'In this Time, I ran '+distansion+' meters and Earn '+moneu+
+  ' Bonny Coin, in Bonny Game - Crypto Runner!\n'+
+  "Let's Play, Earn and Trade Rewards With Me!\n"
+  +domen+urlGeim;
 }
 ////////
 

@@ -27,7 +27,7 @@
                     <a class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
                        href="{% url 'registr' %}">Login</a>
                 {% elif market and not pleir %}
-                    <div class="text-center">Price: {{ stoimost }} sol +4%</div>
+                    <div class="text-center">Price: {{ stoimost }} sol</div>
                     <br>
                     <div >
                         <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
@@ -41,7 +41,7 @@
                         Sell
                     </button>
                 {% elif market and pleir %}
-                    <div class="text-center">Price: {{ stoimost }} sol +4%</div>
+                    <div class="text-center">Price: {{ stoimost }} sol</div>
                     <br>
                     <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
                             onclick="NFTnokunka('{{ NFT.idHash }}','take off')">

@@ -7,7 +7,8 @@ import json
 import random
 # from bs4 import BeautifulSoup
 # import requests as req
-# from solana.transaction import TransactionSignature
+# import solana
+# from solana.transaction import *
 
 
 times = timedelta(minutes=81)
@@ -99,7 +100,6 @@ def deita(user:Pleir):
 
 def nroverka(signatura):
     print("signatura")
-
 
 
 
