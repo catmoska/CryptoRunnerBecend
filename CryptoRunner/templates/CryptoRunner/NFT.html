@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
-{% block head %}
-    {% comment %} <script src='{%static "web3.js"%}'></script> {% endcomment %}
-{% endblock %}
+{% block head %}{% endblock %}
 {% block body %}
-    {% comment %} <h1 class="colorF4D senrovat2Bloc">MARKETPLACE<br> {% endcomment %}
+
     <div class="colorF4D container-fluid" id="bloc1">
         <div class="col-md-4 senrovat2Bloc">
-            <img class=" width100 nftImeig" src='{{ NFT.ClothesTip.Photo.url }}' alt=""/>
+            <img class=" width100 nftImeig"
+                 src='{{ NFT.ClothesTip.Photo.url }}'
+                 alt=""/>
         </div>
         <div class="col-md-7 nftText">
             <br>
@@ -23,10 +23,13 @@
                 {% comment %} <div>Pleir: {{ NFT.Pleir.idHash }}</div> {% endcomment %}
             </div>
             <div>
-                {% if market and not pleir %}
+                {% if not registor %}
+                    <a class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
+                       href="{% url 'registr' %}">Login</a>
+                {% elif market and not pleir %}
                     <div class="text-center">Price: {{ stoimost }} sol</div>
                     <br>
-                    <div id="buttonBui">
+                    <div >
                         <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
                                 onclick="NFTnokunka('{{ NFT.idHash }}','bui')">
                             Buy
@@ -55,20 +58,39 @@
             <br>
         </div>
     </div>
-
     <div class="container-fluid" id="bloc2" style="display:none;">
+        <div class="col-md-4 senrovat2Bloc">
+            <video autoplay muted loop preload="auto" class="width100">
+                <source src='https://i.gifer.com/XOsX.mp4'>
+            </video>
+        </div>
+        <div class="col-md-7">
+            <br>
+            <br>
+            <div class="text-center">
+                <div class="fond-center colorF4D">
+                    <div class="colorF4D" style="font-size:100px;">Please wait</div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="container-fluid" id="bloc3" style="display:none;">
         <div class="row">
             <div class="col-md-6">
-                <img class="width120" src='{% static "main/multimedia/imagies for blocks/complete payments.png" %}'/>
+                <img class="width120"
+                     src='{% static "main/multimedia/imagies for blocks/complete payments.png" %}'/>
             </div>
             <div class="col-md-6 colorF4D senrovat1Bloc">
                 <h1 class="senrovat4Bloc6">
-                    Success!<br>
-                    Your NFT in Your Items!<br>
-                    Let's play right now!</h1>
-                
-                <a href="{% url 'geimCryptoRunner'%}" 
-    class="Text3 butonCentrirovat buton6 animator colorF4D">Start game</a>
+                    Success!
+                    <br>
+                    Your NFT in Your Items!
+                    <br>
+                    Let's play right now!
+                </h1>
+                <a href="{% url 'geimCryptoRunner' %}"
+                   class="Text3 butonCentrirovat buton6 animator colorF4D">Start game</a>
             </div>
         </div>
         <br>

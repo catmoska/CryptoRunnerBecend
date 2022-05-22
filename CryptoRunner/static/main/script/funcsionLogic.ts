@@ -38,8 +38,10 @@ let eroor =
 "-32601":"Phantom does not recognize the method.", 
 "-32603":"Something went wrong within Phantom."};
 export function EroorFhantom(num):string{
-let res:string = eroor[num.toString()]
-return res;
+  try{
+  let res:string = eroor[num.toString()]
+  }catch(err){}
+  return num;
 }
 
 

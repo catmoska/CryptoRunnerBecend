@@ -74,7 +74,9 @@ export async function tranzacsion(tin: number = 0) {
       log("Transaction " + signature + " confirmed");
       return signature;
     } catch (err) {
-      console.warn(EroorFhantom(err["code"]));
+      try{console.warn(EroorFhantom(err["code"]));}
+      catch (err){console.warn(err);}
+      
       log("[error] sendTransaction: " + JSON.stringify(err));
       return false;
     }
@@ -131,7 +133,7 @@ async function nftTaranzact(): Promise<taranzact|null> {
   
   return {
     stoimost: parameters["stoimost"],
-    publickeusol: "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw",
-    // publickeusol:parameters["publickeusol"]
+    // publickeusol: "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw",
+    publickeusol:parameters["publickeusol"]
   };
 }

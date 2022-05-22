@@ -10,7 +10,7 @@ li {
     list-style-type: none;
 }
 
-.navbar {
+.backgroundColorF4D {
     background-color: #FF4F7D;
 }
 
@@ -98,6 +98,8 @@ li {
     text-align: center;
     font-size: 90px;
 }
+
+
 
 .senrovat1Bloc2 {
     font-size: 50px;
@@ -444,3 +446,10 @@ li {
     width: 200px;
 }
 
+.senrovatprofilBloc {
+    margin-top: 100px;
+    margin-left: 5%;
+    /* text-align: left; */
+
+    font-size: 20px;
+}

@@ -1,65 +1,78 @@
-<!DOCTYPE html> {% load static %}
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>{{title}}</title>
-    <script>
-        const url = "{% url 'profil'%}"
-        async function getData(method, url, body = null) {
-            return new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest()
-
-                xhr.open(method, url)
-
-                xhr.responseType = 'json'
-                xhr.setRequestHeader('Content-Type', 'application/json')
-
-                xhr.onload = () => {
-                    if (xhr.status >= 400)
-                        reject(xhr.response)
-                    else
-                        resolve(xhr.response)
-                }
-
-                xhr.onerror = () => {
-                    reject(xhr.response)
-                }
-
-                xhr.send(JSON.stringify(body))
-            })
-        }
-        
-        async function plei(u) {
-            await getData('POST', url, {
-                'plei': u
-            });
-            window.location.href = "{% url 'geimCryptoRunner'%}";
-        }
-    </script>
-</head>
-
-<body>
-    <div>
-        <div>
-            #фото#<br> имя:{{naim}}
-        </div><br>
-
-        <div>
-            Money:{{Money}}<br> Energia:{{Energia}}/{{EnergiaMax}}<br>
-        </div><br>
-    </div><br> NFT
-    <div>
-        {% for NFT in NFTs%}
-        <div>
-            #фото#<br> Nick:{{NFT.Nick}}
-            <br> idHash:{{NFT.idHash}}
-            <br> Energia:{{NFT.Energia}}/{{NFT.EnergiaMax}}
-            <br> DataSozdania:{{NFT.DataSozdania}}
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}{% endblock %}
+{% block body %}
+    <div class="colorF4D backgroundColorF4D container-fluid" style="margin-top: -25px;">
+        <br>
+        <h1 class="colorFFF senrovat2Bloc">Profile Page</h1>
+        <div class="col-md-3 colorF4D senrovat1Bloc" style="margin-left: 50px;">
+            {% if user.Photo %}
+                <img class="width100" src='user.Photo.url'/>
+            {% else %}
+                <img class="width80"
+                     src='https://cdn-icons-png.flaticon.com/512/64/64572.png'/>
+            {% endif %}
+        </div>
+        <div class="col-md-7 senrovatprofilBloc colorFFF" style="margin-left: 50px;">
+            Nick:    {{ user.Nick }}
             <br>
-            <button onclick="plei('{{NFT.idHash}}')">играть</button>
-        </div><br> {% endfor %}
-    </div><br>
-</body>
+            idHash:    {{ user.idHash }}
+            <br>
+            moneu:    {{ user.Money }}
+            <br>
+            Distansion:    {{ user.Distansion }}
+            <br>
+            Energia:    {{ user.Energia }}/{{ user.EnergiaMax }}
+            <br>
+            DataRegistr:    {{ user.DataRegistr }}
+            <br>
+            NFT colisectvio:    {{ NFTCOl }}
+            <br>
+        </div>
+        <div class="col-md-2"></div>
+        
+    </div>
+<div class="backgroundColorF4D" style="margin-top: -21px;"><br><br><br></div><br><br><br>
+    <div class="colorF4D container-fluid">
+        <h1 class="colorF4D senrovat2Bloc">Your Bonny NFT</h1>
 
-</html>
+        {% if not tovar %}
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="senrovat2Bloc colorF4D">Sold Out</div>
+            <br>
+            <br>
+            <br>
+            <br>
+        {% endif %}
+        <div class="colorF4D container-fluid">
+            {% for i in tovar %}
+                <div class="col-md-4 senrovat2Bloc animator color000">
+                    
+                    <div class="MarketplaceTovar">
+                        <p>
+                            <a href="{% url 'nft' %}{{ i.idHash }}" class="colorFFF">
+                                <img src='{% static "main/multimedia/nft content/nft tranp.png" %}'
+                                     class="MarketplaceVidvigat animator"
+                                     alt=""/>
+                                <img src='{{ i.ClothesTip.Photo.url }}' class="MarketplaceCat " alt=""/>
+                            </a>
+                            <div class="senrovatMarketplaceText colorFFF">
+                                Runner:
+                                <br>
+                                Energy:
+                                <div class="senrovatMarketplaceText2A"># {{ i.id }}</div>
+                                <br>
+                                <div class="senrovatMarketplaceText2B">{{ i.Energia }}/{{ i.EnergiaMax }}</div>
+                            </div>
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

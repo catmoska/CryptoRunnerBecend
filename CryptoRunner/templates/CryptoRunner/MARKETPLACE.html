@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block head %}
-    <script>
+<script>
     let isVisual = false;
     function zatia(){
         const Elsem = document.getElementById("vsplivaska")
@@ -19,13 +19,15 @@
         isVisual =!isVisual; 
     }
 </script>
-{% comment %} <style>body {background-color: #000000}</style>  {% endcomment %}
 {% endblock %}
 {% block body %}
     <h1 class="colorF4D senrovat2Bloc">
         MARKETPLACE
         <br>
+        
+        <br>
     </h1>
+
     {% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" onclick="zatia()">\/</button></h1>
         <br> <br> 
         <div class="colorF4D container-fluid animator3" id="vsplivaska" style="width: 0px;">
@@ -36,6 +38,7 @@
         <img class="MarketplaceImeig width60" src='{% static "main/anim arena.png" %}'/>
         </a></p>
         </div>  {% endcomment %}
+    
     {% if not tovar %}
         <br><br><br><br>
         <div class="senrovat2Bloc colorF4D">Sold Out</div>

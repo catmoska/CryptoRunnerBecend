@@ -13,7 +13,8 @@ urlpatterns = [
 
     path('nft/', nftCilka, name="nft"),
     path('nft/<str:nftHeh>', nftCilka),
-    # path('marketplace/<int:geim>', MARKETPLACEI),
+
+    path('profile/', profile, name="profile"),
 ]
 
 urlpatterns+=[

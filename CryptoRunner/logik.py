@@ -5,9 +5,11 @@ from datetime import datetime, timezone,timedelta
 # import datetime
 import json
 import random
-from bs4 import BeautifulSoup
-import requests as req
-import solana.blockhash
+# from bs4 import BeautifulSoup
+# import requests as req
+# import solana
+# from solana.transaction import *
+
 
 times = timedelta(minutes=81)
 
@@ -98,8 +100,16 @@ def deita(user:Pleir):
 
 def nroverka(signatura):
     print("signatura")
-    r = solana
-    print(r)
+
+
+
+    # r = TransactionSignature
+    # print(r)
+
+
+
+
+
 
 
 
