@@ -1,8 +1,8 @@
 .idea/
 node_modules/
 coolsite_cache/
-
-
+db.sqlite3
+*.sqlite3
 
 
 
