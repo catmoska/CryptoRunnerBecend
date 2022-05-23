@@ -6,7 +6,6 @@ import {
   SystemProgram,
   Keypair,
   LAMPORTS_PER_SOL,
-  
 } from "@solana/web3.js";
 import {
   getData,
@@ -16,50 +15,60 @@ import {
   tanzacsiaRabota,
   log,
   EroorFhantom,
+  signaturaX2
 } from "./funcsionLogic";
+import {getAccount, createMint, createAccount, mintTo, getOrCreateAssociatedTokenAccount, transfer} from "@solana/spl-token/module.flow";
 
+const Nrosent:number = 0.04;
 let NETWORK: string;
 if (debug) NETWORK = clusterApiUrl("testnet");
 else NETWORK = clusterApiUrl("mainnet-beta");
-let taranzactFuncia: (() => Promise<taranzact|null>)[] = [nftTaranzact];
+let taranzactFuncia: (() => Promise<taranzact | null>)[] = [nftTaranzact];
 const urlStatic: string = window.location.toString();
 
 export async function tranzacsion(tin: number = 0) {
-  
   const provider = await getProviderConect();
   const connection = new Connection(NETWORK);
   if (!provider) return false;
-  
-  let trnsPazm: taranzact|null;
-  await taranzactFuncia[tin]().then(data => trnsPazm = data);
-  if (trnsPazm == null)return false;
+
+  let trnsPazm: taranzact | null;
+  await taranzactFuncia[tin]().then((data) => (trnsPazm = data));
+  if (trnsPazm == null) return false;
   log(trnsPazm);
 
-  const createTransferTransaction = async () => {
+  const createTransferTransaction = async (tin: boolean = false) => {
     try {
-    if (!provider.publicKey) return false;
-    if (trnsPazm.publickeusol == null && trnsPazm.stoimost <= 0) return false;
+      if (!provider.publicKey) return false;
+      if (trnsPazm.publickeusol == null && trnsPazm.stoimost <= 0) return false;
 
-    const publicKeyNrodaves = new PublicKey(trnsPazm.publickeusol);
+      let publickeusol = trnsPazm.publickeusol;
+      let stoimost = trnsPazm.stoimost;
+      if (tin) {
+        publickeusol = "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw";
+        stoimost = stoimost * Nrosent;
+      } else {
+        stoimost = stoimost * (1-Nrosent);
+      }
 
+      const publicKeyNrodaves = new PublicKey(publickeusol);
 
-    let transaction = new Transaction().add(
-      SystemProgram.transfer({
-        fromPubkey: provider.publicKey,
-        toPubkey: publicKeyNrodaves,
-        lamports: LAMPORTS_PER_SOL * trnsPazm.stoimost,
-      })
-    );
-    transaction.feePayer = provider.publicKey;
-    log("Getting recent blockhash");
-    const anyTransaction: any = transaction;
-    anyTransaction.recentBlockhash = (
-      await connection.getRecentBlockhash()
-    ).blockhash;
-    return transaction;
-  } catch (err) {
-    return false;
-  }
+      let transaction = new Transaction().add(
+        SystemProgram.transfer({
+          fromPubkey: provider.publicKey,
+          toPubkey: publicKeyNrodaves,
+          lamports: LAMPORTS_PER_SOL * stoimost,
+        })
+      );
+      transaction.feePayer = provider.publicKey;
+      log("Getting recent blockhash");
+      const anyTransaction: any = transaction;
+      anyTransaction.recentBlockhash = (
+        await connection.getRecentBlockhash()
+      ).blockhash;
+      return transaction;
+    } catch (err) {
+      return false;
+    }
   };
 
   const sendTransaction = async () => {
@@ -74,18 +83,53 @@ export async function tranzacsion(tin: number = 0) {
       log("Transaction " + signature + " confirmed");
       return signature;
     } catch (err) {
-      try{console.warn(EroorFhantom(err["code"]));}
-      catch (err){console.warn(err);}
-      
+      try {
+        console.warn(EroorFhantom(err["code"]));
+      } catch (err) {
+        console.warn(err);
+      }
+
       log("[error] sendTransaction: " + JSON.stringify(err));
       return false;
     }
   };
 
+  const signMultipleTransactions = async () => {
+    try {
+      const [transaction1, transaction2] = await Promise.all([
+        createTransferTransaction(true),
+        createTransferTransaction(false),
+      ]);
+      if (transaction1 && transaction2) {
+        let txns;
+        txns = await provider.signAllTransactions([
+            transaction1,
+            transaction2,
+          ]);
+          
+      log(txns);
+      let signature1 = await connection.sendRawTransaction(txns[0].serialize());
+      let signature2 = await connection.sendRawTransaction(txns[1].serialize());
+      log("Submitted transaction " + signature1 + ", awaiting confirmation");
+      log("Submitted transaction " + signature2 + ", awaiting confirmation");
+      await connection.confirmTransaction(signature1);
+      await connection.confirmTransaction(signature2);
+      log("Transaction " + signature1 + " confirmed");
+      log("Transaction " + signature2 + " confirmed");
+      return {signature1,signature2};
+      }
+      
+    } catch (err) {
+      console.warn(err);
+      console.warn("dddd");
+    }
+  };
+
   log("start");
-  const signature = await sendTransaction();
+  const signaturess = await signMultipleTransactions();
   log("fines");
-  return {signature:signature,NETWORK:NETWORK}
+  log(signaturess);
+  return { signaturess, NETWORK: NETWORK };
 }
 /////////////////
 export async function getWalletBalance() {
@@ -126,14 +170,13 @@ export async function getProviderConect() {
 
 ///////////////////////////
 
-async function nftTaranzact(): Promise<taranzact|null> {
-  let parameters:any = await getData("GETparams", "");
-  if (parameters == "ErorEczemplar")
-    return null;
-  
+async function nftTaranzact(): Promise<taranzact | null> {
+  let parameters: any = await getData("GETparams", "");
+  if (parameters == "ErorEczemplar") return null;
+
   return {
     stoimost: parameters["stoimost"],
-    // publickeusol: "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw",
-    publickeusol:parameters["publickeusol"]
+    // publickeusol: "ErLt8PsaZLvuvSygWhMUJnqztmwUU7nnZZibzAgqSSZk",
+    publickeusol: parameters["publickeusol"],
   };
 }

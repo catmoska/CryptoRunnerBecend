@@ -15,9 +15,11 @@ urlpatterns = [
     path('nft/<str:nftHeh>', nftCilka),
 
     path('profile/', profile, name="profile"),
+    path('profile/<str:profil>', profile, ),
 ]
 
 urlpatterns+=[
+    path('Referral/<str:referalni>', referalni),
     path('vistavka/', nftVistavka),
     path('E404/', Eroor404, name="Eroor404"),
     path('soonpage/', Razrabotka, name="Razrabotka"),

@@ -3,7 +3,8 @@
 {% block title %}{{ title }}{% endblock %}
 {% block head %}{% endblock %}
 {% block body %}
-    <div class="colorF4D backgroundColorF4D container-fluid" style="margin-top: -25px;">
+    <div class="colorF4D backgroundColorF4D container-fluid"
+         style="margin-top: -25px;">
         <br>
         <h1 class="colorFFF senrovat2Bloc">Profile Page</h1>
         <div class="col-md-3 colorF4D senrovat1Bloc" style="margin-left: 250px;">
@@ -14,7 +15,8 @@
                      src='{% static "main/multimedia/imagies for blocks/support alex.png" %}'/>
             {% endif %}
         </div>
-        <div class="col-md-7 senrovatprofilBloc colorFFF" style="margin-left: 50px;">
+        <div class="col-md-7 senrovatprofilBloc colorFFF"
+             style="margin-left: 50px;">
             Nick Name:    {{ user.Nick }}
             <br>
             idHash:    {{ user.idHash }}
@@ -29,20 +31,34 @@
             <br>
             NFT that you have:    {{ NFTCOl }}
             <br>
+            <button onclick="cone()"
+                    id="Referral"
+                    style="border:none;
+                           background-color: #00000000;"></button>
+            <br>
         </div>
         <div class="col-md-2"></div>
-        
     </div>
-<div class="backgroundColorF4D" style="margin-top: -21px;"><br><br><br></div><br><br><br>
+    <div class="backgroundColorF4D" style="margin-top: -21px;">
+        <br>
+        <br>
+        <br>
+    </div>
+    <br>
+    <br>
+    <br>
     <div class="colorF4D container-fluid">
         <h1 class="colorF4D senrovat2Bloc">Your Bonny NFT</h1>
-
         {% if not tovar %}
             <br>
             <br>
             <br>
             <br>
-            <div class="senrovat2Bloc colorF4D">You have 0 NFT right now<br>Visit <a href="{% url 'MARKETPLACE' %}">Marketplace</a></div>  
+            <div class="senrovat2Bloc colorF4D">
+                You have 0 NFT right now
+                <br>
+                Visit <a href="{% url 'MARKETPLACE' %}">Marketplace</a>
+            </div>
             <br>
             <br>
             <br>
@@ -51,7 +67,6 @@
         <div class="colorF4D container-fluid">
             {% for i in tovar %}
                 <div class="col-md-4 senrovat2Bloc animator color000">
-                    
                     <div class="MarketplaceTovar">
                         <p>
                             <a href="{% url 'nft' %}{{ i.idHash }}" class="colorFFF">
@@ -75,4 +90,19 @@
             {% endfor %}
         </div>
     </div>
+    <script>
+        let a =domen+"/Referral"+"/"+{{user.pk}};
+        document.getElementById("Referral").innerHTML ="referalnia:    "+ a+` <a id="cope" class="colorFFF"></a>`;
+        async function cone(){
+            navigator.clipboard.writeText(a)
+            .then(() => {console.log('So');})
+            .catch(err => {console.log('Something went wrong', err);});
+            document.getElementById("cope").textContent = "copi"
+          setTimeout(sayHi, 500);
+        }
+
+        function sayHi() {
+            document.getElementById("cope").textContent = ""
+        }
+    </script>
 {% endblock %}

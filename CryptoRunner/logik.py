@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,Http404,HttpResponse
 from .models import *
 # from hashlib import sha224
 from datetime import datetime, timezone,timedelta
@@ -14,6 +14,8 @@ import random
 times = timedelta(minutes=81)
 
 def nereadres(urls):
+    if urls == "Eroor404":
+        raise Http404("")
     url = reverse(urls)
     response = HttpResponseRedirect(url)
     return response
@@ -96,6 +98,25 @@ def deita(user:Pleir):
             nft.DataVixada = datetime.now(timezone.utc)
         nft.save()
 
+def deitaNFT(nft:NFTs):
+    if nft.Energia != nft.EnergiaMax:
+        timesVremina = datetime.now(timezone.utc) - nft.DataVixada
+        nft.Energia += int(timesVremina / times)
+        nft.DataVixada += int(timesVremina / times)*times
+        if nft.Energia > nft.EnergiaMax:
+            nft.Energia = nft.EnergiaMax
+            nft.DataVixada = datetime.now(timezone.utc)
+    else:
+        nft.DataVixada = datetime.now(timezone.utc)
+    nft.save()
+
+
+def NoiskNft(nftArrau,Heh):
+    for i in range(len(nftArrau)):
+        if nftArrau[i].idHash == Heh:
+            return i
+    return None
+
 
 
 def nroverka(signatura):
@@ -108,7 +129,27 @@ def nroverka(signatura):
 
 
 
-
+def nftCilkaPOST(data,nft,user):
+    print(data["onerasia"])
+    if data["onerasia"] == "bui":
+        #######################################
+        # print(data)
+        # nroverka(data["signatura"])
+        # print("das")
+        #######################################
+        nft.Pleir = user
+        nft.save()
+        marc = MARKETPLACEmodel.objects.filter(nft=nft)
+        marc.delete()
+    elif data["onerasia"] == "sell":
+        marc = MARKETPLACEmodel.objects.filter(nft=nft)
+        if len(marc) == 0:
+            R = MARKETPLACEmodel(nft=nft, stoimost=round(float(data["prise"]), 5))
+            R.save()
+    elif data["onerasia"] == "take off":
+        marc = MARKETPLACEmodel.objects.filter(nft=nft)
+        marc.delete()
+    return HttpResponse("")
 
 
 

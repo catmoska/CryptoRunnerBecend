@@ -8,20 +8,24 @@ export async function getData(
   url: string,
   body: object = null
 ) {
-  let res: object;
-  await axios({
-    method: method,
-    url: url,
-    data: body,
-  }).then((deta) => (res = deta));
+  for (let i = 0; i < 10; i++) {
+    let res: object;
+    await axios({
+      method: method,
+      url: url,
+      data: body,
+    }).then((deta) => (res = deta));
 
-  let resy = res["data"];
-
-  try {
-    let obj:object = JSON.parse(JSON.stringify(resy));
-    return obj;
-  } catch (err) {
-    return resy;
+    
+    if (res["status"] <= 400) {
+      let resy = res["data"];
+      try {
+        let obj: object = JSON.parse(JSON.stringify(resy));
+        return obj;
+      } catch (err) {
+        return resy;
+      }
+    }
   }
 }
 
@@ -29,28 +33,22 @@ export function log(text) {
   if (debug) console.log(text);
 }
 
-let eroor = 
-{"4900":"Phantom could not connect to the network.", 
-"4100":"The requested method and/or account has not been authorized by the user.", 
-"4001":"The user rejected the request through Phantom.",
-"-32000":"Missing or invalid parameters.", 
-"-32003":"Phantom does not recognize a valid transaction.", 
-"-32601":"Phantom does not recognize the method.", 
-"-32603":"Something went wrong within Phantom."};
-export function EroorFhantom(num):string{
-  try{
-  let res:string = eroor[num.toString()]
-  }catch(err){}
+let eroor = {
+  "4900": "Phantom could not connect to the network.",
+  "4100":
+    "The requested method and/or account has not been authorized by the user.",
+  "4001": "The user rejected the request through Phantom.",
+  "-32000": "Missing or invalid parameters.",
+  "-32003": "Phantom does not recognize a valid transaction.",
+  "-32601": "Phantom does not recognize the method.",
+  "-32603": "Something went wrong within Phantom.",
+};
+export function EroorFhantom(num): string {
+  try {
+    let res: string = eroor[num.toString()];
+  } catch (err) {}
   return num;
 }
-
-
-
-
-
-
-
-
 
 ///////////////////////////////////////////////
 export type DisplayEncoding = "utf8" | "hex";
@@ -89,4 +87,9 @@ export interface taranzact {
 export interface tanzacsiaRabota {
   potvezenia: string | null;
   nrisina: string | null;
+}
+
+export interface signaturaX2 {
+  signature1: string;
+  signature2: string;
 }

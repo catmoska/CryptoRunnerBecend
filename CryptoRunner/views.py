@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404,JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404,\
+    JsonResponse,HttpResponsePermanentRedirect
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from hashlib import sha224
@@ -48,6 +49,19 @@ def profile(request):
                   {'title': 'profil', "tovar": NFT,"user":user,"NFTCOl":NFTCOl})
 
 
+def profile(request,profil):
+    userv = Pleir.objects.filter(PublicKeuSolana=profil)
+    if len(userv) == 0:
+        return nereadres("Eroor404")
+    user = userv[0]
+
+    NFT = NFTs.objects.filter(Pleir = user)
+    NFTCOl = len(NFT)
+
+    return render(request, 'CryptoRunner/profil.html',
+                  {'title': 'profil', "tovar": NFT,"user":user,"NFTCOl":NFTCOl})
+
+
 @csrf_exempt
 def MARKETPLACE(request):
     MARKETPLACE = MARKETPLACEmodel.objects.all()
@@ -61,67 +75,51 @@ def nftCilka(request, nftHeh):
     if request.COOKIES:
         users = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(users) ==0:
-            if request.method == 'GET':
-                registor = False
-            else:
-                return nereadres("registr")
-    else:
-        if request.method == 'GET':
             registor = False
-        else:
-            return nereadres("registr")
-    if registor:
-        user = users[0]
+    else:
+        registor = False
 
     nft = NFTs.objects.filter(idHash=nftHeh)
     if len(nft) == 0:
         return nereadres("Eroor404")
     nft = nft[0]
+    deitaNFT(nft)
 
     if request.method == 'GETPARAMS':
         MARKETPLACE = MARKETPLACEmodel.objects.filter(nft=nft)
         if len(MARKETPLACE) == 0:
             return HttpResponse("ErorEczemplar")
         MARKETPLACE = MARKETPLACE[0]
-        jso = {"stoimost":MARKETPLACE.stoimost,
-               "publickeusol":MARKETPLACE.nft.Pleir.PublicKeuSolana}
-        return JsonResponse(jso)
+
+        return JsonResponse(
+            {"stoimost":MARKETPLACE.stoimost,
+            "publickeusol":MARKETPLACE.nft.Pleir.PublicKeuSolana})
+
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
-        print(data["onerasia"])
-        if data["onerasia"] == "bui":
-            #######################################
-            # print(data)
-            # nroverka(data["signatura"])
-            # print("das")
-            #######################################
-            nft.Pleir = user
-            nft.save()
-            marc = MARKETPLACEmodel.objects.filter(nft=nft)
-            marc.delete()
-        elif data["onerasia"] == "sell":
-            marc = MARKETPLACEmodel.objects.filter(nft=nft)
-            if len(marc)==0:
-                R = MARKETPLACEmodel(nft=nft, stoimost=round(float(data["prise"]),5))
-                R.save()
-        elif data["onerasia"] == "take off":
-            marc = MARKETPLACEmodel.objects.filter(nft=nft)
-            marc.delete()
-        return HttpResponse("")
+        return nftCilkaPOST(data,nft,user)
 
     marxet = False
     pleir = False
     stoimost = 0
     marc = MARKETPLACEmodel.objects.filter(nft=nft)
+
     if len(marc) != 0:
         marxet = True
         stoimost = marc[0].stoimost
+
     if registor:
+        user = users[0]
         if user == nft.Pleir:
             pleir = True
 
-    return render(request, 'CryptoRunner/NFT.html',
-                  {'title': 'nft', "NFT": nft, "market": marxet, "pleir": pleir, "stoimost": stoimost,"registor":registor})
+    response = render(request, 'CryptoRunner/NFT.html',
+    {'title': 'nft', "NFT": nft, "market": marxet,
+     "pleir": pleir, "stoimost": stoimost,"registor":registor})
+
+    response.set_cookie('NFThistori', nftHeh)
+
+    return response
 
 
 @csrf_exempt
@@ -132,6 +130,7 @@ def registr(request):
             return nereadres("geimCryptoRunner")
 
     if request.method == 'POST':
+
         PublicKeuSolana = json.loads(request.body.decode('utf-8'))["publicKey"]
         snis = Pleir.objects.filter(PublicKeuSolana=PublicKeuSolana)
         idHash = sha224(PublicKeuSolana.encode('utf-8')).hexdigest()
@@ -140,11 +139,22 @@ def registr(request):
             y.DataVixada = datetime.now(timezone.utc)
             y.save()
         else:
+            moneu =0
+            if request.COOKIES:
+                referal = request.COOKIES.get('referalnaiSika')
+                if referal!=null:
+                    snis = Pleir.objects.filter(pk=referal)
+                    if len(snis) != 0:
+                        snis = snis[0]
+                        snis.Money += 100
+                        snis.save()
+                        moneu += 50
+
             y = Pleir(
                 DataRegistr=datetime.today(),
                 DataVixada=datetime.today(),
                 PublicKeuSolana=PublicKeuSolana,
-                idHash=idHash,Energia=20,EnergiaMax=20)
+                idHash=idHash,Energia=20,EnergiaMax=20, Money=moneu)
             y.save()
             # nft = NFTs(
             #     Energia=3, EnergiaMax=3,
@@ -154,7 +164,6 @@ def registr(request):
             # nft.save()
         response = redirect('/registr/')
         response.set_cookie('publicKey', PublicKeuSolana)
-        print("das")
         return response
 
     return render(request, 'CryptoRunner/registr.html', {'title': 'регистрасия'})
@@ -210,12 +219,14 @@ def nftVistavka(request):
 
 @csrf_exempt
 def geimDETA(request):
+    hehNFT = None
     if request.COOKIES:
         userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(userv) == 0:
-            return HttpResponse("registr")
+            return HttpResponse("TestPleir")
+        hehNFT = request.COOKIES.get('NFThistori')
     else:
-        return HttpResponse("registr")
+        return HttpResponse("TestPleir")
     userv = userv[0]
 
     if request.method == 'POST':
@@ -249,7 +260,14 @@ def geimDETA(request):
     if len(nft) == 0:
         return HttpResponse("EroorNFT")
 
-    otvet:str = str(userv.Money) + "&" + str(userv.Record) + "&" + str(userv.nonitka) + "$"
+    otvet = str(userv.Money) + "&" + str(userv.Record) + "&" + str(userv.nonitka) + "$"
+
+
+    if hehNFT !=None:
+        i = NoiskNft(nft, Heh)
+        if i !=None:
+            nft[0],nft[i]=nft[i],nft[0]
+
 
     for i in nft:
         otvet += str(i.Energia) + "&" + str(i.EnergiaMax) + "&" + str(i.Nick) + "&" + \
@@ -263,17 +281,29 @@ def geimDETA(request):
     return HttpResponse(otvet)
 
 
-# @csrf_exempt
 def geim(request):
     if request.COOKIES:
+        if request.COOKIES.get('publicKey') == None:
+            return nereadres("registr")
         user = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(user) == 0:
             return nereadres("registr")
-        nft = NFTs.objects.filter(Pleir=user[0])
-        if len(nft) == 0:
-            return nereadres("MARKETPLACE")
+        if len(user) != 0:
+            nft = NFTs.objects.filter(Pleir=user[0])
+            # if len(nft) == 0:
+            #     return nereadres("MARKETPLACE")
     else:
         return nereadres("registr")
 
+    resultat = render(request, 'CryptoRunner/geim.html', {'title': 'geim'})
+    # resultat.get_session_cookie_age("ddd","")
+    return resultat
 
-    return render(request, 'CryptoRunner/geim.html', {'title': 'geim'})
+
+
+def referalni(request, referalni):
+    response = redirect('/')
+    response.set_cookie('referalnaiSika', referalni)
+    return response
+
+
