@@ -1,14 +1,20 @@
-from django.http import HttpResponseRedirect,Http404,HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404, \
+    JsonResponse, HttpResponsePermanentRedirect
+
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+from hashlib import sha224
+from datetime import datetime, timezone, timedelta
+from django.views.decorators.cache import cache_page
+from .forms import *
 from .models import *
-# from hashlib import sha224
-from datetime import datetime, timezone,timedelta
-# import datetime
-import json
 import random
+import json
 # from bs4 import BeautifulSoup
 # import requests as req
 # import solana
 # from solana.transaction import *
+
 
 
 times = timedelta(minutes=81)
