@@ -6,3 +6,4 @@ class NewForms(forms.Form):
     startSislo = forms.IntegerField()
     stoimostStart = forms.FloatField()
     Neriod = forms.FloatField()
+    Tip = forms.IntegerField()

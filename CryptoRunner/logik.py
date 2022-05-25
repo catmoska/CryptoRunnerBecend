@@ -8,6 +8,7 @@ from datetime import datetime, timezone, timedelta
 from django.views.decorators.cache import cache_page
 from .forms import *
 from .models import *
+from .logicDateTime import deita,deitaNFT,times
 import random
 import json
 # from bs4 import BeautifulSoup
@@ -15,9 +16,6 @@ import json
 # import solana
 # from solana.transaction import *
 
-
-
-times = timedelta(minutes=81)
 
 def nereadres(urls):
     if urls == "Eroor404":
@@ -89,32 +87,6 @@ def randomIsklusenia(min,max,naram):
             if len(t) == 0:
                 return sislo
 
-
-def deita(user:Pleir):
-    NFTSS = NFTs.objects.filter(Pleir=user)
-    for nft in NFTSS:
-        if nft.Energia != nft.EnergiaMax:
-            timesVremina = datetime.now(timezone.utc) - nft.DataVixada
-            nft.Energia += int(timesVremina / times)
-            nft.DataVixada += int(timesVremina / times)*times
-            if nft.Energia > nft.EnergiaMax:
-                nft.Energia = nft.EnergiaMax
-                nft.DataVixada = datetime.now(timezone.utc)
-        else:
-            nft.DataVixada = datetime.now(timezone.utc)
-        nft.save()
-
-def deitaNFT(nft:NFTs):
-    if nft.Energia != nft.EnergiaMax:
-        timesVremina = datetime.now(timezone.utc) - nft.DataVixada
-        nft.Energia += int(timesVremina / times)
-        nft.DataVixada += int(timesVremina / times)*times
-        if nft.Energia > nft.EnergiaMax:
-            nft.Energia = nft.EnergiaMax
-            nft.DataVixada = datetime.now(timezone.utc)
-    else:
-        nft.DataVixada = datetime.now(timezone.utc)
-    nft.save()
 
 
 def NoiskNft(nftArrau,Heh):

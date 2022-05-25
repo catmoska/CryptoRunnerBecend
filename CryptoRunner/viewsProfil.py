@@ -13,6 +13,8 @@ def registr(request):
         PublicKeuSolana = json.loads(request.body.decode('utf-8'))["publicKey"]
         snis = Pleir.objects.filter(PublicKeuSolana=PublicKeuSolana)
         idHash = sha224(PublicKeuSolana.encode('utf-8')).hexdigest()
+
+        from datetime import datetime
         if len(snis) != 0:
             y = snis[0]
             y.DataVixada = datetime.now(timezone.utc)
@@ -56,6 +58,7 @@ def profile(request):
     else:
         return nereadres("registr")
     user = userv[0]
+    deita(user)
 
     NFT = NFTs.objects.filter(Pleir = user)
     NFTCOl = len(NFT)
@@ -64,7 +67,7 @@ def profile(request):
                   {'title': 'profil', "tovar": NFT,"user":user,"NFTCOl":NFTCOl})
 
 
-def profile(request,profil):
+def profileZ(request,profil):
     userv = Pleir.objects.filter(PublicKeuSolana=profil)
     if len(userv) == 0:
         return nereadres("Eroor404")

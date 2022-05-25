@@ -2,11 +2,13 @@ from .logik import *
 from .viewsStronisi import Eroor404
 from datetime import datetime, timezone
 
+EnergiaSpisok =[3,5,7,9]
+Ymnozitel = [1, 1.5, 2, 3]
+
+
 # @cache_page(60 * 60)
 def pageNotFound(request, exception):
     return HttpResponseNotFound(Eroor404(request))
-
-
 
 
 def nftVistavka(request):
@@ -35,17 +37,20 @@ def nftVistavka(request):
             stoimostStart = form.cleaned_data["stoimostStart"]
             Neriod = form.cleaned_data["Neriod"]
             startSislo = form.cleaned_data["startSislo"]
+            Tip = int(form.cleaned_data["Tip"])-1
 
             for i in range(colisestvo):
-                cloat = Сlothes.objects.all()[random.randint(0,1)]
+                kolisestvoCloat = len(Сlothes.objects.all())
+                cloat = Сlothes.objects.all()[random.randint(0,kolisestvoCloat-1)]
                 hes = (str(datetime.now(timezone.utc))+str(random.randint(-100, 100)))*random.randint(1, 3)
                 idHash = sha224(hes.encode('utf-8')).hexdigest()
+                Energia = EnergiaSpisok[Tip]
                 nft = NFTs(
                     Nick="Bonny NFT#"+str(i+1+startSislo),
-                    Energia=3, EnergiaMax=3,
+                    Energia=Energia, EnergiaMax=Energia,
                     idHash=idHash, DataSozdania=datetime.now(timezone.utc),
                     DataVixada=datetime.now(timezone.utc),
-                    Pleir=pleir,ClothesTip=cloat)
+                    Pleir=pleir,ClothesTip=cloat,Ymnozitel=Ymnozitel[Tip])
                 nft.save()
                 R = MARKETPLACEmodel(nft=nft, stoimost=round((stoimostStart+Neriod*i),5))
                 R.save()
@@ -54,7 +59,6 @@ def nftVistavka(request):
         form = NewForms()
         return render(request, 'CryptoRunner/nftVistavka.html', {"form":form})
     return HttpResponse("Eroor")
-
 
 
 def referalni(request, referalni):

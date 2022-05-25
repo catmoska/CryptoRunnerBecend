@@ -20,6 +20,9 @@ import {
 import {getAccount, createMint, createAccount, mintTo, getOrCreateAssociatedTokenAccount, transfer} from "@solana/spl-token/module.flow";
 
 const Nrosent:number = 0.04;
+const publickeusolAvtor:string = "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw";
+
+
 let NETWORK: string;
 if (debug) NETWORK = clusterApiUrl("testnet");
 else NETWORK = clusterApiUrl("mainnet-beta");
@@ -44,7 +47,7 @@ export async function tranzacsion(tin: number = 0) {
       let publickeusol = trnsPazm.publickeusol;
       let stoimost = trnsPazm.stoimost;
       if (tin) {
-        publickeusol = "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw";
+        publickeusol = publickeusolAvtor;
         stoimost = stoimost * Nrosent;
       } else {
         stoimost = stoimost * (1-Nrosent);

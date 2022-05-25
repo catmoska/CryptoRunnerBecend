@@ -1,4 +1,6 @@
 from .logik import *
+from datetime import datetime
+
 
 @csrf_exempt
 def geimDETA(request):
@@ -23,10 +25,11 @@ def geimDETA(request):
             userv.save()
             return HttpResponse("")
 
+        nft = NFTs.objects.filter(Pleir=userv)[int(data['NFTVID'])]
+
         userv.Money += float(data['Money'])
         userv.Distansion += float(data['Distansion'])
         userv.Record = float(data['Distansion'])
-        nft = NFTs.objects.filter(Pleir=userv)[int(data['NFTVID'])]
         if nft.Energia <= 0:
             print("EroorNFTEnergia")
             return HttpResponse("EroorNFTEnergia")
@@ -45,24 +48,31 @@ def geimDETA(request):
 
     otvet = str(userv.Money) + "&" + str(userv.Record) + "&" + str(userv.nonitka) + "$"
 
-
+    A = None
     if hehNFT !=None:
-        i = NoiskNft(nft, hehNFT)
-        if i !=None:
-            nft[0],nft[i]=nft[i],nft[0]
+        A = NoiskNft(nft, hehNFT)
 
-
-    for i in nft:
-        otvet += str(i.Energia) + "&" + str(i.EnergiaMax) + "&" + str(i.Nick) + "&" + \
-                 str(0 if (i.Energia == i.EnergiaMax) else int(
-                     (times - (datetime.now(timezone.utc) - i.DataVixada)).seconds / 60)) + "&" + \
-                 str(i.ClothesTip.pk) + "$"
+    if A ==None:
+        for i in nft:
+            otvet += otvetPlus(i)
+    else:
+        i = nft[A]
+        otvet += otvetPlus(i)
+        for i in range(len(nft)):
+            if A !=i:
+                i = nft[i]
+                otvet += otvetPlus(i)
 
     if userv.nonitka:
         userv.nonitka = False
         userv.save()
     return HttpResponse(otvet)
 
+def otvetPlus(i):
+    return str(i.Energia) + "&" + str(i.EnergiaMax) + "&" + str(i.Nick) + "&" + \
+             str(0 if (i.Energia == i.EnergiaMax) else int(
+                 (times - (datetime.now(timezone.utc) - i.DataVixada)).seconds / 60)) + "&" + \
+             str(i.ClothesTip.pk) + "$"
 
 def geim(request):
     if request.COOKIES:

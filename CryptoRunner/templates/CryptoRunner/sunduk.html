@@ -3,52 +3,33 @@
 {% block title %}{{ title }}{% endblock %}
 {% block head %}{% endblock %}
 {% block body %}
-
     <div class="colorF4D container-fluid" id="bloc1">
         <div class="col-md-4 senrovat2Bloc">
-            <img class=" width100 nftImeig"
-                 src='{{ NFT.ClothesTip.Photo.url }}'
-                 alt=""/>
+            <img class=" width100 nftImeig" src='{{ Bok.Photo.url }}' alt=""/>
         </div>
         <div class="col-md-7 nftText">
             <br>
             <br>
             <div class="text-center">
-                <div>runner: #{{ NFT.pk }}</div>
-                <div>
-                    Game:
-                    <u><a class="colorF4D" href="{% url 'geimCryptoRunner' %}" target="_blank">Crypto Runner</a></u>
-                </div>
-                <div>Energy: {{ NFT.Energia }}/{{ NFT.EnergiaMax }}</div>
+                {% comment %} <div>runner: #{{ NFT.pk }}</div> {% endcomment %}
+                {% comment %} <div>
+                Game:
+                <u><a class="colorF4D" href="{% url 'geimCryptoRunner' %}" target="_blank">Crypto Runner</a></u>
+                </div> {% endcomment %}
+                {% comment %} <div>Energy: {{ NFT.Energia }}/{{ NFT.EnergiaMax }}</div> {% endcomment %}
                 {% comment %} <div>Pleir: {{ NFT.Pleir.idHash }}</div> {% endcomment %}
+                <div class="text-center">Price: {{ Bok.stoimost }} sol</div>
             </div>
             <div>
                 {% if not registor %}
                     <a class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
                        href="{% url 'registr' %}">Login</a>
-                {% elif market and not pleir %}
-                    <div class="text-center">Price: {{ stoimost }} sol</div>
+                {% else %}
                     <br>
-                    <div >
+                    <div>
                         <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
-                                onclick="NFTnokunka('{{ NFT.idHash }}','bui')">
-                            Buy
-                        </button>
+                                onclick="BoxSunduk('{{ N }}')">Buy</button>
                     </div>
-                {% elif not market and pleir %}
-                    <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
-                            onclick="NFTnokunka('{{ NFT.idHash }}','sell')">
-                        Sell
-                    </button>
-                {% elif market and pleir %}
-                    <div class="text-center">Price: {{ stoimost }} sol</div>
-                    <br>
-                    <button class="Text3 butonCentrirovat buton6 animator colorF4D nftButton"
-                            onclick="NFTnokunka('{{ NFT.idHash }}','take off')">
-                        Take off
-                    </button>
-                {% elif not market and not pleir %}
-                    {% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" onclick="NFTnokunka()">*-*</button> {% endcomment %}
                 {% endif %}
                 <br>
                 <br>
@@ -58,7 +39,6 @@
             <br>
         </div>
     </div>
-    
     <div class="container-fluid" id="bloc2" style="display:none;">
         <div class="col-md-4 senrovat2Bloc">
             <video autoplay muted loop preload="auto" class="width100">
@@ -70,13 +50,18 @@
             <br>
             <div class="text-center">
                 <div class="fond-center colorF4D">
-                    <div class="colorF4D" style="font-size:75px;">Continue Transaction<br>in your wallet<br>and wait</div>
+                    <div class="colorF4D" style="font-size:75px;">
+                        Continue Transaction
+                        <br>
+                        in your wallet
+                        <br>
+                        and wait
+                    </div>
                 </div>
             </div>
             <br>
         </div>
     </div>
-
     <div class="container-fluid" id="bloc3" style="display:none;">
         <div class="row">
             <div class="col-md-6">
@@ -92,8 +77,7 @@
                     Let's play right now!
                 </div>
                 <a href="{% url 'geimCryptoRunner' %}"
-                   class="Text3 butonCentrirovat buton6 animator colorF4D"
-                   >Start game</a>
+                   class="Text3 butonCentrirovat buton6 animator colorF4D">Start game</a>
             </div>
         </div>
         <br>

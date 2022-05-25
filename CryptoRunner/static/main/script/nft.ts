@@ -1,16 +1,30 @@
-import { Connection, programs } from '@metaplex/js';
-const { metadata: { Metadata } } = programs;
+import { Connection, actions, NodeWallet } from "@metaplex/js";
+import { Keypair } from "@solana/web3.js";
+// if (debug) NETWORK = clusterApiUrl("testnet");
+// else NETWORK = clusterApiUrl("mainnet-beta");
 
-const connection = new Connection('devnet');
-const tokenPublicKey = 'Gz3vYbpsB2agTsAwedtvtTkQ1CG9vsioqLW3r9ecNpvZ';
-
-const run = async () => {
-  try {
-    const ownedMetadata = await Metadata.load(connection, tokenPublicKey);
-    console.log(ownedMetadata);
-  } catch {
-    console.log('Failed to fetch metadata');
-  }
+export const run = async () => {
+  i();
 };
 
-run();
+async function i() {
+  const connection = new Connection("testnet");
+  console.log("ddddf");
+
+  var s = "Yypn5xvGcQNbge8ae1R4emHjQzrCgi8ZHfwGtG7pLPXTd847NR3qicsvMpvfuP8Mk2EPkwwpwUTHxYpSUf3SQ5C";
+  var result = [];
+
+  for (var i = 0; i < s.length; i += 2) {
+    result.push(parseInt(s.substring(i, i + 2), 16));
+  }
+  let result2 = Uint8Array.from(result);
+  console.log(result2);
+
+  let secretKey: Uint8Array = Uint8Array.from([]);
+  await actions.mintNFT({
+    connection,
+    uri: "https://www.arweave.net/1r-ImuiIxFl18UQolAoBnwLDMVcjkVAHruhtsaBpA7U?ext=json",
+    wallet: new NodeWallet(Keypair.fromSecretKey(result2)),
+  });
+}
+
