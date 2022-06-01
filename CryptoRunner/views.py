@@ -18,6 +18,7 @@ def sunduk(request,N):
             registor = False
     else:
         registor = False
+
     if registor:
         user =users[0]
 
@@ -41,7 +42,7 @@ def sunduk(request,N):
         BokTip = [Bok.tip1,Bok.tip2,Bok.tip3,Bok.tip4]
         res = resULTATBokTip(BokTip)
         from datetime import datetime
-        cloat = Сlothes.objects.all()[random.randint(0, 1)]
+        # cloat = Сlothes.objects.all()[random.randint(0, 1)]
         hes = (str(datetime.now(timezone.utc)) + str(random.randint(-100, 100))) * random.randint(1, 3)
         idHash = sha224(hes.encode('utf-8')).hexdigest()
         nft = NFTs(
@@ -51,10 +52,10 @@ def sunduk(request,N):
             DataVixada=datetime.now(timezone.utc),
             Pleir=user, ClothesTip=cloat, Ymnozitel=Ymnozitel[res])
         nft.save()
-        return JsonResponse({"urlStronisi":"nft/"+str(idHash),"urlImeig":cloat.Photo.url,"idHash":idHash,"Eroor":True})
+        return JsonResponse({"urlStronisi":"nft/"+str(idHash),"urlImeig":cloat.Photo.url,"idHash":idHash,"Eroor":False})
 
 
-    return render(request, 'CryptoRunner/sunduk.html',{'title':"",'N':N,"Bok":Bok,"registor":registor})
+    return render(request, 'CryptoRunner/sunduk.html',{'title':"sunduk",'N':N,"Bok":Bok,"registor":registor})
 
 
 def resULTATBokTip(BokTip):

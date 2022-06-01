@@ -2,7 +2,17 @@
 {% load static %}
 <html>
     <head>
+        <!--meta-->
         <meta charset="utf-8">
+        {% comment %}
+        <meta property="og:title" content="text" />
+        <meta property="og:image" content=""/>
+        {% endcomment %}
+
+        {% comment %} <meta name="theme-color" content="#FF4F7D">
+        <meta name="msapplication-navbutton-color" content="#FF4F7D">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#FF4F7D"> {% endcomment %}
+        
         <title>
             {% block title %}{{ title }}{% endblock %}
         </title>
@@ -31,12 +41,7 @@
             start(url,urlGeim,urlNFTbui,domen)
         </script>
         <!---->
-        <style>
-            @font-face {
-               font-family: 'Bangers-Regular';
-               src: url('{% static "main/resurs/srift.ttf" %}');
-            }
-        </style>
+        <style>@font-face {font-family: 'Bangers-Regular';src: url('{% static "main/resurs/srift.ttf" %}');}</style>
         {% block head %}{% endblock %}
     </head>
     <body>
