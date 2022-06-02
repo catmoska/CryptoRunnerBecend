@@ -4,7 +4,7 @@ import {
   Transaction,
   clusterApiUrl,
   SystemProgram,
-  Keypair,
+  // Keypair,
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
 import {
@@ -12,16 +12,23 @@ import {
   PhantomProvider,
   debug,
   taranzact,
-  tanzacsiaRabota,
+  // tanzacsiaRabota,
   log,
-  EroorFhantom,
-  signaturaX2
+  // EroorFhantom,
+  // signaturaX2
 } from "./funcsionLogic";
-import {getAccount, createMint, createAccount, mintTo, getOrCreateAssociatedTokenAccount, transfer} from "@solana/spl-token/module.flow";
+// import {
+//   getAccount,
+//   createMint,
+//   createAccount,
+//   mintTo,
+//   getOrCreateAssociatedTokenAccount,
+//   transfer,
+// } from "@solana/spl-token/module.flow";
 
-const Nrosent:number = 0.04;
-const publickeusolAvtor:string = "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw";
-
+const Nrosent: number = 0.04;
+const publickeusolAvtor: string =
+  "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw";
 
 let NETWORK: string;
 if (debug) NETWORK = clusterApiUrl("testnet");
@@ -50,7 +57,7 @@ export async function tranzacsion(tin: number = 0) {
         publickeusol = publickeusolAvtor;
         stoimost = stoimost * Nrosent;
       } else {
-        stoimost = stoimost * (1-Nrosent);
+        stoimost = stoimost * (1 - Nrosent);
       }
 
       const publicKeyNrodaves = new PublicKey(publickeusol);
@@ -74,28 +81,28 @@ export async function tranzacsion(tin: number = 0) {
     }
   };
 
-  const sendTransaction = async () => {
-    try {
-      const transaction = await createTransferTransaction();
-      if (!transaction) return false;
-      let signed = await provider.signTransaction(transaction);
-      log("Got signature, submitting transaction");
-      let signature = await connection.sendRawTransaction(signed.serialize());
-      log("Submitted transaction " + signature + ", awaiting confirmation");
-      await connection.confirmTransaction(signature);
-      log("Transaction " + signature + " confirmed");
-      return signature;
-    } catch (err) {
-      try {
-        console.warn(EroorFhantom(err["code"]));
-      } catch (err) {
-        console.warn(err);
-      }
+  // const sendTransaction = async () => {
+  //   try {
+  //     const transaction = await createTransferTransaction();
+  //     if (!transaction) return false;
+  //     let signed = await provider.signTransaction(transaction);
+  //     log("Got signature, submitting transaction");
+  //     let signature = await connection.sendRawTransaction(signed.serialize());
+  //     log("Submitted transaction " + signature + ", awaiting confirmation");
+  //     await connection.confirmTransaction(signature);
+  //     log("Transaction " + signature + " confirmed");
+  //     return signature;
+  //   } catch (err) {
+  //     try {
+  //       console.warn(EroorFhantom(err["code"]));
+  //     } catch (err) {
+  //       console.warn(err);
+  //     }
 
-      log("[error] sendTransaction: " + JSON.stringify(err));
-      return false;
-    }
-  };
+  //     log("[error] sendTransaction: " + JSON.stringify(err));
+  //     return false;
+  //   }
+  // };
 
   const signMultipleTransactions = async () => {
     try {
@@ -105,23 +112,23 @@ export async function tranzacsion(tin: number = 0) {
       ]);
       if (transaction1 && transaction2) {
         let txns;
-        txns = await provider.signAllTransactions([
-            transaction1,
-            transaction2,
-          ]);
-          
-      log(txns);
-      let signature1 = await connection.sendRawTransaction(txns[0].serialize());
-      let signature2 = await connection.sendRawTransaction(txns[1].serialize());
-      log("Submitted transaction " + signature1 + ", awaiting confirmation");
-      log("Submitted transaction " + signature2 + ", awaiting confirmation");
-      await connection.confirmTransaction(signature1);
-      await connection.confirmTransaction(signature2);
-      log("Transaction " + signature1 + " confirmed");
-      log("Transaction " + signature2 + " confirmed");
-      return {signature1,signature2};
+        txns = await provider.signAllTransactions([transaction1, transaction2]);
+
+        log(txns);
+        let signature1 = await connection.sendRawTransaction(
+          txns[0].serialize()
+        );
+        let signature2 = await connection.sendRawTransaction(
+          txns[1].serialize()
+        );
+        log("Submitted transaction " + signature1 + ", awaiting confirmation");
+        log("Submitted transaction " + signature2 + ", awaiting confirmation");
+        await connection.confirmTransaction(signature1);
+        await connection.confirmTransaction(signature2);
+        log("Transaction " + signature1 + " confirmed");
+        log("Transaction " + signature2 + " confirmed");
+        return { signature1, signature2 };
       }
-      
     } catch (err) {
       console.warn(err);
       console.warn("dddd");
@@ -150,9 +157,7 @@ export function getProvider(): PhantomProvider | undefined {
   if ("solana" in window) {
     const anyWindow: any = window;
     const provider = anyWindow.solana;
-    if (provider.isPhantom) {
-      return provider;
-    }
+    if (provider.isPhantom) return provider;
   }
   window.open("https://phantom.app/", "_blank");
 }
@@ -165,10 +170,10 @@ export async function getProviderConect() {
     } catch (err) {
       await provider.connect();
     }
+    return provider;
   } catch (err) {
     console.warn(err);
   }
-  return provider;
 }
 
 ///////////////////////////
@@ -179,7 +184,6 @@ async function nftTaranzact(): Promise<taranzact | null> {
 
   return {
     stoimost: parameters["stoimost"],
-    // publickeusol: "ErLt8PsaZLvuvSygWhMUJnqztmwUU7nnZZibzAgqSSZk",
     publickeusol: parameters["publickeusol"],
   };
 }

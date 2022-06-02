@@ -1,6 +1,7 @@
 import { tranzacsion, getProvider, getProviderConect } from "./tranzact";
 import { getData, log } from "./funcsionLogic";
-import { run } from "./nft";
+// import { run } from "./nft";
+import {SmenaSilki} from "./js"
 
 Object.assign(window, {
   textMesends: textMesends,
@@ -8,18 +9,17 @@ Object.assign(window, {
   NFTnokunka: NFTnokunka,
   start: start,
   BoxSunduk:BoxSunduk,
-  // url:url
 });
 
 let url: string = "";
 let urlGeim: string = "";
-let urlNFTbui: string = "";
+let urlNFT: string = "";
 let domen: string = "";
 
 function start(url1, url2, url3, url4) {
   url = url1;
   urlGeim = url2;
-  urlNFTbui = url3;
+  urlNFT = url3;
   domen = url4;
 }
 
@@ -58,7 +58,8 @@ async function NFTnokunka(i, y) {
   if (y == "bui") {
     document.getElementById("bloc1").style.display = "none";
     document.getElementById("bloc2").style.display = "";
-    document.getElementById("bloc2").textContent;
+    // document.getElementById("bloc2").textContent;
+
     signature = await tranzacsion();
     log(signature);
     if (!signature["signature"]) {
@@ -66,11 +67,11 @@ async function NFTnokunka(i, y) {
       window.location.href = "";
       return;
     }
-    document.getElementById("bloc1").style.display = "none";
+    
     document.getElementById("bloc2").style.display = "none";
     document.getElementById("bloc3").style.display = "";
 
-    await getData("POST", urlNFTbui, {
+    await getData("POST", "", {
       NFT: i,
       onerasia: y,
       signatura: signature["signature"],
@@ -80,40 +81,42 @@ async function NFTnokunka(i, y) {
   }
 
   if (y == "sell") {
-    let prises = await prompt("prais: snimaim 4%");
+    let prises:any = await prompt("prais: snimaim 4%");
     prises = prises.replace(/,/g, ".");
-    let prise2 = parseFloat(prises);
-    log(prise2);
-    log(isNaN(prise2));
-    if (isNaN(prise2)) {
+
+    prises = parseFloat(prises);
+    log(prises);
+    log(isNaN(prises));
+    if (isNaN(prises)) {
       alert("nou number");
       return;
-    } else if (prise2 < 0.00001) {
+    } else if (prises < 0.00001) {
       alert("malenkoe");
       return;
     }
-    await getData("POST", urlNFTbui, {
+    await getData("POST", "", {
       NFT: i,
       onerasia: y,
-      prise: prise2,
+      prise: prises,
     });
     window.location.href = "";
     return;
   }
 
-  await getData("POST", urlNFTbui, {
+  await getData("POST", "", {
     NFT: i,
     onerasia: y,
   });
   window.location.href = "";
 }
 
+
 async function BoxSunduk(i) {
   log(i);
 
   document.getElementById("bloc1").style.display = "none";
   document.getElementById("bloc2").style.display = "";
-  document.getElementById("bloc2").textContent;
+  
 
   let signature = await tranzacsion();
   log(signature);
@@ -124,9 +127,10 @@ async function BoxSunduk(i) {
     return;
   }
 
-  document.getElementById("bloc1").style.display = "none";
   document.getElementById("bloc2").style.display = "none";
   document.getElementById("bloc3").style.display = "";
+  SmenaSilki("","");
+
 
   let otvet = await getData("POST", "", {
     NFT: i,
@@ -134,7 +138,8 @@ async function BoxSunduk(i) {
     signatura: signature["signaturess"],
     conect: signature["NETWORK"],
   });
-
+  console.log(otvet);
+  console.log(otvet["Eroor"]);
   return;
 }
 

@@ -8,11 +8,9 @@
         <meta property="og:title" content="text" />
         <meta property="og:image" content=""/>
         {% endcomment %}
-
         {% comment %} <meta name="theme-color" content="#FF4F7D">
         <meta name="msapplication-navbutton-color" content="#FF4F7D">
         <meta name="apple-mobile-web-app-status-bar-style" content="#FF4F7D"> {% endcomment %}
-        
         <title>
             {% block title %}{{ title }}{% endblock %}
         </title>
@@ -36,9 +34,9 @@
         <script>
             const url = "{% url 'registr'%}";
             const urlGeim = "{% url 'main'%}";
-            const urlNFTbui = "";
+            const urlnft = "{% url 'nft'%}";
             let domen = "http://127.0.0.1:8000";
-            start(url,urlGeim,urlNFTbui,domen)
+            start(url,urlGeim,urlnft,domen)
         </script>
         <!---->
         <style>@font-face {font-family: 'Bangers-Regular';src: url('{% static "main/resurs/srift.ttf" %}');}</style>
@@ -135,7 +133,7 @@
         </div>
         <!--js2-->
         {% comment %} <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-                <script src="https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
+                        <script src="https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"  integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> {% endcomment %}
     </body>
 </html>

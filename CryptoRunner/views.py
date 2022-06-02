@@ -28,9 +28,7 @@ def sunduk(request,N):
     Bok = Bok[0]
 
     if request.method == 'GETPARAMS':
-        Bok = Boks.objects.get(pk=N)
-        return JsonResponse({"stoimost":Bok.stoimost,"publickeusol":Glava})
-
+        return JsonResponse({"stoimost":Bok.stoimost, "publickeusol":Glava})
 
     if request.method == 'POST':
         if not registor:
@@ -53,8 +51,6 @@ def sunduk(request,N):
             Pleir=user, ClothesTip=cloat, Ymnozitel=Ymnozitel[res])
         nft.save()
         return JsonResponse({"urlStronisi":"nft/"+str(idHash),"urlImeig":cloat.Photo.url,"idHash":idHash,"Eroor":False})
-
-
     return render(request, 'CryptoRunner/sunduk.html',{'title':"sunduk",'N':N,"Bok":Bok,"registor":registor})
 
 

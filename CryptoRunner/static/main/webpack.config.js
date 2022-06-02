@@ -3,7 +3,7 @@ const  fileContent  = require ('buffer-loader');
 
 module.exports = {
   mode: 'development',
-  entry: './script/js.ts',
+  entry: './script/init.ts',
   output: {
     path: path.resolve(__dirname, 'resursJS'),
     filename: 'bundle.js',

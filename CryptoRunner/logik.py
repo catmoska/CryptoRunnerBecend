@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from hashlib import sha224
-from datetime import datetime, timezone, timedelta
+# from datetime import datetime, timezone, timedelta
 from django.views.decorators.cache import cache_page
 from .forms import *
 from .models import *
@@ -38,55 +38,6 @@ def convert(nojson):
     return json.loads(jsons)
 
 
-def genirator():
-    parametris = {
-        "skin": randomIsklusenia(0,len(Сlothes.objects.filter(Narameter=1)),1),
-        "suit": randomIsklusenia(0,len(Сlothes.objects.filter(Narameter=2)),2),
-        "trousers": randomIsklusenia(0,len(Сlothes.objects.filter(Narameter=3)),3),
-        "cap": randomIsklusenia(0,len(Сlothes.objects.filter(Narameter=4)),4),
-        "gloves": randomIsklusenia(0,len(Сlothes.objects.filter(Narameter=5)),5),
-    }
-    return parametris
-
-
-def randomIsklusenia(min,max,naram):
-    i=0
-    if naram == 1:
-        while True:
-            i += 1
-            sislo = random.randint(min, max)
-            t = NFTs.objects.filter(skin=sislo)
-            if len(t) == 0:
-                return sislo
-    if naram == 2:
-        while True:
-            i+=1
-            sislo = random.randint(min,max)
-            t = NFTs.objects.filter(suit=sislo)
-            if len(t) == 0:
-                return sislo
-    if naram == 3:
-        while True:
-            i+=1
-            sislo = random.randint(min,max)
-            t = NFTs.objects.filter(trousers=sislo)
-            if len(t) == 0:
-                return sislo
-    if naram == 4:
-        while True:
-            i+=1
-            sislo = random.randint(min,max)
-            t = NFTs.objects.filter(cap=sislo)
-            if len(t) == 0:
-                return sislo
-    if naram == 5:
-        while True:
-            i+=1
-            sislo = random.randint(min,max)
-            t = NFTs.objects.filter(gloves=sislo)
-            if len(t) == 0:
-                return sislo
-
 
 
 def NoiskNft(nftArrau,Heh):
@@ -99,9 +50,6 @@ def NoiskNft(nftArrau,Heh):
 
 def nroverka(signatura):
     print("signatura")
-
-
-
     # r = TransactionSignature
     # print(r)
 

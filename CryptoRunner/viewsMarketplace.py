@@ -35,6 +35,8 @@ def nftCilka(request, nftHeh):
             "publickeusol":MARKETPLACE.nft.Pleir.PublicKeuSolana})
 
     if request.method == 'POST':
+        if not registor:
+            return JsonResponse({"Eroor": True})
         data = json.loads(request.body.decode('utf-8'))
         return nftCilkaPOST(data,nft,users[0])
 
