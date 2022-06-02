@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-xyz!e=4(=d+2&)=%!3^36g%&n^6jcj@hf$sn-6dgfg79mbs@ac
 DEBUG = True
 # APPEND_SLASH=False
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1","catmoska.pythonanywhere.com"]
 
 
 # Application definition
@@ -117,14 +117,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,"static")
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR,"CryptoRunner\static"),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
