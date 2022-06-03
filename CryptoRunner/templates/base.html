@@ -63,11 +63,11 @@
                             <div class="colorFFF Textnavbar text-center">GAMES</div>
                         </a>
                     </li>
-                    <li class="col-md-2">
+                    {% comment %} <li class="col-md-2">
                         <a href="{% url 'Razrabotka' %}">
                             <div class="colorFFF Textnavbar text-center">TOKEN</div>
                         </a>
-                    </li>
+                    </li> {% endcomment %}
                     <li class="col-md-2">
                         <a href="{% url 'MARKETPLACE' %}"
                            {% if not stronisa %}target="_blank"{% endif %}>
@@ -75,11 +75,11 @@
                         </a>
                     </li>
                     <li class="col-md-2">
-                        <a href="{% url 'Razrabotka' %}">
-                            <div class="colorFFF Textnavbar text-center">STAKE</div>
+                        <a href="https://gj-animation-studio.gitbook.io/bonny-games-white-list/" target="_blank">
+                            <div class="colorFFF Textnavbar text-center">whitepaper</div>
                         </a>
                     </li>
-                    <li class="col-md-2">
+                    <li class="col-md-2" style="float: right;">
                         <a href="{% url 'profile' %}">
                             <div class="colorFFF Textnavbar text-center">profile</div>
                         </a>

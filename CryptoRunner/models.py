@@ -20,6 +20,7 @@ class Pleir(models.Model):
     isSiter = models.BooleanField(default=False)
     nonitka =models.BooleanField(default=True)
 
+
 class NFTs(models.Model):
     Nick = models.CharField(max_length=20,default="defolt")
     idHash = models.CharField(max_length=256)
@@ -33,15 +34,16 @@ class NFTs(models.Model):
     Ymnozitel = models.FloatField(default=1)
     geim = models.IntegerField(default=0)
 
+
 class Сlothes(models.Model):
     Photo = models.ImageField(upload_to="photo/%Y/%m/%d/")
     PhotoNFT = models.ImageField(upload_to="photo/%Y/%m/%d/", null=True)
 
 
-
 class MARKETPLACEmodel(models.Model):
     nft = models.ForeignKey("NFTs",on_delete=models.CASCADE)
     stoimost = models.FloatField(default=0.05)
+
 
 class Boks(models.Model):
     Photo = models.ImageField(upload_to="photo/%Y/%m/%d/")
@@ -60,4 +62,3 @@ class Boks(models.Model):
 
 # adminGj
 # tyninsicGJstudiosC
-

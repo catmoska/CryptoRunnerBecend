@@ -9,6 +9,7 @@ Object.assign(window, {
   NFTnokunka: NFTnokunka,
   start: start,
   BoxSunduk:BoxSunduk,
+  buiNft:buiNft,
 });
 
 let url: string = "";
@@ -141,5 +142,26 @@ async function BoxSunduk(i) {
   console.log(otvet);
   console.log(otvet["Eroor"]);
   return;
+}
+
+async function buiNft(i) {
+  log(i);
+
+  let signature = await tranzacsion(1);
+  log(signature);
+  if (!(signature["signaturess"])) {
+    log(signature["signaturess"]);
+    log(!signature["signaturess"]);
+    window.location.href = "";
+    return true;
+  }
+
+  let otvet = await getData("POSTBUI", "/DATA/", {
+    signatura: signature["signaturess"],
+    conect: signature["NETWORK"],
+  });
+  console.log(otvet);
+  console.log(otvet["Eroor"]);
+  return otvet["Eroor"];
 }
 

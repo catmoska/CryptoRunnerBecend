@@ -17,7 +17,7 @@ urlpatterns = [
     path('profile/', profile, name="profile"),
     path('profile/<str:profil>', profileZ),
 
-    path('Box/<str:N>', sunduk),
+    # path('Box/<str:N>', sunduk),
 ]
 
 

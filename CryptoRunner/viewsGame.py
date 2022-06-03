@@ -1,5 +1,5 @@
 from .logik import *
-from datetime import datetime
+from datetime import datetime ,timezone
 
 
 @csrf_exempt
@@ -13,6 +13,33 @@ def geimDETA(request):
     else:
         return HttpResponse("TestPleir")
     userv = userv[0]
+
+    if request.method == 'POSTBUI':
+        data = convert(request.body.decode('utf-8'))
+
+        if userv.Money <100:
+            return JsonResponse({"Eroor":True})
+
+
+        Bok = Boks.objects.filter(pk=1)
+        if len(Bok) == 0:
+            return JsonResponse({"Eroor":True})
+
+        kolisestvo =len(NFTs.objects.all())
+        kolisestvoCloat = len(Сlothes.objects.all())
+        cloat = Сlothes.objects.all()[random.randint(0, kolisestvoCloat - 1)]
+        BokTip = [Bok.tip1,Bok.tip2,Bok.tip3,Bok.tip4]
+        res = resULTATBokTip(BokTip)
+        hes = (str(datetime.now(timezone.utc)) + str(random.randint(-100, 100))) * random.randint(1, 3)
+        idHash = sha224(hes.encode('utf-8')).hexdigest()
+        nft = NFTs(
+            Nick="Bonny NFT#" + str(kolisestvo+1),
+            Energia=EnergiaSpisok[res], EnergiaMax=EnergiaSpisok[res],
+            idHash=idHash, DataSozdania=datetime.now(timezone.utc),
+            DataVixada=datetime.now(timezone.utc),
+            Pleir=userv, ClothesTip=cloat, Ymnozitel=Ymnozitel[res])
+        nft.save()
+        return JsonResponse({"urlStronisi":"nft/"+str(idHash),"urlImeig":cloat.Photo.url,"idHash":idHash,"Eroor":False})
 
     if request.method == 'POST':
         data = convert(request.body.decode('utf-8'))
@@ -69,9 +96,9 @@ def geimDETA(request):
     return HttpResponse(otvet)
 
 def otvetPlus(i):
-    return str(i.Energia) + "&" + str(i.EnergiaMax) + "&" + str(i.Nick) + "&" + \
+    return str(i.Energia) + "&" + str(i.EnergiaMax) + "&" + "Runner: #"+str(i.pk) + "&" + \
              str(0 if (i.Energia == i.EnergiaMax) else int(
-                 (times - (datetime.now(timezone.utc) - i.DataVixada)).seconds / 60)) + "&" + \
+            (times - (datetime.now(timezone.utc) - i.DataVixada)).seconds / 60)) + "&" + \
              str(i.ClothesTip.pk) + "$"
 
 def geim(request):

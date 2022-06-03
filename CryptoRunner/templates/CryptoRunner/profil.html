@@ -17,18 +17,19 @@
         </div>
         <div class="col-md-7 senrovatprofilBloc colorFFF"
              style="margin-left: 50px;">
-            Nick Name:    {{ user.Nick }}
-            <br>
-            PublicKeuSolana:    {{ user.PublicKeuSolana }}
+            {% comment %} Nick Name:    {{ user.Nick }} <br> {% endcomment %}
+            User:    {{ user.PublicKeuSolana }}
             <br>
             money:    {{ user.Money }}
             <br>
             Total Distance:    {{ user.Distansion }}
             <br>
             Energy:    {{ user.Energia }}/{{ user.EnergiaMax }}
-            <br>
+            <br>  {% comment %} //////////////////////////////////////////////////// {% endcomment %}
+
             Register Date:    {{ user.DataRegistr }}
             <br>
+
             NFT that you have:    {{ NFTCOl }}
             <br>
             <button onclick="cone()"
@@ -92,7 +93,7 @@
     </div>
     <script>
         let a =domen+"/Referral"+"/"+{{user.pk}};
-        document.getElementById("Referral").innerHTML ="referalnia:    "+ a+` <a id="cope" class="colorFFF"></a>`;
+        document.getElementById("Referral").innerHTML ="Referral Link:    "+ a+` <a id="cope" class="colorFFF"></a>`;
         async function cone(){
             navigator.clipboard.writeText(a)
             .then(() => {console.log('So');})

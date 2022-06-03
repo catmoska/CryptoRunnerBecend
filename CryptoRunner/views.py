@@ -5,9 +5,6 @@ from .viewsStronisi import *
 from .viewsMarketplace import *
 from .logik import *
 
-EnergiaSpisok =[3,5,7,9]
-Ymnozitel = [1, 1.5, 2, 3]
-Glava = "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw"
 
 @csrf_exempt
 def sunduk(request,N):
@@ -54,21 +51,3 @@ def sunduk(request,N):
     return render(request, 'CryptoRunner/sunduk.html',{'title':"sunduk",'N':N,"Bok":Bok,"registor":registor})
 
 
-def resULTATBokTip(BokTip):
-    resO = -1
-    while True:
-        random100 = random.randint(1, 99)
-        res = 0
-        q = 0
-        for i in BokTip:
-            if random100 > res:
-                res += i
-                q += 1
-            elif random100 < res:
-                resO = q
-
-            if resO != -1:
-                break
-        if resO != -1:
-            break
-    return resO
