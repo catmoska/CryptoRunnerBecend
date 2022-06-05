@@ -28,6 +28,7 @@ def geimDETA(request):
         Bok = Boks.objects.filter(pk=1)
         # print(len(Bok))
         if len(Bok) == 0:
+            print("BokEroor")
             return JsonResponse({"Eroor":True})
         Bok = Bok[0]
 
