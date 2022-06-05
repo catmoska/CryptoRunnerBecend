@@ -118,8 +118,8 @@ def geim(request):
             return nereadres("registr")
         if len(user) != 0:
             nft = NFTs.objects.filter(Pleir=user[0])
-            # if len(nft) == 0:
-            #     return nereadres("MARKETPLACE")
+            if len(nft) == 0:
+                return nereadres("MARKETPLACE")
     else:
         return nereadres("registr")
 

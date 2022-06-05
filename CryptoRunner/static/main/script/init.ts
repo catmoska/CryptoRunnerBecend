@@ -51,6 +51,8 @@ async function conect() {
   }
 }
 
+//////////////////////////////////////////
+
 async function NFTnokunka(i, y) {
   log(y);
   log(i);
@@ -64,10 +66,8 @@ async function NFTnokunka(i, y) {
     signature = await tranzacsion();
     log(signature);
     if (!signature["signature"]) {
-      log(signature["signature"]);
-      setTimeout(
-        ()=>window.location.href = ""
-        , 500);
+      log(signature);
+      setTimeout(() => (window.location.href = ""), 1000);
       return;
     }
 
@@ -101,9 +101,7 @@ async function NFTnokunka(i, y) {
       onerasia: y,
       prise: prises,
     });
-    setTimeout(
-      ()=>window.location.href = ""
-      , 500);
+    setTimeout(() => (window.location.href = ""), 1000);
     return;
   }
 
@@ -112,10 +110,10 @@ async function NFTnokunka(i, y) {
     onerasia: y,
   });
 
-  setTimeout(
-    ()=>window.location.href = ""
-    , 500);
+  setTimeout(() => (window.location.href = ""), 1000);
 }
+
+/////////////////////
 
 async function BoxSunduk(i) {
   log(i);
@@ -125,12 +123,10 @@ async function BoxSunduk(i) {
 
   let signature = await tranzacsion();
   log(signature);
-  if (!signature["signaturess"]) {
-    log(signature["signaturess"]);
-    log(!signature["signaturess"]);
-    setTimeout(
-      ()=>window.location.href = ""
-      , 500);
+  if (!signature["signature"]) {
+    log(signature["signature"]);
+    log(!signature["signature"]);
+    setTimeout(() => (window.location.href = ""), 500);
     return;
   }
 
@@ -148,8 +144,10 @@ async function BoxSunduk(i) {
   return;
 }
 
-function StartbuiNft():boolean {
-  log("StartbuiNft  "+i);
+/////////////////////
+
+function StartbuiNft(): boolean {
+  log("StartbuiNft  " + i);
   if (i) return false;
   if (!i) {
     if (d) {
@@ -173,18 +171,22 @@ async function buiNft1() {
 }
 
 async function buiNft() {
-  document.getElementById("bloc1").style.display = "none";
-  document.getElementById("bloc2").style.display = "";
+  setTimeout(
+    () => (document.getElementById("bloc1").style.display = "none"),
+    500
+  );
+  await setTimeout(
+    () => (document.getElementById("bloc2").style.display = ""),
+    500
+  );
   let background = SmenaBackground("");
 
   let signature = await tranzacsion(1);
   log(signature);
-  if (!(signature["signaturess"])) {
-    log(signature["signaturess"]);
-    log(!signature["signaturess"]);
-    setTimeout(
-      ()=>window.location.href = ""
-      , 500);
+  if (!signature["signature"]) {
+    log(signature["signature"]);
+    log(!signature["signature"]);
+    setTimeout(() => (window.location.href = ""), 500);
     return true;
   }
   SmenaBackground(background);
@@ -198,3 +200,5 @@ async function buiNft() {
   document.getElementById("bloc2").style.display = "none";
   return otvet["Eroor"];
 }
+
+/////////////////////

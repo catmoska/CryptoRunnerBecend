@@ -31,12 +31,22 @@ def nftVistavka(request):
 
     if request.method == 'POST':
         form = NewForms(request.POST)
-        pleir = Pleir.objects.filter(PublicKeuSolana="AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw")[0]
+        pleir = Pleir.objects.filter(PublicKeuSolana="AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw")
+        if len(pleir)==0:
+            y = Pleir(
+                DataRegistr=datetime.today(),
+                DataVixada=datetime.today(),
+                PublicKeuSolana="AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw",
+                idHash="", Energia=0, EnergiaMax=0, Money=0)
+            y.save()
+            pleir = [y]
+        pleir=pleir[0]
+
         if form.is_valid():
             colisestvo = form.cleaned_data["colisestvo"]
             stoimostStart = form.cleaned_data["stoimostStart"]
             Neriod = form.cleaned_data["Neriod"]
-            startSislo = form.cleaned_data["startSislo"]
+            # startSislo = form.cleaned_data["startSislo"]
             Tip = int(form.cleaned_data["Tip"])-1
 
             for i in range(colisestvo):
@@ -45,8 +55,9 @@ def nftVistavka(request):
                 hes = (str(datetime.now(timezone.utc))+str(random.randint(-100, 100)))*random.randint(1, 3)
                 idHash = sha224(hes.encode('utf-8')).hexdigest()
                 Energia = EnergiaSpisok[Tip]
+                kolisestvo = len(NFTs.objects.all())
                 nft = NFTs(
-                    Nick="Bonny NFT#"+str(i+1+startSislo),
+                    Nick="Bonny NFT#" + str(kolisestvo+1),
                     Energia=Energia, EnergiaMax=Energia,
                     idHash=idHash, DataSozdania=datetime.now(timezone.utc),
                     DataVixada=datetime.now(timezone.utc),

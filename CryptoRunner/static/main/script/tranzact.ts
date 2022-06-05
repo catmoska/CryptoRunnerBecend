@@ -145,7 +145,7 @@ export async function tranzacsion(tin: number = 0) {
   const signaturess = await signMultipleTransactions();
   log("fines");
   log(signaturess);
-  return { signaturess, NETWORK: NETWORK };
+  return { signature:signaturess, NETWORK: NETWORK };
 }
 
 

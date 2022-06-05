@@ -53,6 +53,7 @@ def registr(request):
 def profile(request):
     if request.COOKIES:
         userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
+        print(userv)
         if len(userv) == 0:
             return nereadres("registr")
     else:
@@ -60,11 +61,17 @@ def profile(request):
     user = userv[0]
     deita(user)
 
-    NFT = NFTs.objects.filter(Pleir = user)
+    NFT = NFTs.objects.filter(Pleir=user)
     NFTCOl = len(NFT)
+    EnergiaMax =0
+    Energia =0
+    for i in NFT:
+        EnergiaMax +=i.EnergiaMax
+        Energia += i.Energia
 
     return render(request, 'CryptoRunner/profil.html',
-                  {'title': 'profil', "tovar": NFT,"user":user,"NFTCOl":NFTCOl})
+                  {'title': 'profil', "tovar": NFT,"user":user,
+                   "NFTCOl":NFTCOl,"EnergiaMax":EnergiaMax,"Energia":Energia})
 
 
 def profileZ(request,profil):
