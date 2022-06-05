@@ -51,6 +51,9 @@ def nftVistavka(request):
 
             for i in range(colisestvo):
                 kolisestvoCloat = len(Сlothes.objects.all())
+                if kolisestvoCloat ==0:
+                    print("EroorСlothes одезду добав")
+                    return HttpResponse("EroorСlothes")
                 if kolisestvoCloat>1:
                     cloat = Сlothes.objects.all()[random.randint(0,kolisestvoCloat-1)]
                 else:
