@@ -1,15 +1,15 @@
 import { tranzacsion, getProvider, getProviderConect } from "./tranzact";
 import { getData, log } from "./funcsionLogic";
 // import { run } from "./nft";
-import {SmenaSilki} from "./js"
+import { SmenaSilki, SmenaBackground } from "./js";
 
 Object.assign(window, {
   textMesends: textMesends,
   conect: conect,
   NFTnokunka: NFTnokunka,
   start: start,
-  BoxSunduk:BoxSunduk,
-  buiNft:buiNft,
+  BoxSunduk: BoxSunduk,
+  StartbuiNft: StartbuiNft,
 });
 
 let url: string = "";
@@ -54,7 +54,7 @@ async function conect() {
 async function NFTnokunka(i, y) {
   log(y);
   log(i);
-  
+
   let signature = null;
   if (y == "bui") {
     document.getElementById("bloc1").style.display = "none";
@@ -65,24 +65,25 @@ async function NFTnokunka(i, y) {
     log(signature);
     if (!signature["signature"]) {
       log(signature["signature"]);
-      window.location.href = "";
+      setTimeout(
+        ()=>window.location.href = ""
+        , 500);
       return;
     }
-    
+
     document.getElementById("bloc2").style.display = "none";
     document.getElementById("bloc3").style.display = "";
 
     await getData("POST", "", {
       NFT: i,
       onerasia: y,
-      signatura: signature["signature"],
-      conect: signature["NETWORK"],
+      signatura: signature,
     });
     return;
   }
 
   if (y == "sell") {
-    let prises:any = await prompt("prais: snimaim 4%");
+    let prises: any = await prompt("prais: snimaim 4%");
     prises = prises.replace(/,/g, ".");
 
     prises = parseFloat(prises);
@@ -100,7 +101,9 @@ async function NFTnokunka(i, y) {
       onerasia: y,
       prise: prises,
     });
-    window.location.href = "";
+    setTimeout(
+      ()=>window.location.href = ""
+      , 500);
     return;
   }
 
@@ -108,60 +111,90 @@ async function NFTnokunka(i, y) {
     NFT: i,
     onerasia: y,
   });
-  window.location.href = "";
-}
 
+  setTimeout(
+    ()=>window.location.href = ""
+    , 500);
+}
 
 async function BoxSunduk(i) {
   log(i);
 
   document.getElementById("bloc1").style.display = "none";
   document.getElementById("bloc2").style.display = "";
-  
 
   let signature = await tranzacsion();
   log(signature);
-  if (!(signature["signaturess"])) {
+  if (!signature["signaturess"]) {
     log(signature["signaturess"]);
     log(!signature["signaturess"]);
-    window.location.href = "";
+    setTimeout(
+      ()=>window.location.href = ""
+      , 500);
     return;
   }
 
   document.getElementById("bloc2").style.display = "none";
   document.getElementById("bloc3").style.display = "";
-  SmenaSilki("","");
-
+  SmenaSilki("", "");
 
   let otvet = await getData("POST", "", {
     NFT: i,
     onerasia: "bui",
-    signatura: signature["signaturess"],
-    conect: signature["NETWORK"],
+    signatura: signature,
   });
   console.log(otvet);
   console.log(otvet["Eroor"]);
   return;
 }
 
-async function buiNft(i) {
-  log(i);
+function StartbuiNft():boolean {
+  log("StartbuiNft  "+i);
+  if (i) return false;
+  if (!i) {
+    if (d) {
+      d = false;
+      log("dasdJS Finall");
+      return true;
+    }
+    buiNft1();
+    // log("dasdJS");
+    return false;
+  }
+}
+
+let i = false;
+let d = false;
+async function buiNft1() {
+  i = true;
+  await buiNft();
+  i = false;
+  d = true;
+}
+
+async function buiNft() {
+  document.getElementById("bloc1").style.display = "none";
+  document.getElementById("bloc2").style.display = "";
+  let background = SmenaBackground("");
 
   let signature = await tranzacsion(1);
   log(signature);
   if (!(signature["signaturess"])) {
     log(signature["signaturess"]);
     log(!signature["signaturess"]);
-    window.location.href = "";
+    setTimeout(
+      ()=>window.location.href = ""
+      , 500);
     return true;
   }
+  SmenaBackground(background);
 
   let otvet = await getData("POSTBUI", "/DATA/", {
-    signatura: signature["signaturess"],
-    conect: signature["NETWORK"],
+    signatura: signature,
   });
+
   console.log(otvet);
-  console.log(otvet["Eroor"]);
+  document.getElementById("bloc1").style.display = "";
+  document.getElementById("bloc2").style.display = "none";
   return otvet["Eroor"];
 }
-

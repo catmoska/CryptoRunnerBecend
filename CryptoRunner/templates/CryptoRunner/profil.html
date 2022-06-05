@@ -8,12 +8,12 @@
         <br>
         <h1 class="colorFFF senrovat2Bloc">Profile Page</h1>
         <div class="col-md-3 colorF4D senrovat1Bloc" style="margin-left: 250px;">
-            {% if user.Photo %}
+            {% comment %} {% if user.Photo%}
                 <img class="width100" src='user.Photo.url'/>
-            {% else %}
+            {% else %} {% endcomment %}
                 <img class="width100"
                      src='{% static "main/multimedia/imagies for blocks/support alex.png" %}'/>
-            {% endif %}
+            {% comment %} {% endif %} {% endcomment %}
         </div>
         <div class="col-md-7 senrovatprofilBloc colorFFF"
              style="margin-left: 50px;">

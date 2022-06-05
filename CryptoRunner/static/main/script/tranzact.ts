@@ -33,20 +33,13 @@ import {
 const Nrosent: number = 0.04;
 const publickeusolAvtor: string =
   "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw";
-const stoimostOplati: number = 0.05;
+const stoimostOplati: number = 0.005;
 
 let NETWORK: string;
 if (debug) NETWORK = clusterApiUrl("testnet");
 else NETWORK = clusterApiUrl("mainnet-beta");
 let taranzactFuncia: (() => Promise<taranzact | null>)[] = [nftTaranzact,nftTaranzactMin];
 const urlStatic: string = window.location.toString();
-
-
-
-
-
-
-
 
 
 export async function tranzacsion(tin: number = 0) {
@@ -156,12 +149,6 @@ export async function tranzacsion(tin: number = 0) {
 }
 
 
-
-
-
-
-
-
 /////////////////
 export async function getWalletBalance() {
   try {
@@ -174,6 +161,7 @@ export async function getWalletBalance() {
   }
 }
 
+
 export function getProvider(): PhantomProvider | undefined {
   if ("solana" in window) {
     const anyWindow: any = window;
@@ -182,6 +170,7 @@ export function getProvider(): PhantomProvider | undefined {
   }
   window.open("https://phantom.app/", "_blank");
 }
+
 
 export async function getProviderConect() {
   const provider = getProvider();
@@ -197,6 +186,7 @@ export async function getProviderConect() {
   }
 }
 
+
 ///////////////////////////
 
 async function nftTaranzact(): Promise<taranzact | null> {
@@ -209,9 +199,11 @@ async function nftTaranzact(): Promise<taranzact | null> {
   };
 }
 
+
 async function nftTaranzactMin(): Promise<taranzact | null> {
   return {
     stoimost: stoimostOplati,
     publickeusol: publickeusolAvtor,
   };
 }
+

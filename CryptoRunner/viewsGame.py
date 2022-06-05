@@ -5,6 +5,7 @@ from datetime import datetime ,timezone
 @csrf_exempt
 def geimDETA(request):
     hehNFT = None
+    # userv = Pleir.objects.filter(PublicKeuSolana="HmTk4zFbTgnwApgmnBiCtfMaBfwdwuh3h2CjNaLvpHav")
     if request.COOKIES:
         userv = Pleir.objects.filter(PublicKeuSolana=request.COOKIES.get('publicKey'))
         if len(userv) == 0:
@@ -14,16 +15,21 @@ def geimDETA(request):
         return HttpResponse("TestPleir")
     userv = userv[0]
 
+    # print(request.method)
     if request.method == 'POSTBUI':
-        data = convert(request.body.decode('utf-8'))
-
-        if userv.Money <100:
+        data = json.loads(request.body.decode('utf-8'))
+        # print(userv.Money)
+        if userv.Money <=stoimostNftBoniCrint:
             return JsonResponse({"Eroor":True})
 
+        userv.Money -= stoimostNftBoniCrint
+        userv.save()
 
         Bok = Boks.objects.filter(pk=1)
+        # print(len(Bok))
         if len(Bok) == 0:
             return JsonResponse({"Eroor":True})
+        Bok = Bok[0]
 
         kolisestvo =len(NFTs.objects.all())
         kolisestvoCloat = len(Сlothes.objects.all())
@@ -39,12 +45,14 @@ def geimDETA(request):
             DataVixada=datetime.now(timezone.utc),
             Pleir=userv, ClothesTip=cloat, Ymnozitel=Ymnozitel[res])
         nft.save()
+        # print(userv.Money)
+        # print("dasdasd")
         return JsonResponse({"urlStronisi":"nft/"+str(idHash),"urlImeig":cloat.Photo.url,"idHash":idHash,"Eroor":False})
 
     if request.method == 'POST':
         data = convert(request.body.decode('utf-8'))
         if data['Nonztia'] == "1":
-            nft = NFTs.objects.filter(idHashPleir=userv.idHash)[int(data['NFTVID'])]
+            nft = NFTs.objects.filter(Pleir=userv)[int(data['NFTVID'])]
             nft.Energia += 1
             nft.DataVixada = datetime.now(timezone.utc)
             userv.Energia += 1
@@ -57,6 +65,7 @@ def geimDETA(request):
         userv.Money += float(data['Money'])
         userv.Distansion += float(data['Distansion'])
         userv.Record = float(data['Distansion'])
+        print(nft.pk)
         if nft.Energia <= 0:
             print("EroorNFTEnergia")
             return HttpResponse("EroorNFTEnergia")
@@ -73,8 +82,7 @@ def geimDETA(request):
     if len(nft) == 0:
         return HttpResponse("EroorNFT")
 
-    otvet = str(userv.Money) + "&" + str(userv.Record) + "&" + str(userv.nonitka) + "$"
-
+    otvet = str(userv.Money) + "&" + str(userv.Record) + "&" + str(userv.nonitka) + "&"+ str(stoimostNftBoniCrint)+ "$"
     A = None
     if hehNFT !=None:
         A = NoiskNft(nft, hehNFT)
