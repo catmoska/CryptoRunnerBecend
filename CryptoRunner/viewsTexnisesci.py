@@ -51,7 +51,10 @@ def nftVistavka(request):
 
             for i in range(colisestvo):
                 kolisestvoCloat = len(Сlothes.objects.all())
-                cloat = Сlothes.objects.all()[random.randint(0,kolisestvoCloat-1)]
+                if kolisestvoCloat>1:
+                    cloat = Сlothes.objects.all()[random.randint(0,kolisestvoCloat-1)]
+                else:
+                    cloat = Сlothes.objects.all()[0]
                 hes = (str(datetime.now(timezone.utc))+str(random.randint(-100, 100)))*random.randint(1, 3)
                 idHash = sha224(hes.encode('utf-8')).hexdigest()
                 Energia = EnergiaSpisok[Tip]
