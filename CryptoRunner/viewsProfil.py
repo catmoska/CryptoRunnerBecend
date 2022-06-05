@@ -1,5 +1,5 @@
 from .logik import *
-
+from datetime import timezone
 
 @csrf_exempt
 def registr(request):
