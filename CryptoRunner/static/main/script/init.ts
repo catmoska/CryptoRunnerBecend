@@ -1,7 +1,7 @@
 import { tranzacsion, getProvider, getProviderConect } from "./tranzact";
 import { getData, log } from "./funcsionLogic";
 // import { run } from "./nft";
-import { SmenaSilki, SmenaBackground } from "./js";
+import { SmenaSilki, SmenaBackground,displayStile } from "./js";
 
 Object.assign(window, {
   textMesends: textMesends,
@@ -171,14 +171,9 @@ async function buiNft1() {
 }
 
 async function buiNft() {
-  setTimeout(
-    () => (document.getElementById("bloc1").style.display = "none"),
-    500
-  );
-  await setTimeout(
-    () => (document.getElementById("bloc2").style.display = ""),
-    500
-  );
+  displayStile("bloc1",false,800);
+  await displayStile("bloc2",true);
+
   let background = SmenaBackground("");
 
   let signature = await tranzacsion(1);
@@ -194,8 +189,13 @@ async function buiNft() {
   let otvet = await getData("POSTBUI", "/DATA/", {
     signatura: signature,
   });
+  if (otvet["Eroor"]) {  
+    log(otvet);
+    setTimeout(() => (window.location.href = ""), 500);
+    return true;
+  }
 
-  console.log(otvet);
+  log(otvet);
   document.getElementById("bloc1").style.display = "";
   document.getElementById("bloc2").style.display = "none";
   return otvet["Eroor"];

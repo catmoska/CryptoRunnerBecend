@@ -11,9 +11,14 @@ export function SmenaBackground(A) {
   try {
     let f = document.getElementById("body").background;
     document.getElementById("body").background = A;
-    // console.log(f);
     return f;
   } catch (err) {
     return;
   }
+}
+
+export async function displayStile(id,vklus,time=500){
+  let i = "none"
+  if (vklus) i="";
+  return await setTimeout(() => (document.getElementById(id).style.display = i),time);
 }

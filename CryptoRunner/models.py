@@ -15,10 +15,10 @@ class Pleir(models.Model):
     Record = models.FloatField(default=0)
     DataRegistr = models.DateField()
     DataVixada = models.DateTimeField()
-    Energia = models.IntegerField()
-    EnergiaMax = models.IntegerField()
-    isSiter = models.BooleanField(default=False)
-    nonitka =models.BooleanField(default=True)
+    # Energia = models.IntegerField()
+    # EnergiaMax = models.IntegerField()
+    # isSiter = models.BooleanField(default=False)
+    nonitka = models.BooleanField(default=True)
 
 
 class NFTs(models.Model):
@@ -54,6 +54,7 @@ class Boks(models.Model):
     tip3 = models.FloatField(default=25)
     tip4 = models.FloatField(default=25)
     geim = models.IntegerField(default=0)
+    otkritas = models.BooleanField(default=True)
 
 
 

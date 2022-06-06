@@ -3,27 +3,27 @@ from .views import *
 
 
 urlpatterns = [
-    path('', mainStronisa,name="main"),
-    path('registr/', registr,name="registr"),
+    path('', mainStronisa_,name="main"),
+    path('registr/', registr_,name="registr"),
 
-    path('games/cryptorunner', geim,name="geimCryptoRunner"),
-    path('games/', geimV,name="Vgeim"),
-    path('DATA/', geimDETA),
-    path('marketplace/', MARKETPLACE,name="MARKETPLACE"),
+    path('games/cryptorunner', geim_,name="geimCryptoRunner"),
+    path('games/', geimStranisa_,name="Vgeim"),
+    path('DATA/', geimDETA_),
+    path('marketplace/', MARKETPLACE_,name="MARKETPLACE"),
 
-    path('nft/', nftCilka, name="nft"),
-    path('nft/<str:nftHeh>', nftCilka),
+    path('nft/', nftCilka_, name="nft"),
+    path('nft/<str:nftHeh>', nftCilka_),
 
-    path('profile/', profile, name="profile"),
-    path('profile/<str:profil>', profileZ),
+    path('profile/', profile_, name="profile"),
+    path('profile/<str:profil>', profileX_),
 
-    # path('Box/<str:N>', sunduk),
+    # path('Box/<str:N>', sunduk_),
 ]
 
 
 urlpatterns+=[
-    path('Referral/<str:referalni>', referalni),
-    path('vistavka/', nftVistavka),
-    path('E404/', Eroor404, name="Eroor404"),
-    path('soonpage/', Razrabotka, name="Razrabotka"),
+    path('Referral/<str:referalni>', referalni_),
+    path('vistavka/', nftVistavka_),
+    path('E404/', Eroor404_, name="Eroor404"),
+    path('soonpage/', Razrabotka_, name="Razrabotka"),
 ]

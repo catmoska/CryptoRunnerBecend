@@ -86,7 +86,8 @@
                         </a>
                     </li>
                     <li class="col-md-2" style="float: right;">
-                        <a href="{% url 'profile' %}">
+                        <a href="{% url 'profile' %}"
+                        {% comment %} {% if profilVcladka %}target="_blank"{% endif %} {% endcomment %}>
                             <div class="colorFFF Textnavbar text-center">profile</div>
                         </a>
                     </li>
