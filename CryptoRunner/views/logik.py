@@ -6,18 +6,19 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from hashlib import sha224
 
+# from .DateTimeF import *
+# from bs4 import BeautifulSoup
+# import requests as req
+# import solana
+# from solana.transaction import *
+
 import CryptoRunnerBecend.settings
 from django.views.decorators.cache import cache_page
 from CryptoRunner.forms import *
 from CryptoRunner.models import *
 from .config import *
 
-# from .DateTimeF import *
-# from bs4 import BeautifulSoup
-# import requests as req
-# import solana
-# from solana.transaction import *
-######
+
 
 # замена print()
 def printF(p):
@@ -49,6 +50,7 @@ def convert(nojson):
     jsons+='"}'
     return json.loads(jsons)
 
+
 #  поиск nft (яблуко = зелоная)
 def NoiskNft(nftArrau,Heh):
     for i in range(len(nftArrau)):
@@ -64,7 +66,7 @@ def nroverkaSignatura(signatura):
     # printF(r)
 
 
-# почти рандом для BOX
+# рандом для BOX
 def resULTATBokTip(BokTip):
     if random.randint(0, int(100 / BokTip[0])):
         return 0
@@ -75,6 +77,14 @@ def resULTATBokTip(BokTip):
     elif random.randint(0,int(100/BokTip[3])):
         return 3
     return 3
+
+
+# рандом для BOX N количество
+def resULTATBokTipX(BokTip):
+    for i in range(len(BokTip)):
+        if random.randint(0, int(100 / BokTip[i])):
+            return i
+    return len(BokTip)-1
 
 
 # обновления енергий у всех nft у играка
@@ -91,6 +101,7 @@ def deita(user: Pleir):
         else:
             nft.DataVixada = datetime_now_F()
         nft.save()
+
 
 # обновления енергий у одного nft
 def deitaNFT(nft: NFTs):
@@ -165,6 +176,7 @@ def sozdaniaNftBox(pleir,Box):
     nft.save()
 
     return nft, idHash, cloat, tip
+
 
 # генирирует полний списак даних для саитов
 def siteDeta(title,user,stronisa,svoi=None):

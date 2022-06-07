@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
+{% block metaImage %}
+    <meta property="og:title" content="Bonny Games - Marketplace" />
+    <meta property="og:description" content="Here You Will Find NFT characters for Bonny Games" />
+    <meta property="og:image" content='{% static "main/multimedia/logo/1024/logo big red.png" %}' />
+{% endblock %}
 {% block head %}
-<script>
+    <script>
     let isVisual = false;
     function zatia(){
         const Elsem = document.getElementById("vsplivaska")
@@ -18,28 +23,32 @@
         }
         isVisual =!isVisual; 
     }
-</script>
+    </script>
 {% endblock %}
 {% block body %}
-<br>
-
+    <br>
     <h1 class="colorF4D senrovat2Bloc">
-        MARKETPLACE<br></h1>
-    
+        MARKETPLACE
+        <br>
+    </h1>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-5 colorF4D senrovat1Bloc">
-                <div class="senrovat4Bloc5"style="font-size: 55px;">Welcome To Bonny Market!<br>
-                    Here You Will Find NFT characters<br>for Bonny Games</div>
+                <div class="senrovat4Bloc5"style="font-size: 55px;">
+                    Welcome To Bonny Market!
+                    <br>
+                    Here You Will Find NFT characters
+                    <br>
+                    for Bonny Games
+                </div>
                 <div class="senrovat4Bloc5"style="font-size: 45px;">You Can Buy And Sell Bonny NFT at Any Time!</div>
-                
             </div>
             <div class="col-md-7">
-                <img class="width80" src='{% static "main/multimedia/imagies for blocks/on  market image.png" %}'/>
+                <img class="width80"
+                     src='{% static "main/multimedia/imagies for blocks/on  market image.png" %}'/>
             </div>
         </div>
     </div>
-    
     {% comment %} <button class="Text3 butonCentrirovat buton6 animator colorF4D" onclick="zatia()">\/</button>
         <br> <br> 
         <div class="colorF4D container-fluid animator3" id="vsplivaska" style="width: 0px;">
@@ -49,28 +58,31 @@
         <p class="col-md-6"><a href="{% url 'MARKETPLACE'%}/2">
         <img class="MarketplaceImeig width60" src='{% static "main/anim arena.png" %}'/>
         </a></p>
-        </div>  {% endcomment %}
-<br>
-<br>
-<div class="colorF4D senrovat2Bloc">
-    bonny nft
+    </div>  {% endcomment %}
     <br>
-    
-</div>
-<br>
-        
-        
+    <br>
+    <div class="colorF4D senrovat2Bloc">
+        bonny nft
+        <br>
+    </div>
+    <br>
     {% if not tovar %}
-        <br><br><br><br>
+        <br>
+        <br>
+        <br>
+        <br>
         <div class="senrovat2Bloc colorF4D">Sold Out</div>
-        <br><br><br><br>
+        <br>
+        <br>
+        <br>
+        <br>
     {% endif %}
     <div class="colorF4D container-fluid">
         {% for i in tovar %}
             <div class="col-md-4 senrovat2Bloc animator color000">
                 <div class="MarketplaceTovar">
                     <p>
-                        <a href="{% url 'nft'%}{{ i.nft.idHash}}" class="colorFFF">
+                        <a href="{% url 'nft' %}{{ i.nft.idHash }}" class="colorFFF">
                             <img src='{% static "main/multimedia/nft content/nft tranp.png" %}'
                                  class="MarketplaceVidvigat animator"
                                  alt=""/>
@@ -80,9 +92,7 @@
                             runner:
                             <br>
                             price:
-                            <div class="senrovatMarketplaceText2A">
-                                # {{ i.nft.id }}
-                            </div>
+                            <div class="senrovatMarketplaceText2A"># {{ i.nft.id }}</div>
                             <br>
                             <div class="senrovatMarketplaceText2B">
                                 {{ i.stoimost }}

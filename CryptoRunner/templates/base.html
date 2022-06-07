@@ -5,12 +5,10 @@
         <!--meta-->
         <meta charset="utf-8">
         {% block metaImage %}
-        {% comment %}
-        <meta property="og:title" content="text" />
-        <meta property="og:image" content=""/>
-        {% endcomment %}
+            <meta property="og:title" content="Bonny Games" />
+            <meta property="og:description" content="Play To Earn Blockchain Gameverse" />
+            <meta property="og:image" content='{% static "main/multimedia/logo/1024/logo big black.png" %}' />
         {% endblock %}
-        
         {% comment %} <meta name="theme-color" content="#FF4F7D">
         <meta name="msapplication-navbutton-color" content="#FF4F7D">
         <meta name="apple-mobile-web-app-status-bar-style" content="#FF4F7D"> {% endcomment %}
@@ -81,68 +79,69 @@
                         </a>
                     </li>
                     <li class="col-md-2">
-                        <a href="https://gj-animation-studio.gitbook.io/bonny-games-white-list/" target="_blank">
+                        <a href="https://gj-animation-studio.gitbook.io/bonny-games-white-list/"
+                           target="_blank">
                             <div class="colorFFF Textnavbar text-center">whitepaper</div>
                         </a>
                     </li>
                     <li class="col-md-2" style="float: right;">
                         <a href="{% url 'profile' %}"
-                        {% comment %} {% if profilVcladka %}target="_blank"{% endif %} {% endcomment %}>
-                            <div class="colorFFF Textnavbar text-center">profile</div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                           {% comment %}
+                           {% if profilVcladka %}target="_blank"{% endif %}
+                           {% endcomment %}>
+                        <div class="colorFFF Textnavbar text-center">profile</div>
+                    </a>
+                </li>
+            </ul>
         </div>
-        </nev>
-        <div class="sotseti mycol">
-            <p>
-                <a href="https://discord.gg/K868mG9DK7" target="_blank">
-                    <img class="sotsetiIcons"
-                         src='{% static "main/multimedia/logo/diskord.png" %}'
-                         alt="">
-                </a>
-            </p>
-            <p>
-                <a href="{% url 'Razrabotka' %}"  target="_blank">
-                    <img class="sotsetiIcons"
-                         src='{% static "main/multimedia/logo/telegram.png" %}'
-                         alt="">
-                </a>
-            </p>
-            <p>
-                <a href="{% url 'Razrabotka' %}"  target="_blank">
-                    <img class="sotsetiIcons"
-                         src='{% static "main/multimedia/logo/twiter.png" %}'
-                         alt="">
-                </a>
-            </p>
-            <p>
-                <a href="{% url 'MARKETPLACE' %}"
-                   {% if not stronisa %}target="_blank"{% endif %}>
-                    <img class="sotsetiIcons"
-                         src='{% static "main/multimedia/icons/market icon_00000.png" %}'
-                         alt="">
-                </a>
-            </p>
+    </div>
+    </nev>
+    <div class="sotseti mycol">
+        <p>
+            <a href="https://discord.gg/K868mG9DK7" target="_blank">
+                <img class="sotsetiIcons"
+                     src='{% static "main/multimedia/logo/diskord.png" %}'
+                     alt="">
+            </a>
+        </p>
+        <p>
+            <a href="{% url 'Razrabotka' %}"  target="_blank">
+                <img class="sotsetiIcons"
+                     src='{% static "main/multimedia/logo/telegram.png" %}'
+                     alt="">
+            </a>
+        </p>
+        <p>
+            <a href="{% url 'Razrabotka' %}"  target="_blank">
+                <img class="sotsetiIcons"
+                     src='{% static "main/multimedia/logo/twiter.png" %}'
+                     alt="">
+            </a>
+        </p>
+        <p>
+            <a href="{% url 'MARKETPLACE' %}"
+               {% if not stronisa %}target="_blank"{% endif %}>
+                <img class="sotsetiIcons"
+                     src='{% static "main/multimedia/icons/market icon_00000.png" %}'
+                     alt="">
+            </a>
+        </p>
+    </div>
+    {% block body %}{% endblock %}
+    <br>
+    <div class="backgroundColorF4D colorF4D container-fluid mycol">
+        <div class="backgroundColorF4D col-md-12 colorFFF senrovat4Bloc1">
+            <br>
+            Bonny Games
+            <br>
+            2022
+            <br>
+            <br>
         </div>
-        {% block body %}{% endblock %}
-        <br>
-        <div class="backgroundColorF4D colorF4D container-fluid mycol">
-            <div class="backgroundColorF4D col-md-12 colorFFF senrovat4Bloc1">
-                <br>
-                Bonny Games
-                <br>
-                2022
-                <br>
-                <br>
-            </div>
-        </div>
-        <!--js2-->
-        {% comment %} <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-                        <script src="https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"  
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" 
-        crossorigin="anonymous"></script> {% endcomment %}
-    </body>
+    </div>
+    <!--js2-->
+    {% comment %} <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+                            <script src="https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> {% endcomment %}
+</body>
 </html>
