@@ -1,8 +1,9 @@
 import { PublicKey, Transaction } from "@solana/web3.js";
 import axios from "axios";
-export const debug = true;
 window.Buffer = window.Buffer || require("buffer").Buffer;
+export const debug = true; // ?????
 
+// ???????? ? ????? ????????
 export async function getData(
   method: string,
   url: string,
@@ -16,7 +17,6 @@ export async function getData(
       data: body,
     }).then((deta) => (res = deta));
 
-    
     if (res["status"] <= 400) {
       let resy = res["data"];
       try {
@@ -29,11 +29,13 @@ export async function getData(
   }
 }
 
+// ?????? console.log()
 export function log(text) {
   if (debug) console.log(text);
 }
 
-let eroor = {
+// ?????????? ?????? solana
+const eroor = {
   "4900": "Phantom could not connect to the network.",
   "4100":
     "The requested method and/or account has not been authorized by the user.",
@@ -46,11 +48,13 @@ let eroor = {
 export function EroorFhantom(num): string {
   try {
     let res: string = eroor[num.toString()];
-  } catch (err) {}
-  return num;
+    return res;
+  } catch (err) {
+    return num;
+  }
 }
 
-///////////////////////////////////////////////
+/////////////////////////////////////////////// ???? ????? ??????
 export type DisplayEncoding = "utf8" | "hex";
 export type PhantomEvent = "disconnect" | "connect" | "accountChanged";
 export type PhantomRequestMethod =

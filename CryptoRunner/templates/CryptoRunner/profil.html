@@ -92,10 +92,10 @@
         </div>
     </div>
     <script>
-        let a =domen+"/Referral"+"/"+{{user.pk}};
-        document.getElementById("Referral").innerHTML ="Referral Link:    "+ a+` <a id="cope" class="colorFFF"></a>`;
+        
+        document.getElementById("Referral").innerHTML ="Referral Link:    "+ Referral+` <a id="cope" class="colorFFF"></a>`;
         async function cone(){
-            navigator.clipboard.writeText(a)
+            navigator.clipboard.writeText(Referral)
             .then(() => {console.log('So');})
             .catch(err => {console.log('Something went wrong', err);});
             document.getElementById("cope").textContent = "copi"

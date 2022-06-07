@@ -7,31 +7,36 @@ from django.views.decorators.csrf import csrf_exempt
 from hashlib import sha224
 
 import CryptoRunnerBecend.settings
-from .DateTimeF import *
 from django.views.decorators.cache import cache_page
 from CryptoRunner.forms import *
 from CryptoRunner.models import *
 from .config import *
 
+# from .DateTimeF import *
 # from bs4 import BeautifulSoup
 # import requests as req
 # import solana
 # from solana.transaction import *
+######
 
-
+# замена print()
 def printF(p):
     if CryptoRunnerBecend.settings.DEBUG:
         print(p)
 
 
-def nereadres(urls):
+# создает HttpResponse с изменениям силки
+def nereadres(urls,eror = "",request=None):
     if urls == "Eroor404":
-        raise Http404("")
+        if request!=None and request.method == 'GET':
+            JsonResponse({"Eroor": True})
+        raise Http404(eror)
     url = reverse(urls)
     response = HttpResponseRedirect(url)
     return response
 
 
+# конвертируе
 def convert(nojson):
     jsons = '{"'
     for i in nojson:
@@ -44,7 +49,7 @@ def convert(nojson):
     jsons+='"}'
     return json.loads(jsons)
 
-
+#  поиск nft (яблуко = зелоная)
 def NoiskNft(nftArrau,Heh):
     for i in range(len(nftArrau)):
         if nftArrau[i].idHash == Heh:
@@ -52,58 +57,27 @@ def NoiskNft(nftArrau,Heh):
     return None
 
 
-
+# (в разработке) провераяет пришовшую сигнатуру на доставерность
 def nroverkaSignatura(signatura):
     printF("signatura")
     # r = TransactionSignature
     # printF(r)
 
 
-
-def nftCilkaPOST(data,nft,user):
-    printF(data["onerasia"])
-    if data["onerasia"] == "bui":
-        #######################################
-        # printF(data)
-        # nroverka(data["signatura"])
-        # printF("das")
-        #######################################
-        nft.Pleir = user
-        nft.save()
-        marc = MARKETPLACEmodel.objects.filter(nft=nft)
-        marc.delete()
-    elif data["onerasia"] == "sell":
-        marc = MARKETPLACEmodel.objects.filter(nft=nft)
-        if len(marc) == 0:
-            R = MARKETPLACEmodel(nft=nft, stoimost=round(float(data["prise"]), 5))
-            R.save()
-    elif data["onerasia"] == "take off":
-        marc = MARKETPLACEmodel.objects.filter(nft=nft)
-        marc.delete()
-    return HttpResponse("")
-
-
-
+# почти рандом для BOX
 def resULTATBokTip(BokTip):
-    resO = -1
-    while True:
-        random100 = random.randint(1, 99)
-        res = 0
-        q = 0
-        for i in BokTip:
-            if random100 > res:
-                res += i
-                q += 1
-            elif random100 < res:
-                resO = q
-
-            if resO != -1:
-                break
-        if resO != -1:
-            break
-    return resO
+    if random.randint(0, int(100 / BokTip[0])):
+        return 0
+    elif random.randint(0,int(100/BokTip[1])):
+        return 1
+    elif random.randint(0, int(100 / BokTip[2])):
+        return 2
+    elif random.randint(0,int(100/BokTip[3])):
+        return 3
+    return 3
 
 
+# обновления енергий у всех nft у играка
 def deita(user: Pleir):
     NFTSS = NFTs.objects.filter(Pleir=user)
     for nft in NFTSS:
@@ -118,7 +92,7 @@ def deita(user: Pleir):
             nft.DataVixada = datetime_now_F()
         nft.save()
 
-
+# обновления енергий у одного nft
 def deitaNFT(nft: NFTs):
     if nft.Energia != nft.EnergiaMax:
         timesVremina = datetime_now_F() - nft.DataVixada
@@ -132,6 +106,7 @@ def deitaNFT(nft: NFTs):
     nft.save()
 
 
+# создания nft
 def sozdaniaNft(pleir,Tip):
     time = datetime_now_F()
 
@@ -160,6 +135,7 @@ def sozdaniaNft(pleir,Tip):
     return nft,idHash,cloat
 
 
+# создания nft через Box
 def sozdaniaNftBox(pleir,Box):
     time = datetime_now_F()
 
@@ -189,3 +165,13 @@ def sozdaniaNftBox(pleir,Box):
     nft.save()
 
     return nft, idHash, cloat, tip
+
+# генирирует полний списак даних для саитов
+def siteDeta(title,user,stronisa,svoi=None):
+    d1= {'title': title,"Referral":user.pk,"stronisa":stronisa}
+    if svoi!=None:
+        d1.update(svoi)
+    printF(d1)
+    return d1
+
+

@@ -42,9 +42,9 @@ def registr_POST(request):
             DataRegistr=datetime_today(),
             DataVixada=datetime_today(),
             PublicKeuSolana=PublicKeuSolana,
-            idHash=idHash, Energia=20, EnergiaMax=20, Money=moneu)
+            idHash=idHash, Money=moneu)
         y.save()
-        
+
         # sozdaniaNft(y,1)
 
     response = redirect('/registr/')
@@ -74,19 +74,28 @@ def profile_(request):
         Energia += i.Energia
 
     return render(request, 'CryptoRunner/profil.html',
-                  {'title': 'profil', "tovar": NFT,"user":user,
-                   "NFTCOl":NFTCOl,"EnergiaMax":EnergiaMax,"Energia":Energia})
+                  siteDeta('profil', user, False,
+                {"tovar": NFT,"user":user,
+                   "NFTCOl":NFTCOl,"EnergiaMax":EnergiaMax,"Energia":Energia}))
 
 # страниса профиля N игрока
 def profileX_(request,profil):
     userv = Pleir.objects.filter(PublicKeuSolana=profil)
     if len(userv) == 0:
-        return nereadres("Eroor404")
+        userv = Pleir.objects.filter(pk=profil)
+        if len(userv) == 0:
+            return nereadres("Eroor404", "Eroor: profileX_: ползавател отсуттвует")
     user = userv[0]
 
-    NFT = NFTs.objects.filter(Pleir = user)
+    NFT = NFTs.objects.filter(Pleir=user)
     NFTCOl = len(NFT)
+    EnergiaMax = 0
+    Energia = 0
+    for i in NFT:
+        EnergiaMax += i.EnergiaMax
+        Energia += i.Energia
 
     return render(request, 'CryptoRunner/profil.html',
-                  {'title': 'profil', "tovar": NFT,"user":user,"NFTCOl":NFTCOl})
+                  siteDeta("profil", user, False, { "tovar": NFT,"user":user,
+                    "NFTCOl":NFTCOl, "EnergiaMax": EnergiaMax, "Energia": Energia}))
 

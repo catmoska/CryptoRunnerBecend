@@ -138,6 +138,6 @@ def geim_(request):
     else:
         return nereadres("registr")
 
-    resultat = render(request, 'CryptoRunner/geim.html', {'title': 'geim'})
+    resultat = render(request, 'CryptoRunner/geim.html',siteDeta("geim",user[0],False))
     return resultat
 

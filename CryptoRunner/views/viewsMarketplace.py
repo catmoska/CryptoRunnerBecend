@@ -5,7 +5,7 @@ from .logik import *
 def MARKETPLACE_(request):
     MARKETPLACE = MARKETPLACEmodel.objects.all()
     return render(request, 'CryptoRunner/MARKETPLACE.html',
-                  {'title': 'MARKETPLACE', "tovar": MARKETPLACE,"stronisa":True})
+                           {'title': 'MARKETPLACE', "tovar": MARKETPLACE,"stronisa":True})
 
 
 
@@ -47,10 +47,31 @@ def nftCilka_POST(nft):
          "publickeusol": MARKETPLACE.nft.Pleir.PublicKeuSolana})
 
 
-def nftCilka_GETPARAMS(request,registor,nft,users):
+def nftCilka_GETPARAMS(request,registor,nft,user):
     if not registor:
         return JsonResponse({"Eroor": True})
     data = json.loads(request.body.decode('utf-8'))
+
+    printF(data["onerasia"])
+    if data["onerasia"] == "bui":
+        #######################################
+        # printF(data)
+        # nroverka(data["signatura"])
+        # printF("das")
+        #######################################
+        nft.Pleir = user
+        nft.save()
+        marc = MARKETPLACEmodel.objects.filter(nft=nft)
+        marc.delete()
+    elif data["onerasia"] == "sell":
+        marc = MARKETPLACEmodel.objects.filter(nft=nft)
+        if len(marc) == 0:
+            R = MARKETPLACEmodel(nft=nft, stoimost=round(float(data["prise"]), 5))
+            R.save()
+    elif data["onerasia"] == "take off":
+        marc = MARKETPLACEmodel.objects.filter(nft=nft)
+        marc.delete()
+    return HttpResponse("")
     return nftCilkaPOST(data, nft, users[0])
 
 
@@ -71,8 +92,8 @@ def nftCilka_GET(request,registor,nft,users,nftHeh):
             pleir = True
 
     response = render(request, 'CryptoRunner/NFT.html',
-                      {'title': 'nft', "NFT": nft, "market": marxet,
-                       "pleir": pleir, "stoimost": stoimost, "registor": registor, "stronisa": True})
+                      siteDeta('nft', users[0], True, {"NFT": nft, "market": marxet,
+                       "pleir": pleir, "stoimost": stoimost, "registor": registor}))
     response.set_cookie('NFThistori', nftHeh)
     return response
 

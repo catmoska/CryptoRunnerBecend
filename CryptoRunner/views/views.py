@@ -21,6 +21,13 @@ def sunduk_(request,N):
         return nereadres("Eroor404")
     Box = Box[0]
 
+    if not Box.otkritas:
+        if request.method == 'POST':
+            return JsonResponse({"Eroor": True})
+        return nereadres("Eroor404")
+
+
+
     if request.method == 'GETPARAMS':
         return JsonResponse({"stoimost":Box.stoimost, "publickeusol":Glava})
 
@@ -32,7 +39,8 @@ def sunduk_(request,N):
         return JsonResponse({"urlStronisi":"nft/"+str(idHash),"urlImeig":cloat.Photo.url,"idHash":idHash,"Eroor":False})
 
 
-    return render(request, 'CryptoRunner/sunduk.html',{'title':"sunduk",'N':N,"Bok":Box,"registor":registor})
+    return render(request, 'CryptoRunner/sunduk.html',
+                  siteDeta("sunduk", user, True, {'N':N,"Bok":Box,"registor":registor}))
 
 #################
 

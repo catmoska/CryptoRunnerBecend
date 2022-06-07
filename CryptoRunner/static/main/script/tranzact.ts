@@ -26,15 +26,13 @@ import {
 //   transfer,
 // } from "@solana/spl-token/module.flow";
 
-
-
-
-
-const Nrosent: number = 0.04;
+//?????????
+const Nrosent: number = 0.04;                     // ?????????? ?????????
 const publickeusolAvtor: string =
-  "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw";
-const stoimostOplati: number = 0.005;
+  "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw"; // ???? ?????????? ????????
+const stoimostOplati: number = 0.005;             // ????????? ?????? box unity
 
+//????????? ??? ??????????
 let NETWORK: string;
 if (debug) NETWORK = clusterApiUrl("testnet");
 else NETWORK = clusterApiUrl("mainnet-beta");
@@ -42,6 +40,7 @@ let taranzactFuncia: (() => Promise<taranzact | null>)[] = [nftTaranzact,nftTara
 const urlStatic: string = window.location.toString();
 
 
+// ?????????? ???
 export async function tranzacsion(tin: number = 0) {
   const provider = await getProviderConect();
   const connection = new Connection(NETWORK);
@@ -52,6 +51,7 @@ export async function tranzacsion(tin: number = 0) {
   if (trnsPazm == null) return false;
   log(trnsPazm);
 
+  // ???????? ??????????
   const createTransferTransaction = async (tin: boolean = false) => {
     try {
       if (!provider.publicKey) return false;
@@ -61,7 +61,7 @@ export async function tranzacsion(tin: number = 0) {
       let stoimost = trnsPazm.stoimost;
       if (tin) {
         publickeusol = publickeusolAvtor;
-        stoimost = stoimost * Nrosent;
+        stoimost = stoimost * Nrosent;     //????????
       } else {
         stoimost = stoimost * (1 - Nrosent);
       }
@@ -87,6 +87,7 @@ export async function tranzacsion(tin: number = 0) {
     }
   };
 
+  // ?????? ? ?????????? ????? ?????????? 
   // const sendTransaction = async () => {
   //   try {
   //     const transaction = await createTransferTransaction();
@@ -110,6 +111,7 @@ export async function tranzacsion(tin: number = 0) {
   //   }
   // };
 
+  // ?????? ? ?????????? ???? ?????????? 
   const signMultipleTransactions = async () => {
     try {
       const [transaction1, transaction2] = await Promise.all([
@@ -142,7 +144,7 @@ export async function tranzacsion(tin: number = 0) {
   };
 
   log("start");
-  const signaturess = await signMultipleTransactions();
+  const signaturess = await signMultipleTransactions(); //start
   log("fines");
   log(signaturess);
   return { signature:signaturess, NETWORK: NETWORK };
@@ -150,18 +152,19 @@ export async function tranzacsion(tin: number = 0) {
 
 
 /////////////////
-export async function getWalletBalance() {
-  try {
-    const provider = await getProviderConect();
-    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-    const walletBalance = await connection.getBalance(provider.publicKey);
-    log(`Wallet Balance is ${walletBalance}`);
-  } catch (er) {
-    log(er);
-  }
-}
+// // ?????? ??????
+// export async function getWalletBalance() {
+//   try {
+//     const provider = await getProviderConect();
+//     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+//     const walletBalance = await connection.getBalance(provider.publicKey);
+//     log(`Wallet Balance is ${walletBalance}`);
+//   } catch (er) {
+//     log(er);
+//   }
+// }
 
-
+// ?????? ?????????
 export function getProvider(): PhantomProvider | undefined {
   if ("solana" in window) {
     const anyWindow: any = window;
@@ -172,6 +175,7 @@ export function getProvider(): PhantomProvider | undefined {
 }
 
 
+// ??????????? ? solana
 export async function getProviderConect() {
   const provider = getProvider();
   try {
@@ -189,6 +193,7 @@ export async function getProviderConect() {
 
 ///////////////////////////
 
+// ?????????? ?? ??????? nft
 async function nftTaranzact(): Promise<taranzact | null> {
   let parameters: any = await getData("GETparams", "");
   if (parameters == "ErorEczemplar") return null;
@@ -199,7 +204,7 @@ async function nftTaranzact(): Promise<taranzact | null> {
   };
 }
 
-
+// ?????????? ?? ??????? box unity
 async function nftTaranzactMin(): Promise<taranzact | null> {
   return {
     stoimost: stoimostOplati,

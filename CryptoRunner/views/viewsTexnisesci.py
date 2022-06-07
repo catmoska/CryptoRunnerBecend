@@ -37,7 +37,7 @@ def nftVistavka_POST(request):
             DataRegistr=datetime_today(),
             DataVixada=datetime_today(),
             PublicKeuSolana="AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw",
-            idHash="", Energia=0, EnergiaMax=0, Money=0)
+            idHash="", Money=0)
         y.save()
         pleir = [y]
     pleir = pleir[0]

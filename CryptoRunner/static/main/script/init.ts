@@ -1,8 +1,10 @@
+// import
 import { tranzacsion, getProvider, getProviderConect } from "./tranzact";
 import { getData, log } from "./funcsionLogic";
 // import { run } from "./nft";
 import { SmenaSilki, SmenaBackground,displayStile } from "./js";
 
+// Global function
 Object.assign(window, {
   textMesends: textMesends,
   conect: conect,
@@ -12,32 +14,35 @@ Object.assign(window, {
   StartbuiNft: StartbuiNft,
 });
 
+// start peramenii
 let url: string = "";
 let urlGeim: string = "";
 let urlNFT: string = "";
 let domen: string = "";
+let Referral: string = "";
 
-function start(url1, url2, url3, url4) {
+function start(url1, url2, url3, url4,Referra) {
   url = url1;
   urlGeim = url2;
   urlNFT = url3;
   domen = url4;
+  Referral =Referra;
 }
 
+// ??????? ????????? ????????
 function textMesends(moneu, distansion) {
   return (
     "In this Time, I ran " +
     distansion +
     " meters and Earn " +
     moneu +
-    " Bonny Coin, in Bonny Game - Crypto Runner!\n" +
-    "Let's Play, Earn and Trade Rewards With Me!\n" +
-    domen +
-    urlGeim
+    " Bonny Coin, in Bonny Game - Crypto Runner!\n " +
+    "Let's Play, Earn and Trade Rewards With Me!\n " +
+    Referral
   );
 }
 ////////
-
+// ??????? ?????????????? ??????
 async function conect() {
   try {
     const provaider = await getProviderConect();
@@ -52,7 +57,7 @@ async function conect() {
 }
 
 //////////////////////////////////////////
-
+// ?????? ??????? ? ?????? ? ???????
 async function NFTnokunka(i, y) {
   log(y);
   log(i);
@@ -114,7 +119,7 @@ async function NFTnokunka(i, y) {
 }
 
 /////////////////////
-
+//??????? box
 async function BoxSunduk(i) {
   log(i);
 
@@ -145,7 +150,11 @@ async function BoxSunduk(i) {
 }
 
 /////////////////////
+//unity ?????????? ??? BoxSunduk
+let i = false;
+let d = false;
 
+// ?????????????
 function StartbuiNft(): boolean {
   log("StartbuiNft  " + i);
   if (i) return false;
@@ -161,8 +170,7 @@ function StartbuiNft(): boolean {
   }
 }
 
-let i = false;
-let d = false;
+// ??????????
 async function buiNft1() {
   i = true;
   await buiNft();
@@ -170,6 +178,7 @@ async function buiNft1() {
   d = true;
 }
 
+// ??????????
 async function buiNft() {
   displayStile("bloc1",false,800);
   await displayStile("bloc2",true);
