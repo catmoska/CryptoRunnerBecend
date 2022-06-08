@@ -7,38 +7,32 @@
          style="margin-top: -25px;">
         <br>
         <h1 class="colorFFF senrovat2Bloc">Profile Page</h1>
-        <div class="col-md-3 colorF4D senrovat1Bloc" style="margin-left: 250px;">
+        <div class="col-md-3 colorF4D senrovat1Bloc" style="margin-left: 20%">
             {% comment %} {% if user.Photo%}
                 <img class="width100" src='user.Photo.url'/>
-            {% else %} {% endcomment %}
-                <img class="width100"
-                     src='{% static "main/multimedia/imagies for blocks/support alex.png" %}'/>
+        {% else %} {% endcomment %}
+            <img class="width100"
+                 src='{% static "main/multimedia/imagies for blocks/support alex.png" %}'/>
             {% comment %} {% endif %} {% endcomment %}
         </div>
-        <div class="col-md-7 senrovatprofilBloc colorFFF"
+        <div class="col-md-5 senrovatprofilBloc colorFFF"
              style="margin-left: 50px;">
-            {% comment %} Nick Name:    {{ user.Nick }} <br> {% endcomment %}
-            User:    {{ user.PublicKeuSolana }}
+            <button onclick="NickPleir()" class="ButtonNot animator3" id="User"></button>
             <br>
             money:    {{ user.Money }}
             <br>
             Total Distance:    {{ user.Distansion }}
             <br>
             Energy:    {{ Energia }}/{{ EnergiaMax }}
-            <br>  {% comment %} //////////////////////////////////////////////////// {% endcomment %}
-
+            <br>
             Register Date:    {{ user.DataRegistr }}
             <br>
-
             NFT that you have:    {{ NFTCOl }}
             <br>
-            <button onclick="cone()"
-                    id="Referral"
-                    style="border:none;
-                           background-color: #00000000;"></button>
+            <button onclick="cone()" id="Referral" class="ButtonNot animator3"></button>
             <br>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-4"></div>
     </div>
     <div class="backgroundColorF4D" style="margin-top: -21px;">
         <br>
@@ -69,13 +63,13 @@
             {% for i in tovar %}
                 <div class="col-md-4 senrovat2Bloc animator color000">
                     <div class="MarketplaceTovar">
-                        <p>
-                            <a href="{% url 'nft' %}{{ i.idHash }}" class="colorFFF">
-                                <img src='{% static "main/multimedia/nft content/nft tranp.png" %}'
-                                     class="MarketplaceVidvigat animator"
-                                     alt=""/>
-                                <img src='{{ i.ClothesTip.Photo.url }}' class="MarketplaceCat " alt=""/>
-                            </a>
+                        <a href="{% url 'nft' %}{{ i.nft.idHash }}"
+                           class="colorFFF"
+                           style='text-decoration: none;'>
+                            <img src='{% static "main/multimedia/nft content/nft tranp.png" %}'
+                                 class="MarketplaceVidvigat animator"
+                                 alt=""/>
+                            <img src='{{ i.ClothesTip.Photo.url }}' class="MarketplaceCat " alt=""/>
                             <div class="senrovatMarketplaceText colorFFF">
                                 Runner:
                                 <br>
@@ -84,26 +78,58 @@
                                 <br>
                                 <div class="senrovatMarketplaceText2B">{{ i.Energia }}/{{ i.EnergiaMax }}</div>
                             </div>
-                            <br>
-                        </p>
+                        </a>
+                        <br>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
     <script>
+        document.getElementById("Referral").innerHTML =
+        `<img width='40px' src='{% static "main/multimedia/profil/copy.png" %}'/>`+
+        "Referral Link:    "+ Referral+` <a id="cope" class="colorFFF"></a>`;
+
+        document.getElementById("User").innerHTML =
+        `<img width='40px' src='{% static "main/multimedia/profil/edit.png" %}'/>`+
+        "User:    {{ user.Nick }}"
         
-        document.getElementById("Referral").innerHTML ="Referral Link:    "+ Referral+` <a id="cope" class="colorFFF"></a>`;
+
         async function cone(){
             navigator.clipboard.writeText(Referral)
-            .then(() => {console.log('So');})
-            .catch(err => {console.log('Something went wrong', err);});
+            .then(() => {})
+            .catch(err => {console.log(err);});
             document.getElementById("cope").textContent = "copi"
           setTimeout(sayHi, 500);
         }
 
         function sayHi() {
             document.getElementById("cope").textContent = ""
+        }
+
+        async function NickPleir() {
+            let prises = await prompt("XXXXXXXXXXX");
+            
+            if(prises.length>=20){
+                alert("neim nou >20");
+                log("neim length"+prises.length);
+                return;
+            }
+
+            let i = await getData("POST", "", {
+                tip:"Nick",
+                Date:prises
+            });
+
+            if (i["Eroor"]){
+                alert("Eroor");
+                log("Eroor -> profil -> NickPleir" +i);
+                return;
+            }
+            document.getElementById("User").innerHTML =
+            `<img width='40px' src='{% static "main/multimedia/profil/edit.png" %}'/>`+
+            "User:    "+prises
+            //setTimeout(() => (window.location.href = ""), 200);
         }
     </script>
 {% endblock %}

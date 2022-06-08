@@ -183,7 +183,6 @@ def siteDeta(title,user,stronisa,svoi=None):
     d1= {'title': title,"Referral":user.pk,"stronisa":stronisa}
     if svoi!=None:
         d1.update(svoi)
-    printF(d1)
     return d1
 
 

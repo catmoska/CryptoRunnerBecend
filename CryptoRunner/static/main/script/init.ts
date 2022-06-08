@@ -12,6 +12,8 @@ Object.assign(window, {
   start: start,
   BoxSunduk: BoxSunduk,
   StartbuiNft: StartbuiNft,
+  getData:getData,
+  log:log,
 });
 
 // start peramenii

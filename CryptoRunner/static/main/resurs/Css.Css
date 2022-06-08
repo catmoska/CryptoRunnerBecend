@@ -453,3 +453,17 @@ li {
 
     font-size: 40px;
 }
+
+.ButtonNot{
+    border:none;
+    background-color: #00000000;
+    text-align:left;
+    font-size: 40px;
+}
+
+.ButtonNot:hover{
+    border:none;
+    background-color: #00000000;
+    text-align:left;
+    font-size: 45px;
+}

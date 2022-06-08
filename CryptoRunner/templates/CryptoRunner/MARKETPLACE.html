@@ -81,28 +81,26 @@
         {% for i in tovar %}
             <div class="col-md-4 senrovat2Bloc animator color000">
                 <div class="MarketplaceTovar">
-                    <p>
-                        <a href="{% url 'nft' %}{{ i.nft.idHash }}" class="colorFFF">
+                        <a href="{% url 'nft' %}{{ i.nft.idHash }}" class="colorFFF" style='text-decoration: none;'>
                             <img src='{% static "main/multimedia/nft content/nft tranp.png" %}'
                                  class="MarketplaceVidvigat animator"
                                  alt=""/>
                             <img src='{{ i.nft.ClothesTip.Photo.url }}' class="MarketplaceCat " alt=""/>
-                        </a>
-                        <div class="senrovatMarketplaceText colorFFF">
-                            runner:
-                            <br>
-                            price:
-                            <div class="senrovatMarketplaceText2A"># {{ i.nft.id }}</div>
-                            <br>
-                            <div class="senrovatMarketplaceText2B">
-                                {{ i.stoimost }}
-                                <img src='{% static "main/multimedia/logo/sol tran.png" %}'
-                                     class="MarketplaceImeig2"
-                                     alt=""/>
+                            <div class="senrovatMarketplaceText colorFFF">
+                                runner:
+                                <br>
+                                price:
+                                <div class="senrovatMarketplaceText2A"># {{ i.nft.id }}</div>
+                                <br>
+                                <div class="senrovatMarketplaceText2B">
+                                    {{ i.stoimost }}
+                                    <img src='{% static "main/multimedia/logo/sol tran.png" %}'
+                                         class="MarketplaceImeig2"
+                                         alt=""/>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         <br>
-                    </p>
                 </div>
             </div>
         {% endfor %}
