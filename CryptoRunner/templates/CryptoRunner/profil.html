@@ -17,7 +17,11 @@
         </div>
         <div class="col-md-5 senrovatprofilBloc colorFFF"
              style="margin-left: 50px;">
-            <button onclick="NickPleir()" class="ButtonNot animator3" id="User"></button>
+            {% if zritel %}
+                User:    {{ user.Nick }}
+            {% else %}
+                <button onclick="NickPleir()" class="ButtonNot animator3" id="User"></button>
+            {% endif %}
             <br>
             money:    {{ user.Money }}
             <br>
@@ -63,7 +67,7 @@
             {% for i in tovar %}
                 <div class="col-md-4 senrovat2Bloc animator color000">
                     <div class="MarketplaceTovar">
-                        <a href="{% url 'nft' %}{{ i.nft.idHash }}"
+                        <a href="{% url 'nft' %}{{ i.idHash }}"
                            class="colorFFF"
                            style='text-decoration: none;'>
                             <img src='{% static "main/multimedia/nft content/nft tranp.png" %}'
@@ -90,10 +94,11 @@
         `<img width='40px' src='{% static "main/multimedia/profil/copy.png" %}'/>`+
         "Referral Link:    "+ Referral+` <a id="cope" class="colorFFF"></a>`;
 
+        {% if not zritel %}
         document.getElementById("User").innerHTML =
         `<img width='40px' src='{% static "main/multimedia/profil/edit.png" %}'/>`+
         "User:    {{ user.Nick }}"
-        
+        {% endif %}
 
         async function cone(){
             navigator.clipboard.writeText(Referral)

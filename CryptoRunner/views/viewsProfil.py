@@ -90,7 +90,7 @@ def profile_GET(request,user):
     return render(request, 'CryptoRunner/profil.html',
                   siteDeta('profil', user, False,
                            {"tovar": NFT, "user": user,
-                            "NFTCOl": NFTCOl, "EnergiaMax": EnergiaMax, "Energia": Energia}))
+                            "NFTCOl": NFTCOl, "EnergiaMax": EnergiaMax, "Energia": Energia,"zritel":False}))
 
 def profile_POST(request,user):
     Jsons = json.loads(request.body.decode('utf-8'))
@@ -128,5 +128,5 @@ def profileX_(request,profil):
 
     return render(request, 'CryptoRunner/profil.html',
                   siteDeta("profil", user, False, { "tovar": NFT,"user":user,
-                    "NFTCOl":NFTCOl, "EnergiaMax": EnergiaMax, "Energia": Energia}))
+                    "NFTCOl":NFTCOl, "EnergiaMax": EnergiaMax, "Energia": Energia,"zritel":True}))
 
