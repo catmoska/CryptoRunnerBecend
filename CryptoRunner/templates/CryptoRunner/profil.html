@@ -104,7 +104,7 @@
             navigator.clipboard.writeText(Referral)
             .then(() => {})
             .catch(err => {console.log(err);});
-            document.getElementById("cope").textContent = "copi"
+            document.getElementById("cope").textContent = "copied"
           setTimeout(sayHi, 500);
         }
 
@@ -113,7 +113,7 @@
         }
 
         async function NickPleir() {
-            let prises = await prompt("XXXXXXXXXXX");
+            let prises = await prompt("Edit User Name");
             
             if(prises.length>=20){
                 alert("neim nou >20");

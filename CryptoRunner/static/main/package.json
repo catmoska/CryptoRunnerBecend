@@ -4,8 +4,8 @@
   "description": "",
   "main": "./script/js.js",
   "scripts": {
-    "build": "C:/Users/catmoska/PycharmProjects/CryptoRunnerBecend/CryptoRunner/static/main/node_modules/.bin/webpack.cmd",
-    "buildR": "C:/Users/catmoska/PycharmProjects/CryptoRunnerBecend/CryptoRunner/static/main/node_modules/.bin/webpack.cmd --watch",
+    "build": ".\\node_modules\\.bin\\webpack.cmd",
+    "buildR": ".\\node_modules\\.bin\\webpack.cmd --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
