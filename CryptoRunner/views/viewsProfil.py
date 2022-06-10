@@ -127,6 +127,6 @@ def profileX_(request,profil):
         Energia += i.Energia
 
     return render(request, 'CryptoRunner/profil.html',
-                  siteDeta("profil", user, False, { "tovar": NFT,"user":user,
+                  siteDeta(profileX_neim, user, False, { "tovar": NFT,"user":user,
                     "NFTCOl":NFTCOl, "EnergiaMax": EnergiaMax, "Energia": Energia,"zritel":True}))
 

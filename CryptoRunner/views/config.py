@@ -26,6 +26,7 @@ nftCilka_neim ="nft"
 #profile
 registr_neim = "регистрасия"
 profile_neim = "profil"
+profileX_neim = "profil"
 
 # storinci
 Eroor404_neim ="Error 404"
