@@ -11,7 +11,7 @@ def registr_(request):
     if request.method == 'POST':
         return registr_POST(request)
     elif request.method == 'GET':
-        return render(request, 'CryptoRunner/registr.html', {'title': 'регистрасия'})
+        return render(request, 'CryptoRunner/registr.html', {'title': registr_neim})
     else:
         printF("Eroor: registr_: request.method !=")
         return HttpResponse("Eroor")
@@ -88,7 +88,7 @@ def profile_GET(request,user):
         Energia += i.Energia
 
     return render(request, 'CryptoRunner/profil.html',
-                  siteDeta('profil', user, False,
+                  siteDeta(profile_neim, user, False,
                            {"tovar": NFT, "user": user,
                             "NFTCOl": NFTCOl, "EnergiaMax": EnergiaMax, "Energia": Energia,"zritel":False}))
 

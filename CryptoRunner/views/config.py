@@ -14,3 +14,23 @@ Glava = "AtMCbPL5gjp2UdeZCki2c8FwXoY5fVfp3uAJ6hUDe4hw"
 stoimostNftBoniCrint = 100
 
 
+# neim
+
+# Geim
+geim_neim ="geim"
+
+# MARKETPLACE
+MARKETPLACE_neim="MARKETPLACE"
+nftCilka_neim ="nft"
+
+#profile
+registr_neim = "регистрасия"
+profile_neim = "profil"
+
+# storinci
+Eroor404_neim ="Error 404"
+mainStronisa_neim = "главная страниса"
+geimStranisa_neim ="Geimes"
+Razrabotka_neim ="Coming Soon!"
+
+

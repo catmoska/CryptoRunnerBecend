@@ -5,7 +5,7 @@ from .logik import *
 def MARKETPLACE_(request):
     MARKETPLACE = MARKETPLACEmodel.objects.all()
     return render(request, 'CryptoRunner/MARKETPLACE.html',
-                           {'title': 'MARKETPLACE', "tovar": MARKETPLACE,"stronisa":True})
+                           {'title': MARKETPLACE_neim, "tovar": MARKETPLACE,"stronisa":True})
 
 
 
