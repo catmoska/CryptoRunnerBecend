@@ -41,7 +41,7 @@ def geimDETA_postBui(request,user):
 
     BokTip = [Bok.tip1, Bok.tip2, Bok.tip3, Bok.tip4]
     tip = resULTATBokTip(BokTip)
-    nft,idHash,cloat = sozdaniaNft(user, tip)
+    nft,idHash,cloat = sozdaniaNft(user, tip,False)
 
     return JsonResponse(
         {"urlStronisi": "nft/" + str(idHash), "urlImeig": cloat.Photo.url, "idHash": idHash, "Eroor": False})

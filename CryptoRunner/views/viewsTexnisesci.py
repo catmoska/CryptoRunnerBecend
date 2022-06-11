@@ -30,14 +30,13 @@ def nftVistavka_(request):
         return HttpResponse("Eroor")
 
 def nftVistavka_POST(request):
-    acaunt = Glava
     form = NewForms(request.POST)
-    pleir = Pleir.objects.filter(PublicKeuSolana=acaunt)
+    pleir = Pleir.objects.filter(PublicKeuSolana=Glava)
     if len(pleir) == 0:
         y = Pleir(
             DataRegistr=datetime_today(),
             DataVixada=datetime_today(),
-            PublicKeuSolana=acaunt,
+            PublicKeuSolana=Glava,
             idHash="", Money=0)
         y.save()
         pleir = [y]

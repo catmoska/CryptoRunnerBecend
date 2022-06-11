@@ -118,7 +118,7 @@ def deitaNFT(nft: NFTs):
 
 
 # создания nft
-def sozdaniaNft(pleir,Tip):
+def sozdaniaNft(pleir,Tip,y=True):
     time = datetime_now_F()
 
     kolisestvo = len(NFTs.objects.all())
@@ -143,7 +143,10 @@ def sozdaniaNft(pleir,Tip):
         DataVixada=time,
         Pleir=pleir, ClothesTip=cloat, Ymnozitel=Ymnozitel[Tip])
     nft.save()
-    return nft,idHash,cloat
+
+    if y:
+        return nft
+    return nft, idHash, cloat
 
 
 # создания nft через Box
