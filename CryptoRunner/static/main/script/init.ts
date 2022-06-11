@@ -43,7 +43,6 @@ function textMesends(moneu, distansion) {
     Referral
   );
 }
-
 ////////
 // ??????? ?????????????? ??????
 async function conect() {
@@ -91,17 +90,17 @@ async function NFTnokunka(i, y) {
   }
 
   if (y == "sell") {
-    let prises: any = await prompt("prais: snimaim 4%");
+    let prises: any = await prompt("Now You Will Sell Your Bonny NFT. Plese Select The Price in Solana! We Take 4% as a Fee, If your NFT will be sold.");
     prises = prises.replace(/,/g, ".");
 
     prises = parseFloat(prises);
     log(prises);
     log(isNaN(prises));
     if (isNaN(prises)) {
-      alert("nou number");
+      alert("Please, try Again! The Incorrect Number");
       return;
     } else if (prises < 0.00001) {
-      alert("malenkoe");
+      alert("Please, try Again! The Incorrect Number");
       return;
     }
     await getData("POST", "", {
@@ -109,6 +108,7 @@ async function NFTnokunka(i, y) {
       onerasia: y,
       prise: prises,
     });
+    await alert("Complete! Now Your NFT already On Marketplace!");
     setTimeout(() => (window.location.href = ""), 1000);
     return;
   }
