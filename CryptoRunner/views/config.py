@@ -17,21 +17,21 @@ stoimostNftBoniCrint = 100
 # neim
 
 # Geim
-geim_neim ="geim"
+geim_neim ="Play Crypto Runner"
 
 # MARKETPLACE
-MARKETPLACE_neim="MARKETPLACE"
-nftCilka_neim ="nft"
+MARKETPLACE_neim="Marketplace"
+nftCilka_neim ="NFT Page"
 
 #profile
-registr_neim = "регистрасия"
-profile_neim = "profil"
-profileX_neim = "profil"
+registr_neim = "Registration"
+profile_neim = "Player Profile"
+profileX_neim = "Bonny Player"
 
 # storinci
 Eroor404_neim ="Error 404"
-mainStronisa_neim = "главная страниса"
-geimStranisa_neim ="Geimes"
-Razrabotka_neim ="Coming Soon!"
+mainStronisa_neim = "Bonny Home Page"
+geimStranisa_neim ="Bonny Games"
+Razrabotka_neim ="In Development!"
 
 
