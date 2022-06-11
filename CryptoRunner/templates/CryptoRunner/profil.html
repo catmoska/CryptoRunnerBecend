@@ -113,10 +113,10 @@
         }
 
         async function NickPleir() {
-            let prises = await prompt("Edit User Name");
+            let prises = await prompt("Edit Your User Name. Must Be 1 - 12 Characters Long");
             
-            if(prises.length>=20){
-                alert("neim nou >20");
+            if(prises.length>=12){
+                alert("Your username must be at 1-12 characters long");
                 log("neim length"+prises.length);
                 return;
             }
@@ -127,7 +127,7 @@
             });
 
             if (i["Eroor"]){
-                alert("Eroor");
+                alert("Server Error, Please Try Again");
                 log("Eroor -> profil -> NickPleir" +i);
                 return;
             }
