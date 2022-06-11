@@ -111,9 +111,9 @@ def profile_POST(request,user):
 
 # страниса профиля N игрока
 def profileX_(request,profil):
-    userv = Pleir.objects.filter(PublicKeuSolana=profil)
+    userv = Pleir.objects.filter(pk=profil)
     if len(userv) == 0:
-        userv = Pleir.objects.filter(pk=profil)
+        userv = Pleir.objects.filter(PublicKeuSolana=profil)
         if len(userv) == 0:
             return nereadres("Eroor404", "Eroor: profileX_: ползавател отсуттвует")
     user = userv[0]
