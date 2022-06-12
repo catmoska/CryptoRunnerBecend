@@ -15,17 +15,17 @@ def geimDETA_(request):
 
     # printF(request.method)
     if request.method == 'POSTBUI':
-        return geimDETA_postBui(request,user)
+        return geimDETA_postBui(request, user)
     elif request.method == 'POST':
-        return geimDETA_post(request,user)
+        return geimDETA_post(request, user)
     elif request.method == 'GET':
-        return geimDETA_get(request,user)
+        return geimDETA_get(request, user)
     else:
         printF("Eroor: geimDETA_: request.method !=")
         return HttpResponse("Eroor")
 
 
-def geimDETA_postBui(request,user):
+def geimDETA_postBui(request, user:Pleir):
     # data = json.loads(request.body.decode('utf-8'))
     if user.Money <= stoimostNftBoniCrint:
         return JsonResponse({"Eroor": True})
@@ -41,13 +41,13 @@ def geimDETA_postBui(request,user):
 
     BokTip = [Bok.tip1, Bok.tip2, Bok.tip3, Bok.tip4]
     tip = resULTATBokTip(BokTip)
-    nft,idHash,cloat = sozdaniaNft(user, tip,False)
+    nft, idHash, cloat = sozdaniaNft(user, tip, False)
 
     return JsonResponse(
         {"urlStronisi": "nft/" + str(idHash), "urlImeig": cloat.Photo.url, "idHash": idHash, "Eroor": False})
 
 
-def geimDETA_post(request,user):
+def geimDETA_post(request, user:Pleir):
     data = convert(request.body.decode('utf-8'))
     if data['Nonztia'] == "1":
         nft = NFTs.objects.filter(Pleir=user)[int(data['NFTVID'])]
@@ -58,17 +58,27 @@ def geimDETA_post(request,user):
         user.save()
         return HttpResponse("")
 
-    nft = NFTs.objects.filter(Pleir=user)[int(data['NFTVID'])]
+    nft = NFTs.objects.filter(Pleir=user).filter(pk=int(data['NFTVID']))
+
+    if len(nft) == 0:
+        print("Eroor: geimDETA_post: nft==0")
+        return HttpResponse("Eroor")
+    nft = nft[0]
+
+    distansia = float(data['Distansion'])
 
     user.Money += float(data['Money'])
-    user.Distansion += float(data['Distansion'])
-    user.Record = float(data['Distansion'])
+    user.Distansion += distansia
+    if user.Record < distansia:
+        user.Record = distansia
+
     printF(nft.pk)
     if nft.Energia <= 0:
         printF("EroorNFTEnergia")
         return HttpResponse("EroorNFTEnergia")
     if nft.Energia == nft.EnergiaMax:
         nft.DataVixada = datetime_now_F()
+
     nft.Energia -= 1
     user.save()
     nft.save()
@@ -78,7 +88,7 @@ def geimDETA_post(request,user):
     return t
 
 
-def geimDETA_get(request,user):
+def geimDETA_get(request, user:Pleir):
     hehNFT = request.COOKIES.get('NFThistori')
     deita(user)
     nft = NFTs.objects.filter(Pleir=user)
@@ -89,7 +99,7 @@ def geimDETA_get(request,user):
             "&" + str(user.nonitka) + "&" + str(stoimostNftBoniCrint) + "$"
 
     A = None
-    if hehNFT != None:
+    if hehNFT is not None:
         A = NoiskNft(nft, hehNFT)
 
     if A == None:
@@ -114,10 +124,11 @@ def geimDETA_get(request,user):
 
 
 def geimDETA_otvetPlus(i):
-    return str(i.Energia) + "&" + str(i.EnergiaMax) + "&" + "Runner: #"+str(i.pk) + "&" + \
-             str(0 if (i.Energia == i.EnergiaMax) else int(
-            (times - (datetime_now_F() - i.DataVixada)).seconds / 60)) + "&" + \
-             str(i.ClothesTip.pk) + "$"
+    return str(i.Energia) + "&" + str(i.EnergiaMax) + "&" + str(i.pk) + "&" + \
+           str(0 if (i.Energia == i.EnergiaMax) else int(
+               (times - (datetime_now_F() - i.DataVixada)).seconds / 60)) + "&" + \
+           str(i.ClothesTip.pk) + "$"
+
 
 ###############################
 ''''''
@@ -138,6 +149,5 @@ def geim_(request):
     else:
         return nereadres("registr")
 
-    resultat = render(request, 'CryptoRunner/geim.html',siteDeta(geim_neim,user[0],False))
+    resultat = render(request, 'CryptoRunner/geim.html', siteDeta(geim_neim, user[0], False))
     return resultat
-
