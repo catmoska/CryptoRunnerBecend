@@ -33,3 +33,7 @@
 # nginx http fastcgi temporary files: "fastcgi_temp"
 # nginx http uwsgi temporary files: "uwsgi_temp"
 # nginx http scgi temporary files: "scgi_temp"
+
+# https://forum.hestiacp.com/t/how-to-install-nginx-on-apache-php-running-hestia-cp/1310/3
+# https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/
+# https://www.youtube.com/watch?v=WryrHLcqgVg&list=PLhgRAQ8BwWFa7ulOkX0qi5UfVizGD_-Rc&index=6
