@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xyz!e=4(=d+2&)=%!3^36g%&n^6jcj@hf$sn-6dgfg79mbs@ac'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # APPEND_SLASH=False
 
-ALLOWED_HOSTS = ["127.0.0.1","bonnygames.fun"]
+ALLOWED_HOSTS = ["127.0.0.1","bonnygames.fun","localhost"]
 
 
 # Application definition
@@ -120,7 +120,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,"static")
 STATICFILES_DIRS = [
-os.path.join(BASE_DIR,"CryptoRunner\static"),
+    os.path.join(BASE_DIR,"CryptoRunner/static"),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
