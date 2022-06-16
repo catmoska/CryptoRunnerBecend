@@ -167,7 +167,7 @@ export async function tranzacsion(tin: number = 0) {
 
 // ?????? ?????????
 export function getProvider(): PhantomProvider | undefined {
-  if ("solana" in window) {
+  // if ("solana" in window) {
     const anyWindow: any = window;
     const provider = anyWindow.solana;
     if (provider.isPhantom) return provider;
@@ -175,7 +175,7 @@ export function getProvider(): PhantomProvider | undefined {
     console.log("wwwwwwwwwwwwwwww");
     console.log(provider); 
     console.log(provider.isPhantom);
-  }
+  // }
   //window.open("https://phantom.app/", "_blank");
 }
 

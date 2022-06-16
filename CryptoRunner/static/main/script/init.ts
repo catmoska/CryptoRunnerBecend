@@ -55,7 +55,7 @@ async function conect() {
     await getData("POST", url, {
       publicKey: publicKey,
     });
-    window.location.href = urlGeim;
+    //window.location.href = urlGeim;
   } catch (err) {
     console.log("fff");
     //window.open("https://phantom.app/", "_blank");
