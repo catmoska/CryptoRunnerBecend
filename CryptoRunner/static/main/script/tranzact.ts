@@ -186,13 +186,17 @@ export function getProvider(): PhantomProvider | undefined {
 export async function getProviderConect() {
   const provider = getProvider();
   console.log(provider);
-  if (!provider) return ;
+  if (!provider) return;
+  console.log(provider);
   try {
     try {
+      console.log("sdas");
       await provider.connect({ onlyIfTrusted: true });
     } catch (err) {
+      console.log("sdas2");
       await provider.connect();
     }
+    console.log("wwwwwwww");
     return provider;
   } catch (err) {
     console.log("Error \n"+err);
