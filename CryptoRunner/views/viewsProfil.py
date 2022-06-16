@@ -38,10 +38,12 @@ def registr_POST(request):
                     snis.save()
                     moneu += 50
 
+        deitass = datetime_today()
+        printF(deitass)
         y = Pleir(
             Nick=PublicKeuSolana,
-            DataRegistr=datetime_today(),
-            DataVixada=datetime_today(),
+            DataRegistr=deitass,
+            DataVixada=deitass,
             PublicKeuSolana=PublicKeuSolana,
             idHash=idHash, Money=moneu)
         y.save()
