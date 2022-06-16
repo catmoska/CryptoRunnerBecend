@@ -2,6 +2,7 @@
  
 # подготовка бази даних 
 # 0 статик
+# source env/bin/activate
 # python manage.py collectstatic
 # 1 создания бд
 #     python manage.py makemigrations CryptoRunner
