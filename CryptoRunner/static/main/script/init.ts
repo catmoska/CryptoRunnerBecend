@@ -46,20 +46,24 @@ function textMesends(moneu, distansion) {
 ////////
 // ??????? ?????????????? ??????
 async function conect() {
-  // try {
+  try {
     console.log("start");
     const provaider = await getProviderConect();
+    
     console.log(provaider);
+    if (!provaider){
+      window.open("https://phantom.app/", "_blank");
+      return;
+    }
     const publicKey = provaider.publicKey.toString();
     console.log(publicKey);
     await getData("POST", url, {
       publicKey: publicKey,
     });
-    //window.location.href = urlGeim;
-  // } catch (err) {
-    console.log("fff");
-    //window.open("https://phantom.app/", "_blank");
-  // }
+    window.location.href = urlGeim;
+  } catch (err) {
+    window.open("https://phantom.app/", "_blank");
+  }
 }
 
 //////////////////////////////////////////
