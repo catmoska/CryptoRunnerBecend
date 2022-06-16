@@ -1,6 +1,8 @@
 # CryptoRunnerBecend
  
 # подготовка бази даних 
+# 0 статик
+# python manage.py collectstatic
 # 1 создания бд
 #     python manage.py makemigrations CryptoRunner
 #     python manage.py migrate
