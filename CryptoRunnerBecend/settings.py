@@ -29,6 +29,15 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost","31.172.78.124","bonnygames.fun"]
 
 
+MIDDLEWARE_CLASSES = ('django.middleware.common.CommonMiddleware',
+                      'django.contrib.sessions.middleware.SessionMiddleware',
+                      'django.middleware.csrf.CsrfViewMiddleware',
+                      'django.middleware.csrf.CsrfResponseMiddleware',
+                      'django.contrib.auth.middleware.AuthenticationMiddleware',
+                      'django.contrib.messages.middleware.MessageMiddleware',)
+
+CSRF_TRUSTED_ORIGINS = ["https://31.172.78.124", "https://www.31.172.78.124"]
+
 # Application definition
 
 INSTALLED_APPS = [
