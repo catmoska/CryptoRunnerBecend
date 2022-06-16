@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xyz!e=4(=d+2&)=%!3^36g%&n^6jcj@hf$sn-6dgfg79mbs@ac'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# APPEND_SLASH=False
+DEBUG = False
 
+# APPEND_SLASH=False
 ALLOWED_HOSTS = ["31.172.78.124","bonnygames.fun","127.0.0.1"]
 
 
@@ -84,12 +84,26 @@ WSGI_APPLICATION = 'CryptoRunnerBecend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'admin_bonnygames',
+            'USER': 'admin_bonnygames',
+            'PASSWORD': 'mqT3fEtk85ZnCIba',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation

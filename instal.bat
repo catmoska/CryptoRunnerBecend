@@ -7,5 +7,5 @@ pip install solana
 pip install v8
 pip install Django-extensions
 pip install django-debug-toolbar
-
+pip install mysqlclient
 
