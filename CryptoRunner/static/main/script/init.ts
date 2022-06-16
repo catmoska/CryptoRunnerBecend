@@ -46,7 +46,7 @@ function textMesends(moneu, distansion) {
 ////////
 // ??????? ?????????????? ??????
 async function conect() {
-  try {
+  // try {
     console.log("start");
     const provaider = await getProviderConect();
     console.log(provaider);
@@ -56,10 +56,10 @@ async function conect() {
       publicKey: publicKey,
     });
     //window.location.href = urlGeim;
-  } catch (err) {
+  // } catch (err) {
     console.log("fff");
     //window.open("https://phantom.app/", "_blank");
-  }
+  // }
 }
 
 //////////////////////////////////////////
