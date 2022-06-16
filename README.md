@@ -37,7 +37,7 @@
 # https://forum.hestiacp.com/t/how-to-install-nginx-on-apache-php-running-hestia-cp/1310/3
 # https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/
 # https://www.youtube.com/watch?v=WryrHLcqgVg&list=PLhgRAQ8BwWFa7ulOkX0qi5UfVizGD_-Rc&index=6#
-#
+#https://www.youtube.com/playlist?list=PLyaCd9XYVI9BQXrJU3zw3PGs_vcWw7_CD
 #
 #
 #
