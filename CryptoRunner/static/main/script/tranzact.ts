@@ -187,7 +187,7 @@ export async function getProviderConect() {
     }
     return provider;
   } catch (err) {
-    console.warn(err);
+    log("Error \n"+err);
   }
 }
 

@@ -46,7 +46,7 @@ class MARKETPLACEmodel(models.Model):
 
 
 class Boks(models.Model):
-    Photo = models.ImageField(upload_to="photo/%Y/%m/%d/")
+    Photo = models.ImageField(upload_to="photo/%Y/%m/%d/", null=True)
     nik = models.CharField(max_length=256,default="Defolt")
     stoimost = models.FloatField(default=0.05)
     tip1 =models.FloatField(default=25)

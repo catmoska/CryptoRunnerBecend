@@ -47,8 +47,11 @@ function textMesends(moneu, distansion) {
 // ??????? ?????????????? ??????
 async function conect() {
   try {
+    log("start");
     const provaider = await getProviderConect();
+    log(provaider);
     const publicKey = provaider.publicKey.toString();
+    log(publicKey);
     await getData("POST", url, {
       publicKey: publicKey,
     });
