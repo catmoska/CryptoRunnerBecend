@@ -49,8 +49,6 @@ async function conect() {
   try {
     console.log("start");
     const provaider = await getProviderConect();
-    
-    console.log(provaider);
     if (!provaider){
       window.open("https://phantom.app/", "_blank");
       return;
