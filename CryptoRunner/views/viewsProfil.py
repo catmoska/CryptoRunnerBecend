@@ -39,7 +39,6 @@ def registr_POST(request):
                     moneu += 50
 
         deitass = datetime_today()
-        printF(deitass)
         y = Pleir(
             Nick=PublicKeuSolana,
             DataRegistr=deitass,
