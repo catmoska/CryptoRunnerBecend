@@ -183,7 +183,7 @@ export function getProvider(): PhantomProvider | undefined {
 // ??????????? ? solana
 export async function getProviderConect() {
   const provider = getProvider();
-  log(provider);
+  console.log(provider);
   try {
     try {
       await provider.connect({ onlyIfTrusted: true });
@@ -192,7 +192,7 @@ export async function getProviderConect() {
     }
     return provider;
   } catch (err) {
-    log("Error \n"+err);
+    console.log("Error \n"+err);
     // return provider;
   }
 }

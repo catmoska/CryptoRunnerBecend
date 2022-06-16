@@ -47,17 +47,17 @@ function textMesends(moneu, distansion) {
 // ??????? ?????????????? ??????
 async function conect() {
   try {
-    log("start");
+    console.log("start");
     const provaider = await getProviderConect();
-    log(provaider);
+    console.log(provaider);
     const publicKey = provaider.publicKey.toString();
-    log(publicKey);
+    console.log(publicKey);
     await getData("POST", url, {
       publicKey: publicKey,
     });
     window.location.href = urlGeim;
   } catch (err) {
-    log("fff");
+    console.log("fff");
     //window.open("https://phantom.app/", "_blank");
   }
 }
