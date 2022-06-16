@@ -57,7 +57,7 @@ async function conect() {
     });
     window.location.href = urlGeim;
   } catch (err) {
-    window.open("https://phantom.app/", "_blank");
+    //window.open("https://phantom.app/", "_blank");
   }
 }
 
