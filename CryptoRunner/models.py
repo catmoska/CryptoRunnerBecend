@@ -72,6 +72,6 @@ class Boks(models.Model):
 всо
 """
 
-
+# python manage.py collectstatic
 # adminGj
 # tyninsicGJstudiosC

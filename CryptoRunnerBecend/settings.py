@@ -36,7 +36,7 @@ MIDDLEWARE_CLASSES = ('django.middleware.common.CommonMiddleware',
                       'django.contrib.auth.middleware.AuthenticationMiddleware',
                       'django.contrib.messages.middleware.MessageMiddleware',)
 
-CSRF_TRUSTED_ORIGINS = ["https://31.172.78.124", "https://www.31.172.78.124"]
+CSRF_TRUSTED_ORIGINS = ["https://31.172.78.124", "https://www.31.172.78.124","http://31.172.78.124"]
 
 # Application definition
 
