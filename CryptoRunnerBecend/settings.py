@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-xyz!e=4(=d+2&)=%!3^36g%&n^6jcj@hf$sn-6dgfg79mbs@ac
 DEBUG = True
 # APPEND_SLASH=False
 
-ALLOWED_HOSTS = ["localhost","127.0.0.1","bonnygames.fun"]
+ALLOWED_HOSTS = ["localhost","31.172.78.124","bonnygames.fun"]
 
 
 # Application definition
