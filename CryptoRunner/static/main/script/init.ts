@@ -86,6 +86,7 @@ async function NFTnokunka(i, y) {
 
     document.getElementById("bloc2").style.display = "none";
     document.getElementById("bloc3").style.display = "";
+    
 
     await getData("POST", "", {
       NFT: i,
