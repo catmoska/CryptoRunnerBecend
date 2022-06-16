@@ -171,8 +171,11 @@ export function getProvider(): PhantomProvider | undefined {
     const anyWindow: any = window;
     const provider = anyWindow.solana;
     if (provider.isPhantom) return provider;
+    
+    console.log("wwwwwwwwwwwwwwww");
+    console.log(provider); 
+    console.log(provider.isPhantom);
   }
-  console.log("wwwwwwwwwwwwwwww");
   //window.open("https://phantom.app/", "_blank");
 }
 
