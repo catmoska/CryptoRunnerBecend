@@ -87,18 +87,18 @@ WSGI_APPLICATION = 'CryptoRunnerBecend.wsgi.application'
 
 
 # if DEBUG:
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME':  '/home/admin/web/bonnygames.fun/db.sqlite3',
-        }
-    }
 # DATABASES = {
 #         'default': {
 #             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
+#             'NAME':  '/home/admin/web/bonnygames.fun/db.sqlite3',
 #         }
 #     }
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 # else:
 #     DATABASES = {
 #         'default': {
