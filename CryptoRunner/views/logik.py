@@ -143,7 +143,7 @@ def sozdaniaNft(pleir,Tip,y=True):
         DataVixada=time,
         Pleir=pleir, ClothesTip=cloat, Ymnozitel=Ymnozitel[Tip])
     nft.save()
-
+    print(nft)
     if y:
         return nft
     return nft, idHash, cloat

@@ -50,6 +50,7 @@ def nftVistavka_POST(request):
 
         for i in range(colisestvo):
             nft =sozdaniaNft(pleir, Tip)
+            printF(type(nft))
             R = MARKETPLACEmodel(nft=nft, stoimost=round((stoimostStart + Neriod * i), 5))
             R.save()
     return nereadres("MARKETPLACE")

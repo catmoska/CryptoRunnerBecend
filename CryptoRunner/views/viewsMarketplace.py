@@ -28,9 +28,9 @@ def nftCilka_(request, nftHeh):
     if request.method == 'GETPARAMS':
         return nftCilka_GETPARAMS(nft)
     elif request.method == 'POST':
-        return nftCilka_POST(request,registor,nft,users[0])
+        return nftCilka_POST(request,registor,nft,users)
     elif request.method == 'GET':
-        return nftCilka_GET(request,registor,nft,users[0],nftHeh)
+        return nftCilka_GET(request,registor,nft,users,nftHeh)
     else:
         printF("Eroor: nftCilka_: request.method !=")
         return HttpResponse("Eroor")
@@ -47,7 +47,8 @@ def nftCilka_GETPARAMS(nft):
          "publickeusol": MARKETPLACE.nft.Pleir.PublicKeuSolana})
 
 
-def nftCilka_POST(request,registor,nft,user:Pleir):
+def nftCilka_POST(request,registor,nft,user):
+    user = user[0]
     if not registor:
         return JsonResponse({"Eroor": True})
     data = json.loads(request.body.decode('utf-8'))
