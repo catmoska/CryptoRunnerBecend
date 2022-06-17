@@ -2,7 +2,11 @@
  
 # подготовка бази даних 
 # 0 статик
+# cd /home/admin/web/bonnygames.fun/
+# rm -r CryptoRunnerBecend/
+# git clone https://github.com/catmoska/CryptoRunnerBecend
 # source env/bin/activate
+# cd CryptoRunnerBecend/
 # python manage.py collectstatic
 # 1 создания бд
 #     python manage.py makemigrations CryptoRunner
