@@ -153,13 +153,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> {% endcomment %}
     
     <script>
-        function getCookie(name) {
-	        var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-	        return matches ? decodeURIComponent(matches[1]) : undefined;
-        }
-
-        if(getCookie('publicKey')==undefined)
-            document.getElementById("profile").textContent = "Registration";
+        if(getCookie('publicKey')==undefined || getCookie('publicKey')=="")
+        document.getElementById("profile").textContent = "Registration";
     </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block head %}{% endblock %}
+{% block ScriptHelp %}conect(true);{% endblock %}
 {% block body %}
     <div class="colorF4D backgroundColorF4D container-fluid"
          style="margin-top: -25px;">
@@ -113,6 +114,7 @@
         }
 
         async function NickPleir() {
+            conect(true);
             let prises = await prompt("Edit Your User Name. Must Be 1 - 12 Characters Long");
             
             if(prises.length>=12){

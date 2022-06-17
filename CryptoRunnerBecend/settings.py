@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xyz!e=4(=d+2&)=%!3^36g%&n^6jcj@hf$sn-6dgfg79mbs@ac'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # APPEND_SLASH=False
 ALLOWED_HOSTS = ["31.172.78.124","bonnygames.fun","127.0.0.1"]

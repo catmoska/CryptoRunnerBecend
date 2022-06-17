@@ -168,39 +168,27 @@ export async function tranzacsion(tin: number = 0) {
 // ?????? ?????????
 export function getProvider(): PhantomProvider | undefined {
   if ("solana" in window) {
-  
-    console.log("ddddd");   
     const anyWindow: any = window;
-
-    console.log(anyWindow); 
     const provider = anyWindow.solana;
-    console.log(provider); 
-
     if (provider.isPhantom) return provider;
   }
-  // window.open("https://phantom.app/", "_blank");
 }
 
 
 // ??????????? ? solana
 export async function getProviderConect() {
   const provider = getProvider();
-  console.log(provider);
   if (!provider) return;
-  console.log(provider);
   try {
-    // try {
-      // console.log("sdas");
-      // await provider.connect({ onlyIfTrusted: true });
-    // } catch (err) {
-      console.log("sdas");
+    try {
+      await provider.connect({ onlyIfTrusted: true });
+    } catch (err) {
       await provider.connect();
-    // }
-    console.log("wwwwwwww");
+    }
     return provider;
   } catch (err) {
-    console.log("Error \n"+err);
-    return ;
+    log("Error \n"+err);
+    return;
   }
 }
 

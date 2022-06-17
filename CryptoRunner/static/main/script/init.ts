@@ -14,6 +14,7 @@ Object.assign(window, {
   StartbuiNft: StartbuiNft,
   getData:getData,
   log:log,
+  getCookie:getCookie,
 });
 
 // start peramenii
@@ -31,6 +32,11 @@ function start(url1, url2, url3, url4,Referra) {
   Referral =Referra;
 }
 
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 // ??????? ????????? ????????
 function textMesends(moneu, distansion) {
   return (
@@ -45,20 +51,30 @@ function textMesends(moneu, distansion) {
 }
 ////////
 // ??????? ?????????????? ??????
-async function conect() {
+async function conect(t=false) {
   try {
-    console.log("start");
+    log("start");
     const provaider = await getProviderConect();
     if (!provaider){
       window.open("https://phantom.app/", "_blank");
       return;
     }
     const publicKey = provaider.publicKey.toString();
-    console.log(publicKey);
-    await getData("POST", url, {
-      publicKey: publicKey,
-    });
-    window.location.href = urlGeim;
+    if (t){
+      if(publicKey!=getCookie("publicKey")){
+        document.cookie = "publicKey="+publicKey+"; path=/;";
+        window.location.href = "";
+        
+      log("dasda");
+      }
+      return;
+    }
+    else{
+      await getData("POST", url, {
+        publicKey: publicKey,
+      });
+      window.location.href = urlGeim;
+    }
   } catch (err) {
     window.open("https://phantom.app/", "_blank");
   }
@@ -67,8 +83,7 @@ async function conect() {
 //////////////////////////////////////////
 // ?????? ??????? ? ?????? ? ???????
 async function NFTnokunka(i, y) {
-  log(y);
-  log(i);
+  conect(true);
 
   let signature = null;
   if (y == "bui") {
@@ -101,8 +116,6 @@ async function NFTnokunka(i, y) {
     prises = prises.replace(/,/g, ".");
 
     prises = parseFloat(prises);
-    log(prises);
-    log(isNaN(prises));
     if (isNaN(prises)) {
       alert("Please, try Again! The Incorrect Number");
       return;
@@ -131,7 +144,7 @@ async function NFTnokunka(i, y) {
 /////////////////////
 //??????? box
 async function BoxSunduk(i) {
-  log(i);
+  conect(true);
 
   document.getElementById("bloc1").style.display = "none";
   document.getElementById("bloc2").style.display = "";
@@ -190,8 +203,9 @@ async function buiNft1() {
 
 // ??????????
 async function buiNft() {
+  conect(true);
   displayStile("bloc1",false,800);
-  await displayStile("bloc2",true);
+  await displayStile("bloc2",true,800);
 
   let background = SmenaBackground("");
 
