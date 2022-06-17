@@ -56,7 +56,7 @@ async function conect(t=false) {
     log("start");
     const provaider = await getProviderConect();
     if (!provaider){
-      window.open("https://phantom.app/", "_blank");
+      window.location.href = "";
       return;
     }
     const publicKey = provaider.publicKey.toString();
@@ -76,7 +76,7 @@ async function conect(t=false) {
       window.location.href = urlGeim;
     }
   } catch (err) {
-    window.open("https://phantom.app/", "_blank");
+    window.location.href = "";
   }
 }
 

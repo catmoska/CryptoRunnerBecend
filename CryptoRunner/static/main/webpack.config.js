@@ -13,9 +13,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   use: ['buffer-loader'],
-      // },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
