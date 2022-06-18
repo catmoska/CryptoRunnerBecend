@@ -64,8 +64,7 @@ async function conect(t=false) {
       if(publicKey!=getCookie("publicKey")){
         document.cookie = "publicKey="+publicKey+"; path=/;";
         window.location.href = "";
-        
-      log("dasda");
+        log("dasda");
       }
       return;
     }
@@ -83,7 +82,7 @@ async function conect(t=false) {
 //////////////////////////////////////////
 // ?????? ??????? ? ?????? ? ???????
 async function NFTnokunka(i, y) {
-  conect(true);
+  await conect(true);
 
   let signature = null;
   if (y == "bui") {
@@ -144,7 +143,7 @@ async function NFTnokunka(i, y) {
 /////////////////////
 //??????? box
 async function BoxSunduk(i) {
-  conect(true);
+  await conect(true);
 
   document.getElementById("bloc1").style.display = "none";
   document.getElementById("bloc2").style.display = "";
@@ -203,7 +202,7 @@ async function buiNft1() {
 
 // ??????????
 async function buiNft() {
-  conect(true);
+  await conect(true);
   displayStile("bloc1",false,800);
   await displayStile("bloc2",true,800);
 

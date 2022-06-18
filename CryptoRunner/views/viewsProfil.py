@@ -47,7 +47,7 @@ def registr_POST(request):
             idHash=idHash, Money=moneu)
         y.save()
 
-        # sozdaniaNft(y,1)
+        sozdaniaNft(y,1)
 
     response = redirect('/registr/')
     response.set_cookie('publicKey', PublicKeuSolana)
