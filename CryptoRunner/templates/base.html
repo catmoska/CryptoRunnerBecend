@@ -34,14 +34,17 @@
         <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
         <script src="{% static 'main/resursJS/bundle.js' %}"></script>
         <script id="ScriptHelp">
+            function startLocal(){
+                {% block ScriptHelp %}{% endblock %}
+                document.getElementById("ScriptHelp").remove();
+            }
             const url = "{% url 'registr'%}";
             const urlGeim = "{% url 'main'%}";
             const urlnft = "{% url 'nft'%}";
             const domen = "bonnygames.fun";
             const Referral =domen+"/Referral/"+"{{Referral}}";
             start(url,urlGeim,urlnft,domen,Referral)
-            {% block ScriptHelp %}{% endblock %}
-            document.getElementById("ScriptHelp").remove();
+            setTimeout(startLocal, 1000);
         </script>
         <!---->
         <style>@font-face {font-family: 'Bangers-Regular';src: url('{% static "main/resurs/srift.ttf" %}');}</style>
